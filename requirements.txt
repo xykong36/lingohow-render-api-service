@@ -1,12 +1,11 @@
 fastapi[all]
-pydantic-settings
 # Core dependencies for video transcript workflow
 youtube-transcript-api==1.2.2
 openai
 python-dotenv
 bson
 pymongo
-
+python-dotenv
 # Audio generation
 edge-tts
 

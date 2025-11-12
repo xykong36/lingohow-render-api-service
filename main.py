@@ -5,13 +5,24 @@ Provides endpoints for text translation, sentence enhancement, and expression ge
 
 import logging
 import hashlib
+import os
+from pathlib import Path
 from contextlib import asynccontextmanager
 from typing import Optional
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from concurrent.futures import ThreadPoolExecutor
 
-from config import Settings, get_settings
+# Load environment variables from .env.local if exists (local development)
+# In production (Render), environment variables come from Render dashboard
+env_file = Path(__file__).parent / ".env.local"
+if env_file.exists():
+    try:
+        from dotenv import load_dotenv
+        load_dotenv(env_file)
+        print("✅ Loaded environment variables from .env.local")
+    except ImportError:
+        print("⚠️ python-dotenv not installed, using system environment variables only")
 from models import (
     ParagraphTranslateRequest,
     ParagraphTranslateResponse,
@@ -51,15 +62,20 @@ async def lifespan(app: FastAPI):
     """Lifespan context manager for startup and shutdown events."""
     global translation_service, phonetic_service, highlight_service, expression_service
 
-    settings = get_settings()
-
     # Startup
-    logger.info(f"Starting {settings.app_name} v{settings.app_version}")
+    logger.info("Starting Translation API v1.0.0")
     try:
+        # Get environment variables
+        api_key = os.getenv("DEEPSEEK_API_KEY")
+        base_url = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
+
+        if not api_key:
+            raise ValueError("DEEPSEEK_API_KEY environment variable not set")
+
         # Create Deepseek client
         deepseek_client = DeepseekClient(
-            api_key=settings.deepseek_api_key,
-            base_url=settings.deepseek_base_url
+            api_key=api_key,
+            base_url=base_url
         )
         logger.info("✅ DeepseekClient initialized")
 
@@ -89,16 +105,25 @@ app = FastAPI(
 )
 
 # Configure CORS
-settings = get_settings()
+
+# 生产环境里面用环境变量控制
+# allowed_origins = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
+
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=allowed_origins,
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origins,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,    # 注意：改为 False
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
 # ===== Dependency Injection =====
 
 def get_translation_service() -> TranslationService:
