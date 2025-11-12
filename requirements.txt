@@ -11,7 +11,7 @@ pymongo
 edge-tts
 
 # Cloud storage
-qcloud-cos-sdk-python  # Tencent Cloud COS
+cos-python-sdk-v5 # Tencent Cloud COS
 boto3  # For R2 (S3-compatible)
 
 # Video/Audio download
