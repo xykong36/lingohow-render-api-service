@@ -59,7 +59,6 @@ class EnhancedSentence(BaseModel):
 class ParagraphGenerateSentencesResponse(BaseModel):
     """Response model for paragraph sentence generation."""
     sentences: list[EnhancedSentence]
-    total_count: int = Field(..., description="Total number of sentences generated")
 
 
 # ===== Use Case 3: Single Sentence Enhancement =====
@@ -172,7 +171,6 @@ class Expression(BaseModel):
 class ExpressionGenerateResponse(BaseModel):
     """Response model for expression generation."""
     expressions: list[Expression]
-    total_count: int = Field(..., description="Total number of expressions generated")
 
 
 # ===== Error Response Model =====

@@ -284,7 +284,7 @@ async def generate_sentences_from_paragraph(
         logger.info(f"Split into {len(sentences)} sentences")
 
         if not sentences:
-            return ParagraphGenerateSentencesResponse(sentences=[], total_count=0)
+            return ParagraphGenerateSentencesResponse(sentences=[])
 
         # Process sentences in parallel
         def process_sentence(idx: int, sentence_text: str) -> EnhancedSentence:
@@ -338,7 +338,6 @@ async def generate_sentences_from_paragraph(
 
         return ParagraphGenerateSentencesResponse(
             sentences=enhanced_sentences,
-            total_count=len(enhanced_sentences)
         )
 
     except Exception as e:
@@ -443,8 +442,7 @@ async def generate_expressions(
         logger.info(f"✅ Generated {len(expressions)} expressions")
 
         return ExpressionGenerateResponse(
-            expressions=expressions,
-            total_count=len(expressions)
+            expressions=expressions
         )
 
     except DeepseekAPIError as e:
