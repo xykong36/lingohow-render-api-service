@@ -9,9 +9,12 @@ import os
 from pathlib import Path
 from contextlib import asynccontextmanager
 from typing import Optional
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException, Depends, Request
 from fastapi.middleware.cors import CORSMiddleware
 from concurrent.futures import ThreadPoolExecutor
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 
 # Load environment variables from .env.local if exists (local development)
 # In production (Render), environment variables come from Render dashboard
@@ -32,6 +35,8 @@ from models import (
     SentenceEnhanceResponse,
     ExpressionGenerateRequest,
     ExpressionGenerateResponse,
+    VideoTranscriptRequest,
+    VideoTranscriptResponse,
     EnhancedSentence,
     HighlightEntry,
     ErrorResponse,
@@ -41,6 +46,12 @@ from services.translation_service import TranslationService
 from services.phonetic_service import PhoneticService
 from services.highlight_service import HighlightService
 from services.expression_service import ExpressionService
+from services.transcript_service import (
+    TranscriptService,
+    TranscriptServiceError,
+    TranscriptNotAvailableError,
+    InvalidVideoIdError
+)
 from utils.text_splitter import split_into_sentences
 
 # Configure logging
@@ -50,17 +61,21 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Initialize rate limiter
+limiter = Limiter(key_func=get_remote_address)
+
 # Global service instances
 translation_service: Optional[TranslationService] = None
 phonetic_service: Optional[PhoneticService] = None
 highlight_service: Optional[HighlightService] = None
 expression_service: Optional[ExpressionService] = None
+transcript_service: Optional[TranscriptService] = None
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Lifespan context manager for startup and shutdown events."""
-    global translation_service, phonetic_service, highlight_service, expression_service
+    global translation_service, phonetic_service, highlight_service, expression_service, transcript_service
 
     # Startup
     logger.info("Starting Translation API v1.0.0")
@@ -84,6 +99,7 @@ async def lifespan(app: FastAPI):
         phonetic_service = PhoneticService(deepseek_client)
         highlight_service = HighlightService(deepseek_client)
         expression_service = ExpressionService(deepseek_client)
+        transcript_service = TranscriptService()
 
         logger.info("✅ All services initialized successfully")
     except Exception as e:
@@ -103,6 +119,10 @@ app = FastAPI(
     description="API for Chinese translation, phonetic transcription, and expression generation",
     lifespan=lifespan
 )
+
+# Add rate limiter to app state
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # Configure CORS
 
@@ -154,6 +174,13 @@ def get_expression_service() -> ExpressionService:
     return expression_service
 
 
+def get_transcript_service() -> TranscriptService:
+    """Get transcript service instance."""
+    if transcript_service is None:
+        raise HTTPException(status_code=503, detail="Transcript service not initialized")
+    return transcript_service
+
+
 # ===== Endpoints =====
 
 @app.get("/")
@@ -168,6 +195,7 @@ async def root():
             "paragraph_generate_sentences": "POST /api/paragraph/generate-sentences",
             "sentence_enhance": "POST /api/sentence/enhance",
             "expression_generate": "POST /api/expression/generate",
+            "video_transcript": "POST /api/video/transcript",
         }
     }
 
@@ -182,6 +210,7 @@ async def health_check():
             "phonetic": "initialized" if phonetic_service else "not initialized",
             "highlight": "initialized" if highlight_service else "not initialized",
             "expression": "initialized" if expression_service else "not initialized",
+            "transcript": "initialized" if transcript_service else "not initialized",
         }
     }
 
@@ -421,6 +450,73 @@ async def generate_expressions(
     except DeepseekAPIError as e:
         logger.error(f"Expression generation failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+    except Exception as e:
+        logger.error(f"Unexpected error: {e}")
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+
+
+@app.post(
+    "/api/video/transcript",
+    response_model=VideoTranscriptResponse,
+    responses={400: {"model": ErrorResponse}, 404: {"model": ErrorResponse}, 429: {"model": ErrorResponse}, 500: {"model": ErrorResponse}}
+)
+@limiter.limit("1/5seconds")
+async def get_video_transcript(
+    request: Request,
+    body: VideoTranscriptRequest,
+    trans_svc: TranscriptService = Depends(get_transcript_service)
+):
+    """
+    Use Case 5: Get YouTube video transcript with timestamps.
+
+    - Accepts video_id or video_url
+    - Returns timestamped transcript segments
+    - Includes full transcript text and metadata
+    - Provides language information and auto-generation status
+    - Rate limited: 1 request per 5 seconds per IP address
+    """
+    try:
+        # Extract video ID from URL if provided
+        video_id = body.video_id
+        if not video_id and body.video_url:
+            video_id = trans_svc.extract_video_id(body.video_url)
+            if not video_id:
+                raise HTTPException(
+                    status_code=400,
+                    detail="Invalid YouTube URL. Could not extract video ID."
+                )
+
+        if not video_id:
+            raise HTTPException(
+                status_code=400,
+                detail="Either video_id or video_url must be provided"
+            )
+
+        logger.info(f"Fetching transcript for video: {video_id}")
+
+        # Get transcript
+        transcript_data = trans_svc.get_transcript(video_id)
+
+        logger.info(f"✅ Transcript fetched successfully for video {video_id}")
+
+        return VideoTranscriptResponse(**transcript_data)
+
+    except InvalidVideoIdError as e:
+        logger.error(f"Invalid video ID: {e}")
+        raise HTTPException(status_code=400, detail=str(e))
+
+    except TranscriptNotAvailableError as e:
+        logger.error(f"Transcript not available: {e}")
+        raise HTTPException(status_code=404, detail=str(e))
+
+    except TranscriptServiceError as e:
+        logger.error(f"Transcript service error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+    except ValueError as e:
+        logger.error(f"Validation error: {e}")
+        raise HTTPException(status_code=400, detail=str(e))
+
     except Exception as e:
         logger.error(f"Unexpected error: {e}")
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")

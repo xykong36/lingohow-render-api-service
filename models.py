@@ -177,6 +177,54 @@ class ExpressionGenerateResponse(BaseModel):
 
 # ===== Error Response Model =====
 
+# ===== Use Case 5: Video Transcript Generation =====
+
+class VideoTranscriptRequest(BaseModel):
+    """Request model for video transcript generation."""
+    video_id: Optional[str] = Field(None, description="YouTube video ID (11 characters)")
+    video_url: Optional[str] = Field(None, description="Full YouTube video URL")
+
+    def model_post_init(self, __context):
+        """Validate that at least one of video_id or video_url is provided."""
+        if not self.video_id and not self.video_url:
+            raise ValueError("Either video_id or video_url must be provided")
+
+
+class TranscriptSegment(BaseModel):
+    """Model for a single transcript segment with timestamp."""
+    text: str = Field(..., description="Transcript text for this segment")
+    start: float = Field(..., description="Start time in seconds")
+    duration: float = Field(..., description="Duration in seconds")
+
+
+class VideoTranscriptMetadata(BaseModel):
+    """Metadata for video transcript."""
+    total_segments: int
+    language: str
+    language_code: str
+    is_generated: bool
+    character_count: int
+    word_count: int
+    total_duration_seconds: Optional[float] = None
+    total_duration_formatted: Optional[str] = None
+    fetch_timestamp: str
+    api_version: str = "1.2.2"
+    r2_object_key: Optional[str] = Field(None, description="R2 object storage key for the transcript file")
+
+
+class VideoTranscriptResponse(BaseModel):
+    """Response model for video transcript."""
+    video_id: str = Field(..., description="YouTube video ID")
+    title: str = Field(..., description="Video title")
+    video_url: str = Field(..., description="YouTube video URL")
+    transcript: list[TranscriptSegment] = Field(..., description="Timestamped transcript segments")
+    full_transcript: str = Field(..., description="Complete transcript text without timestamps")
+    metadata: VideoTranscriptMetadata = Field(..., description="Transcript metadata")
+    r2_url: Optional[str] = Field(None, description="R2 public URL for the stored transcript JSON file")
+
+
+# ===== Error Response Model =====
+
 class ErrorResponse(BaseModel):
     """Standard error response."""
     error: str = Field(..., description="Error message")

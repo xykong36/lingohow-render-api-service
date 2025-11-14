@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "deepseek-translation-api-001",
+		"name": "Translation API",
+		"description": "Complete Postman collection for testing Translation API endpoints. Includes paragraph translation, sentence generation, sentence enhancement, and expression generation.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/health",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"health"
+					]
+				},
+				"description": "Check if all services are initialized and healthy"
+			},
+			"response": []
+		},
+		{
+			"name": "1. Translate Paragraph",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"text\": \"Machine learning has revolutionized the way we approach data analysis. By leveraging advanced algorithms, companies can now extract meaningful insights from vast amounts of information.\",\n  \"extract_highlights\": true\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/paragraph/translate",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"paragraph",
+						"translate"
+					]
+				},
+				"description": "Use Case 1: Translate a paragraph to Chinese and extract highlight entries (important words/phrases for learning)"
+			},
+			"response": []
+		},
+		{
+			"name": "2. Generate Sentences from Paragraph",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"text\": \"The new library opened last week. It features modern architecture and comfortable reading spaces. Students from nearby schools often visit on weekends.\",\n  \"episode_id\": 101,\n  \"split_by\": \"sentence\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/paragraph/generate-sentences",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"paragraph",
+						"generate-sentences"
+					]
+				},
+				"description": "Use Case 2: Split paragraph into sentences, then enhance each with translation, phonetic transcription, and highlights. Processes in parallel for better performance."
+			},
+			"response": []
+		},
+		{
+			"name": "3. Enhance Single Sentence",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"en\": \"Thanks to cutting-edge technology, we can now figure out complex problems much faster.\",\n  \"episode_id\": 201,\n  \"episode_sequence\": 5,\n  \"start_ts\": 12.5,\n  \"end_ts\": 16.8\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/sentence/enhance",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"sentence",
+						"enhance"
+					]
+				},
+				"description": "Use Case 3: Enhance a single sentence with Chinese translation, US phonetic transcription (IPA), and highlight entries"
+			},
+			"response": []
+		},
+		{
+			"name": "4. Generate Expressions from Sentences",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"sentences\": [\n    {\n      \"en\": \"I got pulled in by the fascinating documentary about ocean life.\",\n      \"zh\": \"我被这部关于海洋生物的精彩纪录片所吸引。\",\n      \"sentence_id\": \"sent_001\",\n      \"episode_id\": 301,\n      \"episode_sequence\": 1\n    },\n    {\n      \"en\": \"Thanks to modern technology, scientists can explore the deep sea at the very last minute.\",\n      \"zh\": \"多亏了现代技术,科学家们可以在最后一刻探索深海。\",\n      \"sentence_id\": \"sent_002\",\n      \"episode_id\": 301,\n      \"episode_sequence\": 2\n    },\n    {\n      \"en\": \"Marine enthusiasts from around the world moved to coastal cities to study ocean phenomena.\",\n      \"zh\": \"来自世界各地的海洋爱好者搬到沿海城市研究海洋现象。\",\n      \"sentence_id\": \"sent_003\",\n      \"episode_id\": 301,\n      \"episode_sequence\": 3\n    }\n  ],\n  \"episode_id\": 301,\n  \"max_input_tokens\": 2500,\n  \"max_workers\": 4\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/expression/generate",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"expression",
+						"generate"
+					]
+				},
+				"description": "Use Case 4: Generate expression data from sentences - extracts phrasal verbs, idioms, collocations with meanings, examples, word relations, and matched sentences"
+			},
+			"response": []
+		},
+		{
+			"name": "5. Get Video Transcript (by Video ID)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"video_id\": \"dQw4w9WgXcQ\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/video/transcript",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"video",
+						"transcript"
+					]
+				},
+				"description": "Use Case 5: Fetch YouTube video transcript with timestamps. Supports video_id or video_url. Returns timestamped segments, full transcript text, metadata, and uploads to R2 storage. Rate limited to 1 request per 5 seconds per IP."
+			},
+			"response": []
+		},
+		{
+			"name": "5. Get Video Transcript (by Video URL)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"video_url\": \"https://www.youtube.com/watch?v=dQw4w9WgXcQ\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/video/transcript",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"video",
+						"transcript"
+					]
+				},
+				"description": "Use Case 5: Fetch YouTube video transcript using full YouTube URL. Also supports short URLs like https://youtu.be/VIDEO_ID. Rate limited to 1 request per 5 seconds per IP."
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}

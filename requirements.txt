@@ -9,6 +9,9 @@ python-dotenv
 # Audio generation
 edge-tts
 
+# API Rate Limiting
+slowapi
+
 # Cloud storage
 cos-python-sdk-v5 # Tencent Cloud COS
 boto3  # For R2 (S3-compatible)
