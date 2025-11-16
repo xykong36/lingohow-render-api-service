@@ -101,7 +101,7 @@ class DeepseekClient:
                     }
                 ],
                 temperature=0.1,  # Low temperature for consistent translations
-                max_tokens=1000,
+                max_tokens=2000,
                 stream=False
             )
 

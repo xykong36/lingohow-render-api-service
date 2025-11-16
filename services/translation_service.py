@@ -62,7 +62,7 @@ class TranslationService:
                 system_prompt=TRANSLATION_SYSTEM_PROMPT,
                 user_prompt=get_translation_user_prompt(text),
                 temperature=0.1,
-                max_tokens=1000
+                max_tokens=2000
             )
 
             # Validate output - ensure we got Chinese characters

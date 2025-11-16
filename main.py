@@ -37,6 +37,9 @@ from models import (
     ExpressionGenerateResponse,
     VideoTranscriptRequest,
     VideoTranscriptResponse,
+    SentenceAudioGenerateRequest,
+    SentenceAudioGenerateResponse,
+    SentenceAudioResult,
     EnhancedSentence,
     HighlightEntry,
     ErrorResponse,
@@ -194,6 +197,7 @@ async def root():
             "paragraph_translate": "POST /api/paragraph/translate",
             "paragraph_generate_sentences": "POST /api/paragraph/generate-sentences",
             "sentence_enhance": "POST /api/sentence/enhance",
+            "sentence_audio_generate": "POST /api/sentence/generate-audio",
             "expression_generate": "POST /api/expression/generate",
             "video_transcript": "POST /api/video/transcript",
         }
@@ -517,6 +521,359 @@ async def get_video_transcript(
 
     except Exception as e:
         logger.error(f"Unexpected error: {e}")
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+
+
+@app.post(
+    "/api/sentence/generate-audio",
+    response_model=SentenceAudioGenerateResponse,
+    responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}}
+)
+async def generate_sentence_audio(
+    request: SentenceAudioGenerateRequest
+):
+    """
+    Use Case 6: Generate audio files for sentences and upload to COS/R2.
+
+    - Generates MP3 audio files for each sentence using Edge TTS
+    - Uploads all audio files to both COS and R2 storage
+    - Returns comprehensive upload statistics and results
+    """
+    try:
+        from pathlib import Path
+        from concurrent.futures import ThreadPoolExecutor, as_completed
+        from utils.text_helpers import hash_text
+        from utils.audio_helpers import generate_audio_with_edge_tts, check_edge_tts_available
+
+        logger.info(f"Generating audio for {len(request.sentences)} sentences...")
+
+        # Check if Edge TTS is available
+        if not check_edge_tts_available():
+            raise HTTPException(
+                status_code=500,
+                detail="Edge TTS is not available. Please install edge-tts command line tool."
+            )
+
+        # Create output directory
+        audio_dir = Path("audio/sentences")
+        audio_dir.mkdir(parents=True, exist_ok=True)
+
+        # Process sentences to generate audio files
+        def process_single_sentence(sentence_data: dict, idx: int) -> dict:
+            """Process a single sentence: generate hash and audio file."""
+            sentence_text = sentence_data.get('en', '').strip()
+
+            if not sentence_text:
+                logger.warning(f"Sentence {idx}: Empty text, skipping")
+                return {
+                    'sentence_id': sentence_data.get('sentence_id'),
+                    'episode_id': sentence_data.get('episode_id', request.episode_id),
+                    'episode_sequence': sentence_data.get('episode_sequence', idx + 1),
+                    'en': '',
+                    'sentence_hash': '',
+                    'audio_path': None,
+                    'audio_generated': False,
+                    'error': 'Empty sentence text'
+                }
+
+            # Generate hash
+            sentence_hash = hash_text(sentence_text, length=8)
+
+            # Create audio file path
+            audio_filename = f"{sentence_hash}.mp3"
+            audio_path = audio_dir / audio_filename
+
+            # Check if audio file already exists
+            if audio_path.exists():
+                logger.info(f"Sentence {idx}: Audio already exists - {audio_filename}")
+                return {
+                    'sentence_id': sentence_data.get('sentence_id'),
+                    'episode_id': sentence_data.get('episode_id', request.episode_id),
+                    'episode_sequence': sentence_data.get('episode_sequence', idx + 1),
+                    'en': sentence_text,
+                    'sentence_hash': sentence_hash,
+                    'audio_path': str(audio_path),
+                    'audio_generated': True,
+                    'existed': True
+                }
+
+            # Generate new audio file
+            logger.info(f"Sentence {idx}: Generating audio for: {sentence_text[:50]}...")
+            success = generate_audio_with_edge_tts(sentence_text, audio_path, request.voice)
+
+            if success:
+                logger.info(f"Sentence {idx}: ✅ Generated - {audio_filename}")
+                return {
+                    'sentence_id': sentence_data.get('sentence_id'),
+                    'episode_id': sentence_data.get('episode_id', request.episode_id),
+                    'episode_sequence': sentence_data.get('episode_sequence', idx + 1),
+                    'en': sentence_text,
+                    'sentence_hash': sentence_hash,
+                    'audio_path': str(audio_path),
+                    'audio_generated': True,
+                    'existed': False
+                }
+            else:
+                logger.warning(f"Sentence {idx}: ❌ Failed to generate audio")
+                return {
+                    'sentence_id': sentence_data.get('sentence_id'),
+                    'episode_id': sentence_data.get('episode_id', request.episode_id),
+                    'episode_sequence': sentence_data.get('episode_sequence', idx + 1),
+                    'en': sentence_text,
+                    'sentence_hash': sentence_hash,
+                    'audio_path': None,
+                    'audio_generated': False,
+                    'error': 'Audio generation failed'
+                }
+
+        # Generate audio files in parallel
+        processed_sentences = []
+        with ThreadPoolExecutor(max_workers=request.max_workers) as executor:
+            futures = {
+                executor.submit(process_single_sentence, sentence, idx): idx
+                for idx, sentence in enumerate(request.sentences)
+            }
+
+            for future in as_completed(futures):
+                idx = futures[future]
+                try:
+                    result = future.result()
+                    processed_sentences.append((idx, result))
+                except Exception as e:
+                    logger.error(f"Error processing sentence {idx}: {e}")
+                    processed_sentences.append((idx, {
+                        'sentence_id': request.sentences[idx].get('sentence_id'),
+                        'episode_id': request.sentences[idx].get('episode_id', request.episode_id),
+                        'episode_sequence': request.sentences[idx].get('episode_sequence', idx + 1),
+                        'en': request.sentences[idx].get('en', ''),
+                        'sentence_hash': '',
+                        'audio_generated': False,
+                        'error': str(e)
+                    }))
+
+        # Sort by original index
+        processed_sentences.sort(key=lambda x: x[0])
+        processed_sentences = [result for _, result in processed_sentences]
+
+        # Collect audio files for upload
+        upload_files = []
+        for sentence in processed_sentences:
+            if sentence.get('audio_generated') and sentence.get('audio_path'):
+                audio_path = sentence['audio_path']
+                sentence_hash = sentence['sentence_hash']
+                if Path(audio_path).exists():
+                    object_key = f"audio/sentences/{sentence_hash}.mp3"
+                    upload_files.append({
+                        'file_path': audio_path,
+                        'object_key': object_key,
+                        'sentence_hash': sentence_hash
+                    })
+
+        logger.info(f"📁 Collected {len(upload_files)} audio files for upload")
+
+        # Upload to COS
+        cos_upload_results = []
+        cos_stats = {'total_uploads': 0, 'successful_uploads': 0, 'failed_uploads': 0, 'success_rate': 0.0}
+        try:
+            # Load COS configuration directly (without Prefect task wrapper)
+            import os
+            cos_config = {
+                'COS_SECRET_ID': os.getenv('COS_SECRET_ID'),
+                'COS_SECRET_KEY': os.getenv('COS_SECRET_KEY'),
+                'COS_BUCKET': os.getenv('COS_BUCKET'),
+                'COS_REGION': os.getenv('COS_REGION')
+            }
+
+            # Check if COS is configured
+            if not all(cos_config.values()):
+                raise Exception("COS configuration incomplete - missing environment variables")
+
+            logger.info("🔑 COS configuration loaded, starting upload...")
+
+            # Create COS client and upload files
+            def upload_to_cos_simple(file_path: str, object_key: str) -> dict:
+                """Upload file to COS without Prefect wrapper."""
+                try:
+                    from qcloud_cos import CosConfig, CosS3Client
+
+                    cos_cfg = CosConfig(
+                        Region=cos_config['COS_REGION'],
+                        SecretId=cos_config['COS_SECRET_ID'],
+                        SecretKey=cos_config['COS_SECRET_KEY']
+                    )
+                    client = CosS3Client(cos_cfg)
+
+                    file_obj = Path(file_path)
+                    if not file_obj.exists():
+                        return {'success': False, 'object_key': object_key, 'error': 'File not found'}
+
+                    response = client.upload_file(
+                        Bucket=cos_config['COS_BUCKET'],
+                        Key=object_key,
+                        LocalFilePath=str(file_obj),
+                        EnableMD5=True
+                    )
+
+                    return {
+                        'success': True,
+                        'object_key': object_key,
+                        'file_name': file_obj.name,
+                        'file_size': file_obj.stat().st_size,
+                        'etag': response.get('ETag', '').strip('"')
+                    }
+                except Exception as e:
+                    return {'success': False, 'object_key': object_key, 'error': str(e)}
+
+            # Upload files in parallel
+            with ThreadPoolExecutor(max_workers=request.max_workers) as executor:
+                futures = [
+                    executor.submit(upload_to_cos_simple, file_info['file_path'], file_info['object_key'])
+                    for file_info in upload_files
+                ]
+                cos_upload_results = [future.result() for future in as_completed(futures)]
+
+            # Calculate COS statistics
+            total_cos = len(cos_upload_results)
+            successful_cos = sum(1 for r in cos_upload_results if r.get('success', False))
+            cos_stats = {
+                'total_uploads': total_cos,
+                'successful_uploads': successful_cos,
+                'failed_uploads': total_cos - successful_cos,
+                'success_rate': successful_cos / total_cos if total_cos > 0 else 0.0
+            }
+            logger.info(f"📊 COS upload: {successful_cos}/{total_cos} successful")
+        except Exception as e:
+            logger.warning(f"⚠️ COS upload skipped: {e}")
+            cos_stats = {'error': str(e)}
+
+        # Upload to R2
+        r2_upload_results = []
+        r2_stats = {'total_uploads': 0, 'successful_uploads': 0, 'failed_uploads': 0, 'success_rate': 0.0}
+        try:
+            # Load R2 configuration directly (without Prefect task wrapper)
+            r2_config = {
+                'R2_BUCKET_NAME': os.getenv('R2_BUCKET_NAME'),
+                'R2_ACCESS_KEY_ID': os.getenv('R2_ACCESS_KEY_ID'),
+                'R2_SECRET_ACCESS_KEY': os.getenv('R2_SECRET_ACCESS_KEY'),
+                'R2_ACCOUNT_ID': os.getenv('R2_ACCOUNT_ID'),
+                'R2_ENDPOINT_URL': os.getenv('R2_ENDPOINT_URL')
+            }
+
+            # Check if R2 is configured
+            if not all(r2_config.values()):
+                raise Exception("R2 configuration incomplete - missing environment variables")
+
+            logger.info("🔑 R2 configuration loaded, starting upload...")
+
+            # Create R2 client and upload files
+            def upload_to_r2_simple(file_path: str, object_key: str) -> dict:
+                """Upload file to R2 without Prefect wrapper."""
+                try:
+                    import boto3
+
+                    s3_client = boto3.client(
+                        service_name='s3',
+                        endpoint_url=r2_config['R2_ENDPOINT_URL'],
+                        aws_access_key_id=r2_config['R2_ACCESS_KEY_ID'],
+                        aws_secret_access_key=r2_config['R2_SECRET_ACCESS_KEY'],
+                        region_name='auto'
+                    )
+
+                    file_obj = Path(file_path)
+                    if not file_obj.exists():
+                        return {'success': False, 'object_key': object_key, 'error': 'File not found'}
+
+                    extra_args = {'ContentType': 'audio/mpeg'}
+                    s3_client.upload_file(
+                        Filename=str(file_obj),
+                        Bucket=r2_config['R2_BUCKET_NAME'],
+                        Key=object_key,
+                        ExtraArgs=extra_args
+                    )
+
+                    return {
+                        'success': True,
+                        'object_key': object_key,
+                        'file_name': file_obj.name,
+                        'file_size': file_obj.stat().st_size,
+                        'content_type': 'audio/mpeg'
+                    }
+                except Exception as e:
+                    return {'success': False, 'object_key': object_key, 'error': str(e)}
+
+            # Upload files in parallel
+            with ThreadPoolExecutor(max_workers=request.max_workers) as executor:
+                futures = [
+                    executor.submit(upload_to_r2_simple, file_info['file_path'], file_info['object_key'])
+                    for file_info in upload_files
+                ]
+                r2_upload_results = [future.result() for future in as_completed(futures)]
+
+            # Calculate R2 statistics
+            total_r2 = len(r2_upload_results)
+            successful_r2 = sum(1 for r in r2_upload_results if r.get('success', False))
+            r2_stats = {
+                'total_uploads': total_r2,
+                'successful_uploads': successful_r2,
+                'failed_uploads': total_r2 - successful_r2,
+                'success_rate': successful_r2 / total_r2 if total_r2 > 0 else 0.0
+            }
+            logger.info(f"📊 R2 upload: {successful_r2}/{total_r2} successful")
+        except Exception as e:
+            logger.warning(f"⚠️ R2 upload skipped: {e}")
+            r2_stats = {'error': str(e)}
+
+        # Build upload results map
+        cos_upload_map = {r.get('object_key'): r for r in cos_upload_results}
+        r2_upload_map = {r.get('object_key'): r for r in r2_upload_results}
+
+        # Build final results
+        results = []
+        for sentence in processed_sentences:
+            sentence_hash = sentence.get('sentence_hash', '')
+            object_key = f"audio/sentences/{sentence_hash}.mp3" if sentence_hash else None
+
+            cos_result = cos_upload_map.get(object_key, {}) if object_key else {}
+            r2_result = r2_upload_map.get(object_key, {}) if object_key else {}
+
+            results.append(SentenceAudioResult(
+                sentence_id=sentence.get('sentence_id'),
+                episode_id=sentence.get('episode_id'),
+                episode_sequence=sentence.get('episode_sequence'),
+                sentence_hash=sentence_hash,
+                en=sentence.get('en', ''),
+                audio_generated=sentence.get('audio_generated', False),
+                uploaded_cos=cos_result.get('success', False),
+                uploaded_r2=r2_result.get('success', False),
+                cos_object_key=object_key if cos_result.get('success') else None,
+                r2_object_key=object_key if r2_result.get('success') else None,
+                error=sentence.get('error')
+            ))
+
+        # Overall statistics
+        total_sentences = len(processed_sentences)
+        audio_generated = sum(1 for s in processed_sentences if s.get('audio_generated', False))
+        statistics = {
+            'total_sentences': total_sentences,
+            'audio_generated': audio_generated,
+            'audio_failed': total_sentences - audio_generated,
+            'audio_success_rate': audio_generated / total_sentences if total_sentences > 0 else 0.0,
+            'files_collected_for_upload': len(upload_files)
+        }
+
+        logger.info(f"✅ Audio generation completed: {audio_generated}/{total_sentences} successful")
+
+        return SentenceAudioGenerateResponse(
+            results=results,
+            statistics=statistics,
+            cos_upload_stats=cos_stats,
+            r2_upload_stats=r2_stats
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Sentence audio generation failed: {e}")
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
 

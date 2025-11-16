@@ -221,6 +221,39 @@ class VideoTranscriptResponse(BaseModel):
     r2_url: Optional[str] = Field(None, description="R2 public URL for the stored transcript JSON file")
 
 
+# ===== Use Case 6: Sentence Audio Generation =====
+
+class SentenceAudioGenerateRequest(BaseModel):
+    """Request model for generating audio files for sentences."""
+    sentences: list[dict[str, Any]] = Field(..., description="List of sentence dictionaries with 'en' field")
+    episode_id: Optional[int] = Field(None, description="Episode ID for organization")
+    voice: str = Field("en-US-AvaMultilingualNeural", description="Edge TTS voice model to use")
+    max_workers: int = Field(4, description="Maximum parallel workers for audio generation")
+
+
+class SentenceAudioResult(BaseModel):
+    """Result for a single sentence audio generation and upload."""
+    sentence_id: Optional[int] = Field(None, description="Original sentence ID from input")
+    episode_id: Optional[int] = Field(None, description="Episode ID from input")
+    episode_sequence: Optional[int] = Field(None, description="Episode sequence from input")
+    sentence_hash: str = Field(..., description="MD5 hash of the sentence text")
+    en: str = Field(..., description="Original English sentence text")
+    audio_generated: bool = Field(..., description="Whether audio file was generated successfully")
+    uploaded_cos: bool = Field(False, description="Whether uploaded to COS successfully")
+    uploaded_r2: bool = Field(False, description="Whether uploaded to R2 successfully")
+    cos_object_key: Optional[str] = Field(None, description="COS object key")
+    r2_object_key: Optional[str] = Field(None, description="R2 object key")
+    error: Optional[str] = Field(None, description="Error message if any step failed")
+
+
+class SentenceAudioGenerateResponse(BaseModel):
+    """Response model for sentence audio generation."""
+    results: list[SentenceAudioResult] = Field(..., description="Results for each sentence")
+    statistics: dict[str, Any] = Field(..., description="Overall statistics")
+    cos_upload_stats: dict[str, Any] = Field(..., description="COS upload statistics")
+    r2_upload_stats: dict[str, Any] = Field(..., description="R2 upload statistics")
+
+
 # ===== Error Response Model =====
 
 class ErrorResponse(BaseModel):
