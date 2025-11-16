@@ -69,12 +69,15 @@ def hash_text(text: str, length: int = 8) -> str:
 
 def format_text_for_tts(text: str) -> str:
     """
-    Format text for TTS processing.
+    Format text for TTS processing with enhanced rules.
 
     Rules:
     1. For acronyms (all caps), add spaces between letters
-    2. Remove excessive dots/periods
-    3. Clean up extra spaces
+    2. Remove excessive dots/periods and ellipsis
+    3. Clean up extra spaces and whitespace
+    4. Handle special characters and punctuation
+    5. Normalize quotes and apostrophes
+    6. Remove or normalize URLs and email addresses
 
     Args:
         text: Text to format
@@ -85,11 +88,31 @@ def format_text_for_tts(text: str) -> str:
     Examples:
         >>> format_text_for_tts("The FBI and CIA are here...")
         'The F B I and C I A are here'
+        >>> format_text_for_tts("It's a 'great' day!!!")
+        "It's a 'great' day"
     """
+    if not text:
+        return ""
+
     # Remove excessive dots and ellipsis
     text = text.replace('...', ' ').replace('…', ' ')
 
-    # Remove multiple spaces
+    # Remove URLs (simple pattern)
+    text = re.sub(r'https?://\S+', '', text)
+    text = re.sub(r'www\.\S+', '', text)
+
+    # Normalize quotes and apostrophes
+    text = text.replace('"', '"').replace('"', '"')
+    text = text.replace(''', "'").replace(''', "'")
+
+    # Remove excessive exclamation and question marks (keep only one)
+    text = re.sub(r'!+', '!', text)
+    text = re.sub(r'\?+', '?', text)
+
+    # Remove multiple consecutive punctuation
+    text = re.sub(r'([.!?,;:])\1+', r'\1', text)
+
+    # Remove multiple spaces and normalize whitespace
     text = ' '.join(text.split())
 
     # Handle acronyms: if all uppercase and length > 1, add spaces
@@ -97,9 +120,12 @@ def format_text_for_tts(text: str) -> str:
     formatted_words = []
 
     for word in words:
-        # Remove punctuation for acronym check
+        # Remove punctuation for acronym check (but preserve it)
         clean_word = ''.join(c for c in word if c.isalpha())
-        if len(clean_word) > 1 and clean_word.isupper():
+
+        # Check if it's an acronym (all caps, length > 1, length <= 5)
+        # Don't expand very long all-caps words as they might be intentional
+        if len(clean_word) > 1 and len(clean_word) <= 5 and clean_word.isupper():
             # Add spaces between letters for acronyms
             spaced_letters = ' '.join(list(clean_word))
             # Preserve original punctuation
@@ -108,7 +134,12 @@ def format_text_for_tts(text: str) -> str:
         else:
             formatted_words.append(word)
 
-    return ' '.join(formatted_words).strip()
+    result = ' '.join(formatted_words).strip()
+
+    # Final cleanup: remove leading/trailing punctuation except sentence-ending marks
+    result = re.sub(r'^[,;:]+\s*', '', result)
+
+    return result
 
 
 def clean_phrase_for_filename(phrase: str) -> str:

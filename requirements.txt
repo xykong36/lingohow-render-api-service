@@ -15,6 +15,10 @@ slowapi
 # Cloud storage
 cos-python-sdk-v5 # Tencent Cloud COS
 boto3  # For R2 (S3-compatible)
+aioboto3  # Async S3/R2 client
+
+# Async utilities
+aiofiles  # Async file operations
 
 # Video/Audio download
 yt-dlp

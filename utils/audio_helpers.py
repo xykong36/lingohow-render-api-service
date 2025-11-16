@@ -1,8 +1,23 @@
 """
-Audio generation utilities.
+Audio generation utilities (DEPRECATED - Use utils/audio_generator.py instead).
+
+⚠️ DEPRECATED: This module uses subprocess to call edge-tts CLI.
+The new async implementation in utils/audio_generator.py is recommended for:
+- Better performance (uses edge-tts Python API directly)
+- Proper async/await support
+- Timeout and retry mechanisms
+- Better error handling
 
 Functions for checking TTS availability and generating audio files using edge-tts.
 """
+
+import warnings
+
+warnings.warn(
+    "utils/audio_helpers.py is deprecated. Use utils/audio_generator.py instead.",
+    DeprecationWarning,
+    stacklevel=2
+)
 
 import subprocess
 from pathlib import Path
