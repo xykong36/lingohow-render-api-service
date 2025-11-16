@@ -559,16 +559,13 @@ async def generate_sentence_audio(
         audio_dir.mkdir(parents=True, exist_ok=True)
 
         # Process sentences to generate audio files
-        def process_single_sentence(sentence_data: dict, idx: int) -> dict:
+        def process_single_sentence(sentence_text: str, idx: int) -> dict:
             """Process a single sentence: generate hash and audio file."""
-            sentence_text = sentence_data.get('en', '').strip()
+            sentence_text = sentence_text.strip()
 
             if not sentence_text:
                 logger.warning(f"Sentence {idx}: Empty text, skipping")
                 return {
-                    'sentence_id': sentence_data.get('sentence_id'),
-                    'episode_id': sentence_data.get('episode_id', request.episode_id),
-                    'episode_sequence': sentence_data.get('episode_sequence', idx + 1),
                     'en': '',
                     'sentence_hash': '',
                     'audio_path': None,
@@ -587,9 +584,6 @@ async def generate_sentence_audio(
             if audio_path.exists():
                 logger.info(f"Sentence {idx}: Audio already exists - {audio_filename}")
                 return {
-                    'sentence_id': sentence_data.get('sentence_id'),
-                    'episode_id': sentence_data.get('episode_id', request.episode_id),
-                    'episode_sequence': sentence_data.get('episode_sequence', idx + 1),
                     'en': sentence_text,
                     'sentence_hash': sentence_hash,
                     'audio_path': str(audio_path),
@@ -604,9 +598,6 @@ async def generate_sentence_audio(
             if success:
                 logger.info(f"Sentence {idx}: ✅ Generated - {audio_filename}")
                 return {
-                    'sentence_id': sentence_data.get('sentence_id'),
-                    'episode_id': sentence_data.get('episode_id', request.episode_id),
-                    'episode_sequence': sentence_data.get('episode_sequence', idx + 1),
                     'en': sentence_text,
                     'sentence_hash': sentence_hash,
                     'audio_path': str(audio_path),
@@ -616,9 +607,6 @@ async def generate_sentence_audio(
             else:
                 logger.warning(f"Sentence {idx}: ❌ Failed to generate audio")
                 return {
-                    'sentence_id': sentence_data.get('sentence_id'),
-                    'episode_id': sentence_data.get('episode_id', request.episode_id),
-                    'episode_sequence': sentence_data.get('episode_sequence', idx + 1),
                     'en': sentence_text,
                     'sentence_hash': sentence_hash,
                     'audio_path': None,
@@ -642,10 +630,7 @@ async def generate_sentence_audio(
                 except Exception as e:
                     logger.error(f"Error processing sentence {idx}: {e}")
                     processed_sentences.append((idx, {
-                        'sentence_id': request.sentences[idx].get('sentence_id'),
-                        'episode_id': request.sentences[idx].get('episode_id', request.episode_id),
-                        'episode_sequence': request.sentences[idx].get('episode_sequence', idx + 1),
-                        'en': request.sentences[idx].get('en', ''),
+                        'en': request.sentences[idx],
                         'sentence_hash': '',
                         'audio_generated': False,
                         'error': str(e)
@@ -837,9 +822,6 @@ async def generate_sentence_audio(
             r2_result = r2_upload_map.get(object_key, {}) if object_key else {}
 
             results.append(SentenceAudioResult(
-                sentence_id=sentence.get('sentence_id'),
-                episode_id=sentence.get('episode_id'),
-                episode_sequence=sentence.get('episode_sequence'),
                 sentence_hash=sentence_hash,
                 en=sentence.get('en', ''),
                 audio_generated=sentence.get('audio_generated', False),

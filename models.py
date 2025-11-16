@@ -225,17 +225,13 @@ class VideoTranscriptResponse(BaseModel):
 
 class SentenceAudioGenerateRequest(BaseModel):
     """Request model for generating audio files for sentences."""
-    sentences: list[dict[str, Any]] = Field(..., description="List of sentence dictionaries with 'en' field")
-    episode_id: Optional[int] = Field(None, description="Episode ID for organization")
+    sentences: list[str] = Field(..., description="List of sentence texts to generate audio for")
     voice: str = Field("en-US-AvaMultilingualNeural", description="Edge TTS voice model to use")
     max_workers: int = Field(4, description="Maximum parallel workers for audio generation")
 
 
 class SentenceAudioResult(BaseModel):
     """Result for a single sentence audio generation and upload."""
-    sentence_id: Optional[int] = Field(None, description="Original sentence ID from input")
-    episode_id: Optional[int] = Field(None, description="Episode ID from input")
-    episode_sequence: Optional[int] = Field(None, description="Episode sequence from input")
     sentence_hash: str = Field(..., description="MD5 hash of the sentence text")
     en: str = Field(..., description="Original English sentence text")
     audio_generated: bool = Field(..., description="Whether audio file was generated successfully")
