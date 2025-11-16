@@ -1,23 +1,31 @@
-fastapi[all]
+# Web framework
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+
 # Core dependencies for video transcript workflow
 youtube-transcript-api==1.2.2
-openai
-python-dotenv
-pymongo
-# Note: pymongo includes BSON support, no need for separate bson package
+openai==1.57.4
+python-dotenv==1.0.1
+pymongo==4.10.1
+
 # Audio generation
-edge-tts
+edge-tts==7.0.0
 
 # API Rate Limiting
-slowapi
+slowapi==0.1.9
 
 # Cloud storage
-cos-python-sdk-v5 # Tencent Cloud COS
-boto3  # For R2 (S3-compatible)
-aioboto3  # Async S3/R2 client
+cos-python-sdk-v5==1.9.31
+boto3==1.35.76
+aioboto3==13.3.0
 
 # Async utilities
-aiofiles  # Async file operations
+aiofiles==24.1.0
 
 # Video/Audio download
-yt-dlp
+yt-dlp==2024.12.13
+
+# Pin critical subdependencies to avoid resolution loops
+botocore>=1.35.76,<1.36.0
+urllib3>=1.26.20,<3
+python-dateutil>=2.8.2,<3
