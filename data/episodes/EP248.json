@@ -1,0 +1,171 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 247,
+      "episode_sequence": 1,
+      "start_ts": 1.28,
+      "end_ts": 6.24,
+      "en": "So the best way to get around Naxos is by one of these.",
+      "zh": "在纳克索斯岛出行，最好的方式是选择这个交通工具。",
+      "phonetic_us": "/soʊ ðə bɛst weɪ tə ɡɛt əˈraʊnd ˈnæksɑs ɪz baɪ wʌn əv ðiz/",
+      "highlight_entries": [
+        {
+          "slug": "get-around",
+          "display_text": "get around",
+          "translation_zh": "出行"
+        }
+      ]
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 247,
+      "episode_sequence": 2,
+      "start_ts": 6.34,
+      "end_ts": 8.34,
+      "en": "No, there are several options.",
+      "zh": "也不是，其实有多种选择。",
+      "phonetic_us": "/noʊ, ðɛr ɑr ˈsɛvərəl ˈɑpʃənz/",
+      "highlight_entries": [
+        {
+          "slug": "options",
+          "display_text": "options",
+          "translation_zh": "选择"
+        }
+      ]
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 247,
+      "episode_sequence": 3,
+      "start_ts": 8.44,
+      "end_ts": 13.64,
+      "en": "You can hire a scooter, which will be around 40 euro per day.",
+      "zh": "你可以租辆小电动，每天约40欧元。",
+      "phonetic_us": "/ju kæn ˈhaɪər ə ˈskutər, wɪʧ wɪl bi əˈraʊnd ˈfɔrti ˈjʊroʊ pɜr deɪ/",
+      "highlight_entries": [
+        {
+          "slug": "hire",
+          "display_text": "hire",
+          "translation_zh": "租"
+        },
+        {
+          "slug": "scooter",
+          "display_text": "scooter",
+          "translation_zh": "小电动"
+        }
+      ]
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 247,
+      "episode_sequence": 4,
+      "start_ts": 13.74,
+      "end_ts": 18.14,
+      "en": "We hired an ATV, which is about 40 euro a day.",
+      "zh": "我们租的是全地形车，同样是每天40欧元左右。",
+      "phonetic_us": "/wi ˈhaɪərd ən ˌeɪˌtiˈvi, wɪʧ ɪz əˈbaʊt ˈfɔrti ˈjʊroʊ ə deɪ/",
+      "highlight_entries": [
+        {
+          "slug": "atv",
+          "display_text": "ATV",
+          "translation_zh": "全地形车"
+        }
+      ]
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 247,
+      "episode_sequence": 5,
+      "start_ts": 18.24,
+      "end_ts": 24.64,
+      "en": "There are also some dune buggies that you can get, otherwise you can get a car.",
+      "zh": "还有沙滩车可选，或者直接租辆汽车。",
+      "phonetic_us": "/ðɛr ɑr ˈɔlsoʊ sʌm dun ˈbʌɡiz ðæt ju kæn ɡɛt, ˈʌðərˌwaɪz ju kæn ɡɛt ə kɑr/",
+      "highlight_entries": [
+        {
+          "slug": "dune-buggies",
+          "display_text": "dune buggies",
+          "translation_zh": "沙滩车"
+        }
+      ]
+    },
+    {
+      "sentence_id": 6,
+      "episode_id": 247,
+      "episode_sequence": 6,
+      "start_ts": 24.74,
+      "end_ts": 30.34,
+      "en": "But we recommend getting some sort of transport because Naxos is a huge island.",
+      "zh": "我们推荐你租这种类似的交通工具，因为纳克索斯是一个很大的岛屿。",
+      "phonetic_us": "/bʌt wi ˌrɛkəˈmɛnd ˈɡɛtɪŋ sʌm sɔrt əv ˈtrænspɔrt bɪˈkɔz ˈnæksɑs ɪz ə hjudʒ ˈaɪlənd/",
+      "highlight_entries": [
+        {
+          "slug": "recommend",
+          "display_text": "recommend",
+          "translation_zh": "推荐"
+        },
+        {
+          "slug": "sort-of",
+          "display_text": "sort of",
+          "translation_zh": "类似的"
+        },
+        {
+          "slug": "island",
+          "display_text": "island",
+          "translation_zh": "岛屿"
+        }
+      ]
+    },
+    {
+      "sentence_id": 7,
+      "episode_id": 247,
+      "episode_sequence": 7,
+      "start_ts": 30.44,
+      "end_ts": 34.44,
+      "en": "It's actually one of the biggest in the Greek islands.",
+      "zh": "是希腊群岛中最大的岛屿之一。",
+      "phonetic_us": "/ɪts ˈækʧuəli wʌn əv ðə ˈbɪɡəst ɪn ðə ɡrik ˈaɪləndz/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 8,
+      "episode_id": 247,
+      "episode_sequence": 8,
+      "start_ts": 34.54,
+      "end_ts": 45.34,
+      "en": "And it's really hard to walk around unless you just wanna stay in one area, but you're gonna wanna explore, so definitely recommend grabbing one of these.",
+      "zh": "如果没有交通工具，想四处走动会很难，除非你只打算呆在一个地方，但如果你会想去探索，一定要取一辆。",
+      "phonetic_us": "/ænd ɪts ˈrɪli hɑrd tə wɔk əˈraʊnd ənˈlɛs ju ʤʌst ˈwɑnə steɪ ɪn wʌn ˈɛriə, bʌt jʊər ˈɡɑnə ˈwɑnə ɪkˈsplɔr, soʊ ˈdɛfənətli ˌrɛkəˈmɛnd ˈɡræbɪŋ wʌn əv ðiz/",
+      "highlight_entries": [
+        {
+          "slug": "walk-around",
+          "display_text": "walk around",
+          "translation_zh": "四处走动"
+        },
+        {
+          "slug": "grabbing",
+          "display_text": "grabbing",
+          "translation_zh": "取"
+        }
+      ]
+    },
+    {
+      "sentence_id": 9,
+      "episode_id": 247,
+      "episode_sequence": 9,
+      "start_ts": 45.44,
+      "end_ts": 53.84,
+      "en": "And there are just so many places around town as well that you can just whip in and get it sorted.",
+      "zh": "而且镇上有很多地方，你可以随时进去租车。",
+      "phonetic_us": "/ænd ðɛr ɑr ʤʌst soʊ ˈmɛni ˈpleɪsəz əˈraʊnd taʊn æz wɛl ðæt ju kæn ʤʌst wɪp ɪn ænd ɡɛt ɪt ˈsɔrtɪd/",
+      "highlight_entries": [
+        {
+          "slug": "whip-in-and-get-it-sorted",
+          "display_text": "whip in and get it sorted",
+          "translation_zh": "随时进去租车"
+        }
+      ]
+    }
+  ]
+}

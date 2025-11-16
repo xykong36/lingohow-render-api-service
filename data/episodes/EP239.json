@@ -1,0 +1,125 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 239,
+      "episode_sequence": 1,
+      "start_ts": 0.09,
+      "end_ts": 4.97,
+      "en": "It's that time, I'm so excited. This is Cast Connections and Property Control.",
+      "zh": "终于到这个时候啦，我太激动了。这里是员工专属道具处置店。",
+      "phonetic_us": "/ɪts ðæt taɪm, aɪm soʊ ɪkˈsaɪtɪd. ðɪs ɪz kæst kəˈnɛkʃənz ænd ˈprɑpərti kənˈtroʊl/",
+      "highlight_entries": [
+        {
+          "slug": "its-that-time",
+          "display_text": "It's that time",
+          "translation_zh": "到这个时候啦"
+        },
+        {
+          "slug": "cast-connections-and-property-control",
+          "display_text": "Cast Connections and Property Control",
+          "translation_zh": "员工专属道具处置店"
+        }
+      ]
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 239,
+      "episode_sequence": 2,
+      "start_ts": 5.29,
+      "end_ts": 15.21,
+      "en": "You cannot come inside unless you have a blue ID or are friends with someone that has a Walt Disney World Employee Identification.",
+      "zh": "除非你有一张蓝色证件，或者你朋友有迪士尼世界的员工证，否则不得入内。",
+      "phonetic_us": "/ju ˈkænɑt kʌm ɪnˈsaɪd ənˈlɛs ju hæv ə blu aɪ di ɔr ɑr frɛndz wɪð ˈsʌmwʌn ðæt hæz ə wɔlt ˈdɪzni wɜrld ɛmˌplɔɪˈi aɪˌdɛntɪfɪˈkeɪʃən/",
+      "highlight_entries": [
+        {
+          "slug": "cannot-come-inside",
+          "display_text": "cannot come inside",
+          "translation_zh": "不得入内"
+        },
+        {
+          "slug": "employee-identification",
+          "display_text": "Employee Identification",
+          "translation_zh": "员工证"
+        }
+      ]
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 239,
+      "episode_sequence": 3,
+      "start_ts": 17.45,
+      "end_ts": 21.93,
+      "en": "This store is the largest store here in Orlando, Florida for the discounts.",
+      "zh": "这是佛罗里达奥兰多最大的折扣店。",
+      "phonetic_us": "/ðɪs stɔr ɪz ðə ˈlɑrdʒəst stɔr hɪr ɪn ɔrˈlændoʊ, ˈflɔrɪdə fɔr ðə ˈdɪsˌkaʊnts/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 239,
+      "episode_sequence": 4,
+      "start_ts": 22.33,
+      "end_ts": 28.97,
+      "en": "For now, I'm so excited to see all the Disney merchandise that they have new in stock today.",
+      "zh": "现在，我特别兴奋，想看看他们今天上新的所有迪士尼周边。",
+      "phonetic_us": "/fɔr naʊ, aɪm soʊ ɪkˈsaɪtɪd tə si ɔl ðə ˈdɪzni ˈmɜrtʃənˌdaɪz ðæt ðeɪ hæv nu ɪn stɑk təˈdeɪ/",
+      "highlight_entries": [
+        {
+          "slug": "disney-merchandise",
+          "display_text": "Disney merchandise",
+          "translation_zh": "迪士尼周边"
+        },
+        {
+          "slug": "have-new-in-stock",
+          "display_text": "have new in stock",
+          "translation_zh": "上新的"
+        }
+      ]
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 239,
+      "episode_sequence": 5,
+      "start_ts": 29.07,
+      "end_ts": 33.47,
+      "en": "And a lot of this merchandise is up to 90% off.",
+      "zh": "其中很多商品折扣高达90%。",
+      "phonetic_us": "/ænd ə lɑt əv ðɪs ˈmɜrtʃənˌdaɪz ɪz ʌp tə ˈnaɪnti pərˈsɛnt ɔf/",
+      "highlight_entries": [
+        {
+          "slug": "up-to-90-percent-off",
+          "display_text": "up to 90% off",
+          "translation_zh": "高达90%"
+        }
+      ]
+    },
+    {
+      "sentence_id": 6,
+      "episode_id": 239,
+      "episode_sequence": 6,
+      "start_ts": 33.57,
+      "end_ts": 37.57,
+      "en": "If you're wondering what the hours are, there you go.",
+      "zh": "如果你想知道营业时间，就在这儿。",
+      "phonetic_us": "/ɪf jʊr ˈwʌndərɪŋ wʌt ðə ˈaʊərz ɑr, ðɛr ju ɡoʊ/",
+      "highlight_entries": [
+        {
+          "slug": "wondering",
+          "display_text": "wondering",
+          "translation_zh": "想知道"
+        },
+        {
+          "slug": "hours",
+          "display_text": "hours",
+          "translation_zh": "营业时间"
+        },
+        {
+          "slug": "there-you-go",
+          "display_text": "there you go",
+          "translation_zh": "就在这儿"
+        }
+      ]
+    }
+  ]
+}

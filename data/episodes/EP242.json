@@ -1,0 +1,143 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 242,
+      "episode_sequence": 1,
+      "start_ts": 1.41,
+      "end_ts": 12.05,
+      "en": "We are catching the Disney Cruise transport to the terminal at Port Canaveral for the Disney Treasure.",
+      "zh": "我们要坐迪士尼邮轮接驳车去卡纳维拉尔港的码头，搭乘迪士尼宝藏号邮轮。",
+      "phonetic_us": "/wi ɑr ˈkætʃɪŋ ðə ˈdɪzni kruz ˈtrænspɔrt tə ðə ˈtɜrmənəl æt pɔrt kəˈnævərəl fɔr ðə ˈdɪzni ˈtrɛʒər/",
+      "highlight_entries": [
+        {
+          "slug": "are-catching",
+          "display_text": "are catching",
+          "translation_zh": "要坐"
+        },
+        {
+          "slug": "cruise",
+          "display_text": "Cruise",
+          "translation_zh": "邮轮"
+        },
+        {
+          "slug": "terminal",
+          "display_text": "terminal",
+          "translation_zh": "码头"
+        }
+      ]
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 242,
+      "episode_sequence": 2,
+      "start_ts": 12.15,
+      "end_ts": 17.75,
+      "en": "So we got an e-mail night before last, wasn't it? I think so, yeah.",
+      "zh": "前天晚上我们收到了邮件，对吧？我记得是这样，没错。",
+      "phonetic_us": "/soʊ wi ɡɑt ən iˈmeɪl naɪt bɪˈfɔr læst, ˈwɑzənt ɪt? aɪ θɪŋk soʊ, jæ/",
+      "highlight_entries": [
+        {
+          "slug": "night-before-last",
+          "display_text": "night before last",
+          "translation_zh": "前天晚上"
+        }
+      ]
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 242,
+      "episode_sequence": 3,
+      "start_ts": 17.85,
+      "end_ts": 25.05,
+      "en": "So basically it tells you where you're going to be meeting the cruise line staff, at what time.",
+      "zh": "这封邮件告诉我们在哪里与邮轮公司的工作人员会面，以及具体的时间。",
+      "phonetic_us": "/soʊ ˈbeɪsɪkli ɪt tɛlz ju wɛr jʊr ˈɡoʊɪŋ tə bi ˈmitɪŋ ðə kruz laɪn stæf, æt wʌt taɪm/",
+      "highlight_entries": [
+        {
+          "slug": "it-tells",
+          "display_text": "it tells",
+          "translation_zh": "告诉"
+        },
+        {
+          "slug": "cruise-line-staff",
+          "display_text": "cruise line staff",
+          "translation_zh": "邮轮公司的工作人员"
+        }
+      ]
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 242,
+      "episode_sequence": 4,
+      "start_ts": 25.15,
+      "end_ts": 31.95,
+      "en": "So we've got to be there at 9:00 for a 9:30 departure in the main Polynesian lobby.",
+      "zh": "我们需要在上午9点到达，这样可以在9点30分从波利尼西亚大堂出发。",
+      "phonetic_us": "/soʊ wiv ɡɑt tə bi ðɛr æt naɪn fɔr ə naɪn ˈθɜrti dɪˈpɑrtʃər ɪn ðə meɪn ˌpɑləˈniʒən ˈlɑbi/",
+      "highlight_entries": [
+        {
+          "slug": "departure",
+          "display_text": "departure",
+          "translation_zh": "出发"
+        }
+      ]
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 242,
+      "episode_sequence": 5,
+      "start_ts": 32.05,
+      "end_ts": 36.45,
+      "en": "And it also gave instructions on where you leave your luggage.",
+      "zh": "邮件还写明了行李存放的地点。",
+      "phonetic_us": "/ænd ɪt ˈɔlsoʊ ɡeɪv ɪnˈstrʌkʃənz ɑn wɛr ju liv jʊr ˈlʌɡɪdʒ/",
+      "highlight_entries": [
+        {
+          "slug": "gave-instructions-on",
+          "display_text": "gave instructions on",
+          "translation_zh": "写明了"
+        }
+      ]
+    },
+    {
+      "sentence_id": 6,
+      "episode_id": 242,
+      "episode_sequence": 6,
+      "start_ts": 36.55,
+      "end_ts": 40.95,
+      "en": "So you basically leave your luggage by the door, they said.",
+      "zh": "他们说，你只需将行李放在门旁边。",
+      "phonetic_us": "/soʊ ju ˈbeɪsɪkli liv jʊr ˈlʌɡɪdʒ baɪ ðə dɔr, ðeɪ sɛd/",
+      "highlight_entries": [
+        {
+          "slug": "by-the-door",
+          "display_text": "by the door",
+          "translation_zh": "在门旁边"
+        }
+      ]
+    },
+    {
+      "sentence_id": 7,
+      "episode_id": 242,
+      "episode_sequence": 7,
+      "start_ts": 41.05,
+      "end_ts": 52.65,
+      "en": "And they begin collecting your bags from 7:00 AM. But you don't have to be in the room for it. They will let themselves in and collect the bags.",
+      "zh": "他们会从上午7点开始收行李。你不需要留在房间里。他们会自行进入房间并取走行李。",
+      "phonetic_us": "/ænd ðeɪ bɪˈɡɪn kəˈlɛktɪŋ jʊr bæɡz frəm ˈsɛvən eɪ ɛm. bʌt ju doʊnt hæv tə bi ɪn ðə rum fɔr ɪt. ðeɪ wɪl lɛt ðəmˈsɛlvz ɪn ænd kəˈlɛkt ðə bæɡz/",
+      "highlight_entries": [
+        {
+          "slug": "let-themselves-in",
+          "display_text": "let themselves in",
+          "translation_zh": "自行进入"
+        },
+        {
+          "slug": "collect",
+          "display_text": "collect",
+          "translation_zh": "取走"
+        }
+      ]
+    }
+  ]
+}

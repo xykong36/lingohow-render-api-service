@@ -1,0 +1,162 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 243,
+      "episode_sequence": 1,
+      "start_ts": 0.63,
+      "end_ts": 5.27,
+      "en": "Next up is this little bubble dress. I love it so much.",
+      "zh": "接下来是这条小泡泡裙。我超爱它！",
+      "phonetic_us": "/nɛkst ʌp ɪz ðɪs ˈlɪtəl ˈbʌbəl drɛs. aɪ lʌv ɪt soʊ mʌtʃ/",
+      "highlight_entries": [
+        {
+          "slug": "bubble-dress",
+          "display_text": "bubble dress",
+          "translation_zh": "泡泡裙"
+        }
+      ]
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 243,
+      "episode_sequence": 2,
+      "start_ts": 5.27,
+      "end_ts": 10.33,
+      "en": "I love how it's kind of like a tube top material at the top, and then it goes into like a little bubble skirt.",
+      "zh": "我喜欢它上半身是类似抹胸的材质，然后往下就变成小泡泡裙。",
+      "phonetic_us": "/aɪ lʌv haʊ ɪts kaɪnd əv laɪk ə tub tɑp məˈtɪriəl æt ðə tɑp, ænd ðɛn ɪt ɡoʊz ˈɪntu laɪk ə ˈlɪtəl ˈbʌbəl skɜrt/",
+      "highlight_entries": [
+        {
+          "slug": "kind-of-like",
+          "display_text": "kind of like",
+          "translation_zh": "类似"
+        },
+        {
+          "slug": "tube-top-material",
+          "display_text": "tube top material",
+          "translation_zh": "抹胸的材质"
+        },
+        {
+          "slug": "at-the-top",
+          "display_text": "at the top",
+          "translation_zh": "上半身"
+        },
+        {
+          "slug": "bubble-skirt",
+          "display_text": "bubble skirt",
+          "translation_zh": "泡泡裙"
+        }
+      ]
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 243,
+      "episode_sequence": 3,
+      "start_ts": 10.33,
+      "end_ts": 15.87,
+      "en": "And I was kind of hesitant on how this was going to fit, cuz I'm like, 'oh my gosh, it looks so short.'",
+      "zh": "一开始我有点担心它会不会合身，心想\"天啊，看起来好短啊。\"",
+      "phonetic_us": "/ænd aɪ wəz kaɪnd əv ˈhɛzɪtənt ɑn haʊ ðɪs wəz ˈɡoʊɪŋ tə fɪt, kʌz aɪm laɪk, 'oʊ maɪ ɡɑʃ, ɪt lʊks soʊ ʃɔrt.'/",
+      "highlight_entries": [
+        {
+          "slug": "kind-of-hesitant-on",
+          "display_text": "kind of hesitant on",
+          "translation_zh": "有点担心"
+        },
+        {
+          "slug": "fit",
+          "display_text": "fit",
+          "translation_zh": "合身"
+        }
+      ]
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 243,
+      "episode_sequence": 4,
+      "start_ts": 15.87,
+      "end_ts": 22.93,
+      "en": "But honestly, I'm very comfortable in it, and it has a kind of a cup underneath, so I feel very secure in it if that makes sense.",
+      "zh": "但说实话，我穿起来非常舒适，而且里面还有一个小杯垫，所以穿起来很有安全感，你懂我的意思吧。",
+      "phonetic_us": "/bʌt ˈɑnəstli, aɪm ˈvɛri ˈkʌmfərtəbəl ɪn ɪt, ænd ɪt hæz ə kaɪnd əv ə kʌp ˌʌndərˈniθ, soʊ aɪ fil ˈvɛri sɪˈkjʊr ɪn ɪt ɪf ðæt meɪks sɛns/",
+      "highlight_entries": [
+        {
+          "slug": "im-very-comfortable-in-it",
+          "display_text": "I'm very comfortable in it",
+          "translation_zh": "我穿起来非常舒适"
+        },
+        {
+          "slug": "cup-underneath",
+          "display_text": "cup underneath",
+          "translation_zh": "小杯垫"
+        },
+        {
+          "slug": "feel-very-secure",
+          "display_text": "feel very secure",
+          "translation_zh": "有安全感"
+        },
+        {
+          "slug": "makes-sense",
+          "display_text": "makes sense",
+          "translation_zh": "懂我的意思吧"
+        }
+      ]
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 243,
+      "episode_sequence": 5,
+      "start_ts": 23.03,
+      "end_ts": 26.07,
+      "en": "But this is like a little doll dress and I'm obsessed.",
+      "zh": "这件裙子就像一件小娃娃裙，我完全爱上了！",
+      "phonetic_us": "/bʌt ðɪs ɪz laɪk ə ˈlɪtəl dɑl drɛs ænd aɪm əbˈsɛst/",
+      "highlight_entries": [
+        {
+          "slug": "doll-dress",
+          "display_text": "doll dress",
+          "translation_zh": "娃娃裙"
+        },
+        {
+          "slug": "im-obsessed",
+          "display_text": "I'm obsessed",
+          "translation_zh": "我完全爱上了"
+        }
+      ]
+    },
+    {
+      "sentence_id": 6,
+      "episode_id": 243,
+      "episode_sequence": 6,
+      "start_ts": 26.07,
+      "end_ts": 30.3,
+      "en": "I feel like a little Polly Pocket in this, and with kitten heels.",
+      "zh": "穿上它再搭配小猫跟鞋，我感觉自己像个小Polly Pocket洋娃娃。",
+      "phonetic_us": "/aɪ fil laɪk ə ˈlɪtəl ˈpɑli ˈpɑkɪt ɪn ðɪs, ænd wɪð ˈkɪtən hilz/",
+      "highlight_entries": [
+        {
+          "slug": "polly-pocket",
+          "display_text": "Polly Pocket",
+          "translation_zh": "Polly Pocket洋娃娃"
+        },
+        {
+          "slug": "kitten-heels",
+          "display_text": "kitten heels",
+          "translation_zh": "小猫跟鞋"
+        }
+      ]
+    },
+    {
+      "sentence_id": 7,
+      "episode_id": 243,
+      "episode_sequence": 7,
+      "start_ts": 30.3,
+      "end_ts": 32.23,
+      "en": "This would be amazing for any event.",
+      "zh": "这样搭配穿去任何场合都很合适。",
+      "phonetic_us": "/ðɪs wʊd bi əˈmeɪzɪŋ fɔr ˈɛni ɪˈvɛnt/",
+      "highlight_entries": []
+    }
+  ]
+}

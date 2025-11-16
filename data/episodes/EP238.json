@@ -1,0 +1,157 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 238,
+      "episode_sequence": 1,
+      "start_ts": 0.27,
+      "end_ts": 4.4,
+      "en": "Once you've had your breakfast, you can either do one of two things.",
+      "zh": "早餐后，你有以下两种活动可以选择。",
+      "phonetic_us": "/wʌns juv hæd jʊr ˈbrɛkfəst, ju kæn ˈiðər du wʌn əv tu θɪŋz/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 238,
+      "episode_sequence": 2,
+      "start_ts": 4.4,
+      "end_ts": 12.73,
+      "en": "If you like surfing, then we recommend you jump on down to Berawa Beach and try out some surf lessons and enjoy the weather and the beach there.",
+      "zh": "如果你喜欢冲浪，我们推荐你直奔Berawa海滩，体验冲浪课程，享受那里的阳光和海滩。",
+      "phonetic_us": "/ɪf ju laɪk ˈsɜrfɪŋ, ðɛn wi ˌrɛkəˈmɛnd ju dʒʌmp ɑn daʊn tə bəˈrɑwə biʧ ænd traɪ aʊt sʌm sɜrf ˈlɛsənz ænd ɪnˈdʒɔɪ ðə ˈwɛðər ænd ðə biʧ ðɛr/",
+      "highlight_entries": [
+        {
+          "slug": "surfing",
+          "display_text": "surfing",
+          "translation_zh": "冲浪"
+        },
+        {
+          "slug": "recommend",
+          "display_text": "recommend",
+          "translation_zh": "推荐"
+        },
+        {
+          "slug": "jump-on-down-to",
+          "display_text": "jump on down to",
+          "translation_zh": "直奔"
+        },
+        {
+          "slug": "try-out",
+          "display_text": "try out",
+          "translation_zh": "体验"
+        }
+      ]
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 238,
+      "episode_sequence": 3,
+      "start_ts": 12.73,
+      "end_ts": 16.0,
+      "en": "Alternatively, if you don't like surfing, you can wander around and go shopping.",
+      "zh": "相反地，如果你不喜欢冲浪，也可以四处逛逛，去购物。",
+      "phonetic_us": "/ɔlˈtɜrnətɪvli, ɪf ju doʊnt laɪk ˈsɜrfɪŋ, ju kæn ˈwɑndər əˈraʊnd ænd ɡoʊ ˈʃɑpɪŋ/",
+      "highlight_entries": [
+        {
+          "slug": "alternatively",
+          "display_text": "Alternatively",
+          "translation_zh": "相反地"
+        },
+        {
+          "slug": "wander-around",
+          "display_text": "wander around",
+          "translation_zh": "四处逛逛"
+        }
+      ]
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 238,
+      "episode_sequence": 4,
+      "start_ts": 16.0,
+      "end_ts": 19.27,
+      "en": "There are so many cool shops all around Canggu and Pererinan.",
+      "zh": "Canggu和Pererinan周边有很多超酷的店铺。",
+      "phonetic_us": "/ðɛr ɑr soʊ ˈmɛni kul ʃɑps ɔl əˈraʊnd ˈkæŋɡu ænd pɛrəˈrinən/",
+      "highlight_entries": [
+        {
+          "slug": "all-around",
+          "display_text": "all around",
+          "translation_zh": "周边"
+        }
+      ]
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 238,
+      "episode_sequence": 5,
+      "start_ts": 19.4,
+      "end_ts": 28.93,
+      "en": "After you shop till you're dropped, you're gonna need a little bit of a beverage, so we would head to La Brisa, which is a really really cool beach club that overlooks the water.",
+      "zh": "等你逛到虚脱，肯定得来点饮料，所以我们会去La Brisa，这是一个非常酷的海滩俱乐部，俯瞰大海。",
+      "phonetic_us": "/ˈæftər ju ʃɑp tɪl jʊr drɑpt, jʊr ˈɡɑnə nid ə ˈlɪtəl bɪt əv ə ˈbɛvərɪdʒ, soʊ wi wʊd hɛd tə lɑ ˈbrisə, wɪʧ ɪz ə ˈrɪli ˈrɪli kul biʧ klʌb ðæt ˌoʊvərˈlʊks ðə ˈwɔtər/",
+      "highlight_entries": [
+        {
+          "slug": "dropped",
+          "display_text": "dropped",
+          "translation_zh": "虚脱"
+        },
+        {
+          "slug": "beverage",
+          "display_text": "beverage",
+          "translation_zh": "饮料"
+        },
+        {
+          "slug": "head-to",
+          "display_text": "head to",
+          "translation_zh": "去"
+        },
+        {
+          "slug": "overlooks",
+          "display_text": "overlooks",
+          "translation_zh": "俯瞰"
+        }
+      ]
+    },
+    {
+      "sentence_id": 6,
+      "episode_id": 238,
+      "episode_sequence": 6,
+      "start_ts": 28.93,
+      "end_ts": 31.73,
+      "en": "Really nice for sunset vibes and an afternoon cocktail.",
+      "zh": "那边的日落氛围真的很棒，很适合在下午的时候喝杯鸡尾酒。",
+      "phonetic_us": "/ˈrɪli naɪs fɔr ˈsʌnˌsɛt vaɪbz ænd ən ˌæftərˈnun ˈkɑkˌteɪl/",
+      "highlight_entries": [
+        {
+          "slug": "sunset-vibes",
+          "display_text": "sunset vibes",
+          "translation_zh": "日落氛围"
+        },
+        {
+          "slug": "cocktail",
+          "display_text": "cocktail",
+          "translation_zh": "鸡尾酒"
+        }
+      ]
+    },
+    {
+      "sentence_id": 7,
+      "episode_id": 238,
+      "episode_sequence": 7,
+      "start_ts": 31.73,
+      "end_ts": 37.93,
+      "en": "Also, if you're there on a Sunday, they do have a really cool Sunday market and that is definitely one to check out.",
+      "zh": "另外，如果你碰巧周日在那儿，千万别错过他们超棒的周日集市，绝对值得去看看。",
+      "phonetic_us": "/ˈɔlsoʊ, ɪf jʊr ðɛr ɑn ə ˈsʌndeɪ, ðeɪ du hæv ə ˈrɪli kul ˈsʌndeɪ ˈmɑrkɪt ænd ðæt ɪz ˈdɛfənɪtli wʌn tə tʃɛk aʊt/",
+      "highlight_entries": [
+        {
+          "slug": "check-out",
+          "display_text": "check out",
+          "translation_zh": "看看"
+        }
+      ]
+    }
+  ]
+}

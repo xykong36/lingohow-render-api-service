@@ -1,0 +1,207 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 246,
+      "episode_sequence": 1,
+      "start_ts": 0.03,
+      "end_ts": 2.63,
+      "en": "They don't let you know that it'll become a test of discipline.",
+      "zh": "他们不会告诉你，这是一场自律的考验。",
+      "phonetic_us": "/ðeɪ doʊnt lɛt ju noʊ ðæt ˈɪtəl bɪˈkʌm ə tɛst əv ˈdɪsəplɪn/",
+      "highlight_entries": [
+        {
+          "slug": "a-test-of",
+          "display_text": "a test of",
+          "translation_zh": "考验"
+        },
+        {
+          "slug": "discipline",
+          "display_text": "discipline",
+          "translation_zh": "自律"
+        }
+      ]
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 246,
+      "episode_sequence": 2,
+      "start_ts": 2.73,
+      "end_ts": 4.3,
+      "en": "Your home reflects you.",
+      "zh": "你的家就是你的映射。",
+      "phonetic_us": "/jʊər hoʊm rɪˈflɛkts ju/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 246,
+      "episode_sequence": 3,
+      "start_ts": 4.43,
+      "end_ts": 11.2,
+      "en": "Being able to keep it clean, keep food on your own table and pay for the roof over your head are direct reflections of who you become as a person.",
+      "zh": "能否保持整洁、保证有饭吃、支付头顶的房租，都直接反映了你是一个什么样的人。",
+      "phonetic_us": "/ˈbiɪŋ ˈeɪbəl tə kip ɪt klin, kip fud ɑn jʊər oʊn ˈteɪbəl ænd peɪ fɔr ðə ruf ˈoʊvər jʊər hɛd ɑr dɪˈrɛkt rɪˈflɛkʃənz əv hu ju bɪˈkʌm æz ə ˈpɜrsən/",
+      "highlight_entries": [
+        {
+          "slug": "keep-food-on-your-own-table",
+          "display_text": "keep food on your own table",
+          "translation_zh": "保证有饭吃"
+        },
+        {
+          "slug": "pay-for-the-roof-over-your-head",
+          "display_text": "pay for the roof over your head",
+          "translation_zh": "支付头顶的房租"
+        },
+        {
+          "slug": "direct-reflections-of",
+          "display_text": "direct reflections of",
+          "translation_zh": "直接反映了"
+        }
+      ]
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 246,
+      "episode_sequence": 4,
+      "start_ts": 11.2,
+      "end_ts": 13.13,
+      "en": "They don't tell you that you become your own person.",
+      "zh": "他们不会告诉你，你会成为独立的个体。",
+      "phonetic_us": "/ðeɪ doʊnt tɛl ju ðæt ju bɪˈkʌm jʊər oʊn ˈpɜrsən/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 246,
+      "episode_sequence": 5,
+      "start_ts": 13.13,
+      "end_ts": 14.77,
+      "en": "You don't rely on anyone ever.",
+      "zh": "你不再依赖任何人。",
+      "phonetic_us": "/ju doʊnt rɪˈlaɪ ɑn ˈɛniˌwʌn ˈɛvər/",
+      "highlight_entries": [
+        {
+          "slug": "rely-on",
+          "display_text": "rely on",
+          "translation_zh": "依赖"
+        }
+      ]
+    },
+    {
+      "sentence_id": 6,
+      "episode_id": 246,
+      "episode_sequence": 6,
+      "start_ts": 14.77,
+      "end_ts": 16.7,
+      "en": "And if something needs to be done, you'll do it.",
+      "zh": "该做的事，你自己做。",
+      "phonetic_us": "/ænd ɪf ˈsʌmθɪŋ nidz tə bi dʌn, jul du ɪt/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 7,
+      "episode_id": 246,
+      "episode_sequence": 7,
+      "start_ts": 16.7,
+      "end_ts": 22.2,
+      "en": "They don't tell you how many new hobbies you might try out, like reading, meditating, juggling, acrobatics, and even cooking it.",
+      "zh": "他们不会告诉你，你会尝试多少新爱好——读书、冥想、杂耍、杂技，甚至烹饪。",
+      "phonetic_us": "/ðeɪ doʊnt tɛl ju haʊ ˈmɛni nu ˈhɑbiz ju maɪt traɪ aʊt, laɪk ˈridɪŋ, ˈmɛdɪˌteɪtɪŋ, ˈdʒʌɡəlɪŋ, ˌækrəˈbætɪks, ænd ˈivɪn ˈkʊkɪŋ ɪt/",
+      "highlight_entries": [
+        {
+          "slug": "try-out",
+          "display_text": "try out",
+          "translation_zh": "尝试"
+        },
+        {
+          "slug": "meditating",
+          "display_text": "meditating",
+          "translation_zh": "冥想"
+        },
+        {
+          "slug": "juggling",
+          "display_text": "juggling",
+          "translation_zh": "杂耍"
+        },
+        {
+          "slug": "acrobatics",
+          "display_text": "acrobatics",
+          "translation_zh": "杂技"
+        }
+      ]
+    },
+    {
+      "sentence_id": 8,
+      "episode_id": 246,
+      "episode_sequence": 8,
+      "start_ts": 22.2,
+      "end_ts": 25.33,
+      "en": "They don't tell you that your home becomes a safe place for the ones you love.",
+      "zh": "他们不会告诉你，你的家将成为所爱之人的避风港。",
+      "phonetic_us": "/ðeɪ doʊnt tɛl ju ðæt jʊər hoʊm bɪˈkʌmz ə seɪf pleɪs fɔr ðə wʌnz ju lʌv/",
+      "highlight_entries": [
+        {
+          "slug": "a-safe-place",
+          "display_text": "a safe place",
+          "translation_zh": "避风港"
+        }
+      ]
+    },
+    {
+      "sentence_id": 9,
+      "episode_id": 246,
+      "episode_sequence": 9,
+      "start_ts": 25.47,
+      "end_ts": 28.03,
+      "en": "Your arms are always open for people.",
+      "zh": "你的臂膀永远为他人敞开。",
+      "phonetic_us": "/jʊər ɑrmz ɑr ˈɔlˌweɪz ˈoʊpən fɔr ˈpipəl/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 10,
+      "episode_id": 246,
+      "episode_sequence": 10,
+      "start_ts": 28.13,
+      "end_ts": 41.73,
+      "en": "Once you live alone, they don't tell you that while there's a whole lot of upsides, there are plenty of downsides that come right with it, but that never means not to move out.",
+      "zh": "当你真正独居时，他们不会告诉你：尽管好处数不胜数，随之而来的坏处同样层出不穷——但这不是不搬出去的理由。",
+      "phonetic_us": "/wʌns ju lɪv əˈloʊn, ðeɪ doʊnt tɛl ju ðæt waɪl ðɛrz ə hoʊl lɑt əv ˈʌpˌsaɪdz, ðɛr ɑr ˈplɛnti əv ˈdaʊnˌsaɪdz ðæt kʌm raɪt wɪð ɪt, bʌt ðæt ˈnɛvər minz nɑt tə muv aʊt/",
+      "highlight_entries": [
+        {
+          "slug": "upsides",
+          "display_text": "upsides",
+          "translation_zh": "好处"
+        },
+        {
+          "slug": "downsides",
+          "display_text": "downsides",
+          "translation_zh": "坏处"
+        },
+        {
+          "slug": "move-out",
+          "display_text": "move out",
+          "translation_zh": "搬出去"
+        }
+      ]
+    },
+    {
+      "sentence_id": 11,
+      "episode_id": 246,
+      "episode_sequence": 11,
+      "start_ts": 41.83,
+      "end_ts": 46.63,
+      "en": "If you should, you'll become a better version of yourself within days.",
+      "zh": "如果你这么做，你会在一段时间内就成长为更优秀的自己。",
+      "phonetic_us": "/ɪf ju ʃʊd, jul bɪˈkʌm ə ˈbɛtər ˈvɜrʒən əv jʊərˈsɛlf wɪˈðɪn deɪz/",
+      "highlight_entries": [
+        {
+          "slug": "a-better-version-of-yourself",
+          "display_text": "a better version of yourself",
+          "translation_zh": "更优秀的自己"
+        }
+      ]
+    }
+  ]
+}

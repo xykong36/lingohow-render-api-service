@@ -1,0 +1,233 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 251,
+      "episode_sequence": 1,
+      "start_ts": 0.0,
+      "end_ts": 5.6,
+      "en": "Your own love language is the way that you should show love for yourself, and it's not as simple as you might think.",
+      "zh": "你自己表达爱的语言，其实就是你应该用来爱自己的方式，而这并不像你想象的那么简单。",
+      "phonetic_us": "/jʊər oʊn lʌv ˈlæŋɡwɪdʒ ɪz ðə weɪ ðæt ju ʃʊd ʃoʊ lʌv fɔr jʊərˈsɛlf, ænd ɪts nɑt æz ˈsɪmpəl æz ju maɪt θɪŋk/",
+      "highlight_entries": [
+        {
+          "slug": "love-language",
+          "display_text": "love language",
+          "translation_zh": "爱的语言"
+        },
+        {
+          "slug": "show-love-for-yourself",
+          "display_text": "show love for yourself",
+          "translation_zh": "爱自己"
+        },
+        {
+          "slug": "not-as-simple-as-you-might-think",
+          "display_text": "not as simple as you might think",
+          "translation_zh": "并不像你想象的那么简单"
+        }
+      ]
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 251,
+      "episode_sequence": 2,
+      "start_ts": 5.6,
+      "end_ts": 22.53,
+      "en": "So for example, if your love language is words of affirmation, like you love being kind to people, giving people compliments, you feel like that's the way that you show people love, you have to make sure for yourself that you're one, speaking to yourself super kindly, outwardly and also just like in your own mind.",
+      "zh": "举个例子，如果你的爱的语言是\"肯定的言语\"，你喜欢对别人友善，喜欢夸奖别人，并且觉得这是你表达爱的方式，那么你就必须确保对自己也这样做：表面上要温柔对自己说话，在心里也要善待自己。",
+      "phonetic_us": "/soʊ fɔr ɪɡˈzæmpəl, ɪf jʊər lʌv ˈlæŋɡwɪdʒ ɪz wɜrdz əv ˌæfərˈmeɪʃən, laɪk ju lʌv ˈbiɪŋ kaɪnd tə ˈpipəl, ˈɡɪvɪŋ ˈpipəl ˈkɑmpləmənts, ju fil laɪk ðæts ðə weɪ ðæt ju ʃoʊ ˈpipəl lʌv, ju hæv tə meɪk ʃʊər fɔr jʊərˈsɛlf ðæt jʊər wʌn, ˈspikɪŋ tə jʊərˈsɛlf ˈsupər ˈkaɪndli, ˈaʊtwərdli ænd ˈɔlsoʊ ʤʌst laɪk ɪn jʊər oʊn maɪnd/",
+      "highlight_entries": [
+        {
+          "slug": "words-of-affirmation",
+          "display_text": "words of affirmation",
+          "translation_zh": "肯定的言语"
+        },
+        {
+          "slug": "being-kind-to-people",
+          "display_text": "being kind to people",
+          "translation_zh": "对别人友善"
+        },
+        {
+          "slug": "giving-people-compliments",
+          "display_text": "giving people compliments",
+          "translation_zh": "夸奖别人"
+        },
+        {
+          "slug": "make-sure",
+          "display_text": "make sure",
+          "translation_zh": "确保"
+        },
+        {
+          "slug": "speaking-to-yourself-kindly",
+          "display_text": "speaking to yourself kindly",
+          "translation_zh": "温柔对自己说话"
+        },
+        {
+          "slug": "outwardly",
+          "display_text": "outwardly",
+          "translation_zh": "表面上"
+        },
+        {
+          "slug": "in-your-own-mind",
+          "display_text": "in your own mind",
+          "translation_zh": "在心里"
+        }
+      ]
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 251,
+      "episode_sequence": 3,
+      "start_ts": 22.53,
+      "end_ts": 28.33,
+      "en": "Journaling was one of the things that they recommended, also speaking kindly about others to others.",
+      "zh": "写日记就是他们推荐的方法之一，同时也要多说别人的好话。",
+      "phonetic_us": "/ˈdʒɜrnəlɪŋ wəz wʌn əv ðə θɪŋz ðæt ðeɪ ˌrɛkəˈmɛndɪd, ˈɔlsoʊ ˈspikɪŋ ˈkaɪndli əˈbaʊt ˈʌðərz tə ˈʌðərz/",
+      "highlight_entries": [
+        {
+          "slug": "journaling",
+          "display_text": "Journaling",
+          "translation_zh": "写日记"
+        },
+        {
+          "slug": "speaking-kindly-about-others-to-others",
+          "display_text": "speaking kindly about others to others",
+          "translation_zh": "多说别人的好话"
+        }
+      ]
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 251,
+      "episode_sequence": 4,
+      "start_ts": 28.43,
+      "end_ts": 44.07,
+      "en": "My main love language is definitely \"acts of service\", like I just love doing things for people, I love cooking for people, it's the way that I feel like I can contribute best and it's a way that it's a way that I love that also fills me up the most.",
+      "zh": "我的主要爱的语言绝对是\"服务性的行动\"。我特别喜欢为别人做事，喜欢为别人做饭，我觉得这是我最能够发挥价值的方式，也是让我最有满足感的方式。",
+      "phonetic_us": "/maɪ meɪn lʌv ˈlæŋɡwɪdʒ ɪz ˈdɛfənətli ækts əv ˈsɜrvəs, laɪk aɪ ʤʌst lʌv ˈduɪŋ θɪŋz fɔr ˈpipəl, aɪ lʌv ˈkʊkɪŋ fɔr ˈpipəl, ɪts ðə weɪ ðæt aɪ fil laɪk aɪ kæn kənˈtrɪbjut bɛst ænd ɪts ə weɪ ðæt ɪts ə weɪ ðæt aɪ lʌv ðæt ˈɔlsoʊ fɪlz mi ʌp ðə moʊst/",
+      "highlight_entries": [
+        {
+          "slug": "acts-of-service",
+          "display_text": "acts of service",
+          "translation_zh": "服务性的行动"
+        },
+        {
+          "slug": "doing-things-for-people",
+          "display_text": "doing things for people",
+          "translation_zh": "为别人做事"
+        },
+        {
+          "slug": "cooking-for-people",
+          "display_text": "cooking for people",
+          "translation_zh": "为别人做饭"
+        },
+        {
+          "slug": "contribute",
+          "display_text": "contribute",
+          "translation_zh": "发挥价值"
+        },
+        {
+          "slug": "fills-me-up",
+          "display_text": "fills me up",
+          "translation_zh": "有满足感"
+        }
+      ]
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 251,
+      "episode_sequence": 5,
+      "start_ts": 44.07,
+      "end_ts": 57.1,
+      "en": "This is the reason why this post stuck with me and was super informative, was because I would have never thought that if my love language was acts of service, the certain things that they suggested that you should do for yourself, I just never would have guessed these certain things, but it honestly makes so much sense now that I read it.",
+      "zh": "这篇帖子让我印象深刻，觉得非常有启发，是因为我从没想过：如果我的爱之语是\"服务性的行动\"，那我可以通过哪些事情来善待自己。帖子里的建议完全出乎我的意料，但现在读完之后，我觉得太有道理了。",
+      "phonetic_us": "/ðɪs ɪz ðə ˈrizən waɪ ðɪs poʊst stʌk wɪð mi ænd wəz ˈsupər ɪnˈfɔrmətɪv, wəz bɪˈkɔz aɪ wʊd hæv ˈnɛvər θɔt ðæt ɪf maɪ lʌv ˈlæŋɡwɪdʒ wəz ækts əv ˈsɜrvəs, ðə ˈsɜrtən θɪŋz ðæt ðeɪ səˈdʒɛstɪd ðæt ju ʃʊd du fɔr jʊərˈsɛlf, aɪ ʤʌst ˈnɛvər wʊd hæv ɡɛst ðiz ˈsɜrtən θɪŋz, bʌt ɪt ˈɑnəstli meɪks soʊ mʌʧ sɛns naʊ ðæt aɪ rɛd ɪt/",
+      "highlight_entries": [
+        {
+          "slug": "stuck-with-me",
+          "display_text": "stuck with me",
+          "translation_zh": "印象深刻"
+        },
+        {
+          "slug": "super-informative",
+          "display_text": "super informative",
+          "translation_zh": "非常有启发"
+        },
+        {
+          "slug": "never-would-have-guessed",
+          "display_text": "never would have guessed",
+          "translation_zh": "从没想过"
+        },
+        {
+          "slug": "makes-so-much-sense",
+          "display_text": "makes so much sense",
+          "translation_zh": "太有道理了"
+        }
+      ]
+    },
+    {
+      "sentence_id": 6,
+      "episode_id": 251,
+      "episode_sequence": 6,
+      "start_ts": 59.57,
+      "end_ts": 71.37,
+      "en": "So for acts of service, which is my love language, they suggested things like setting goals, planning your days, making appointments, decluttering your space, organizing and lastly cooking yourself a comfort meal.",
+      "zh": "比如，对于\"服务性的行动\"，他们建议你可以给自己设定目标、规划每天的日程、安排好行程、整理收纳空间、保持井井有条，最后给自己做一顿治愈的一餐。",
+      "phonetic_us": "/soʊ fɔr ækts əv ˈsɜrvəs, wɪʧ ɪz maɪ lʌv ˈlæŋɡwɪdʒ, ðeɪ səˈdʒɛstɪd θɪŋz laɪk ˈsɛtɪŋ ɡoʊlz, ˈplænɪŋ jʊər deɪz, ˈmeɪkɪŋ əˈpɔɪntmənts, diˈklʌtərɪŋ jʊər speɪs, ˈɔrɡəˌnaɪzɪŋ ænd ˈlæstli ˈkʊkɪŋ jʊərˈsɛlf ə ˈkʌmfərt mil/",
+      "highlight_entries": [
+        {
+          "slug": "setting-goals",
+          "display_text": "setting goals",
+          "translation_zh": "设定目标"
+        },
+        {
+          "slug": "planning-your-days",
+          "display_text": "planning your days",
+          "translation_zh": "规划每天的日程"
+        },
+        {
+          "slug": "making-appointments",
+          "display_text": "making appointments",
+          "translation_zh": "安排好行程"
+        },
+        {
+          "slug": "decluttering-your-space",
+          "display_text": "decluttering your space",
+          "translation_zh": "整理收纳空间"
+        },
+        {
+          "slug": "organizing",
+          "display_text": "organizing",
+          "translation_zh": "保持井井有条"
+        },
+        {
+          "slug": "cooking-yourself-a-comfort-meal",
+          "display_text": "cooking yourself a comfort meal",
+          "translation_zh": "给自己做一顿治愈的一餐"
+        }
+      ]
+    },
+    {
+      "sentence_id": 7,
+      "episode_id": 251,
+      "episode_sequence": 7,
+      "start_ts": 71.37,
+      "end_ts": 77.73,
+      "en": "And after reading this I realize that when all those things are done or when I do those things for myself, I'm always feeling my best.",
+      "zh": "读完后我才意识到，当我把这些事做好，或者真的为自己去完成这些事情时，我总是能感觉到自己会有最好的状态。",
+      "phonetic_us": "/ænd ˈæftər ˈridɪŋ ðɪs aɪ ˈriəˌlaɪz ðæt wɛn ɔl ðoʊz θɪŋz ɑr dʌn ɔr wɛn aɪ du ðoʊz θɪŋz fɔr maɪˈsɛlf, aɪm ˈɔlˌweɪz ˈfilɪŋ maɪ bɛst/",
+      "highlight_entries": [
+        {
+          "slug": "realize-that",
+          "display_text": "realize that",
+          "translation_zh": "意识到"
+        },
+        {
+          "slug": "feeling-my-best",
+          "display_text": "feeling my best",
+          "translation_zh": "最好的状态"
+        }
+      ]
+    }
+  ]
+}

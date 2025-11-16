@@ -1,0 +1,149 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 241,
+      "episode_sequence": 1,
+      "start_ts": 0.14,
+      "end_ts": 3.26,
+      "en": "Another question we get is how you actually make money on YouTube.",
+      "zh": "另一个我们被问到的问题是，你们如何在YouTube上赚钱。",
+      "phonetic_us": "/əˈnʌðər ˈkwɛstʃən wi ɡɛt ɪz haʊ ju ˈæktʃuəli meɪk ˈmʌni ɑn ˈjuˌtub/",
+      "highlight_entries": [
+        {
+          "slug": "make-money",
+          "display_text": "make money",
+          "translation_zh": "赚钱"
+        }
+      ]
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 241,
+      "episode_sequence": 2,
+      "start_ts": 3.26,
+      "end_ts": 11.62,
+      "en": "Hand it to Tyson. Yeah, that's a fair one because for YouTube, you actually get paid for ad revenue.",
+      "zh": "交给Tyson来回答。这是个合理的问题，因为在YouTube上，你是通过广告收入来获得报酬的。",
+      "phonetic_us": "/hænd ɪt tə ˈtaɪsən. jæ, ðæts ə fɛr wʌn bɪˈkɔz fɔr ˈjuˌtub, ju ˈæktʃuəli ɡɛt peɪd fɔr æd ˈrɛvəˌnu/",
+      "highlight_entries": [
+        {
+          "slug": "hand-it-to",
+          "display_text": "Hand it to",
+          "translation_zh": "交给"
+        },
+        {
+          "slug": "fair",
+          "display_text": "fair",
+          "translation_zh": "合理的"
+        },
+        {
+          "slug": "get-paid-for-ad-revenue",
+          "display_text": "get paid for ad revenue",
+          "translation_zh": "通过广告收入来获得报酬的"
+        }
+      ]
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 241,
+      "episode_sequence": 3,
+      "start_ts": 11.62,
+      "end_ts": 15.94,
+      "en": "So when YouTube shows an ad to someone who's watching your video, you'll get paid for that.",
+      "zh": "当YouTube向观看你视频的人展示广告时，你就会因此获得报酬。",
+      "phonetic_us": "/soʊ wɛn ˈjuˌtub ʃoʊz ən æd tə ˈsʌmˌwʌn huz ˈwɑtʃɪŋ jʊr ˈvɪdioʊ, jul ɡɛt peɪd fɔr ðæt/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 241,
+      "episode_sequence": 4,
+      "start_ts": 15.98,
+      "end_ts": 24.34,
+      "en": "And that's why it's kind of special and stands out from TikTok and Instagram and other social media platforms, cause you don't get paid for ads on those ones.",
+      "zh": "这就是为什么YouTube有点特别，不同于TikTok、Instagram和其他社交媒体平台，因为在那些平台上你不会通过广告获利。",
+      "phonetic_us": "/ænd ðæts waɪ ɪts kaɪnd əv ˈspɛʃəl ænd stændz aʊt frəm ˈtɪkˌtɑk ænd ˈɪnstəɡræm ænd ˈʌðər ˈsoʊʃəl ˈmidiə ˈplætˌfɔrmz, kɔz ju doʊnt ɡɛt peɪd fɔr ædz ɑn ðoʊz wʌnz/",
+      "highlight_entries": [
+        {
+          "slug": "stands-out-from",
+          "display_text": "stands out from",
+          "translation_zh": "不同于"
+        }
+      ]
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 241,
+      "episode_sequence": 5,
+      "start_ts": 24.66,
+      "end_ts": 28.26,
+      "en": "Especially if you're in Australia, you get paid for nothing other than YouTube and.",
+      "zh": "尤其是如果你在澳大利亚，除了YouTube，你无法通过广告获利。",
+      "phonetic_us": "/ɪˈspɛʃəli ɪf jʊr ɪn ɔˈstreɪljə, ju ɡɛt peɪd fɔr ˈnʌθɪŋ ˈʌðər ðæn ˈjuˌtub ænd/",
+      "highlight_entries": [
+        {
+          "slug": "other-than",
+          "display_text": "other than",
+          "translation_zh": "除了"
+        }
+      ]
+    },
+    {
+      "sentence_id": 6,
+      "episode_id": 241,
+      "episode_sequence": 6,
+      "start_ts": 28.58,
+      "end_ts": 39.78,
+      "en": "Yeah, you have to have at least 4000 watch hours. So people have to have watched your videos for at least 4000 hours and you have to have at least 1000 subscribers in order to start getting paid.",
+      "zh": "你必须至少有4000小时的观看时长。因此，观众必须累计观看你的视频至少4000小时，且你必须拥有至少1000位粉丝才能开始获得收益。",
+      "phonetic_us": "/jæ, ju hæv tə hæv æt list fɔr ˈθaʊzənd wɑtʃ ˈaʊərz. soʊ ˈpipəl hæv tə hæv wɑtʃt jʊr ˈvɪdioʊz fɔr æt list fɔr ˈθaʊzənd ˈaʊərz ænd ju hæv tə hæv æt list wʌn ˈθaʊzənd səbˈskraɪbərz ɪn ˈɔrdər tə stɑrt ˈɡɛtɪŋ peɪd/",
+      "highlight_entries": [
+        {
+          "slug": "subscribers",
+          "display_text": "subscribers",
+          "translation_zh": "粉丝"
+        }
+      ]
+    },
+    {
+      "sentence_id": 7,
+      "episode_id": 241,
+      "episode_sequence": 7,
+      "start_ts": 39.78,
+      "end_ts": 44.34,
+      "en": "For us, it took us about three months or four months to get monetized.",
+      "zh": "对于我们来说，大约花了三到四个月时间才开始变现。",
+      "phonetic_us": "/fɔr ʌs, ɪt tʊk ʌs əˈbaʊt θri mʌnθs ɔr fɔr mʌnθs tə ɡɛt ˈmɑnəˌtaɪzd/",
+      "highlight_entries": [
+        {
+          "slug": "get-monetized",
+          "display_text": "get monetized",
+          "translation_zh": "开始变现"
+        }
+      ]
+    },
+    {
+      "sentence_id": 8,
+      "episode_id": 241,
+      "episode_sequence": 8,
+      "start_ts": 44.34,
+      "end_ts": 50.14,
+      "en": "And you know, we were posting videos about once a week at the start. So it takes a bit of time.",
+      "zh": "而且你知道，我们最初每周只发布一次视频。所以这需要一些时间。",
+      "phonetic_us": "/ænd ju noʊ, wi wər ˈpoʊstɪŋ ˈvɪdioʊz əˈbaʊt wʌns ə wik æt ðə stɑrt. soʊ ɪt teɪks ə bɪt əv taɪm/",
+      "highlight_entries": [
+        {
+          "slug": "at-the-start",
+          "display_text": "at the start",
+          "translation_zh": "最初"
+        },
+        {
+          "slug": "it-takes-a-bit-of-time",
+          "display_text": "it takes a bit of time",
+          "translation_zh": "这需要一些时间"
+        }
+      ]
+    }
+  ]
+}

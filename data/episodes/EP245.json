@@ -1,0 +1,147 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 245,
+      "episode_sequence": 1,
+      "start_ts": 0.1,
+      "end_ts": 3.3,
+      "en": "Living alone at a young age is like being born into a new world.",
+      "zh": "年轻时独居，就像出生在一个全新的世界。",
+      "phonetic_us": "/ˈlɪvɪŋ əˈloʊn æt ə jʌŋ eɪdʒ ɪz laɪk ˈbiɪŋ bɔrn ˈɪntu ə nu wɜrld/",
+      "highlight_entries": [
+        {
+          "slug": "living-alone",
+          "display_text": "Living alone",
+          "translation_zh": "独居"
+        },
+        {
+          "slug": "at-a-young-age",
+          "display_text": "at a young age",
+          "translation_zh": "年轻时"
+        },
+        {
+          "slug": "being-born-into",
+          "display_text": "being born into",
+          "translation_zh": "出生在"
+        }
+      ]
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 245,
+      "episode_sequence": 2,
+      "start_ts": 3.33,
+      "end_ts": 5.7,
+      "en": "It was a world of hard truths I had to face.",
+      "zh": "那是个残酷现实的世界，我不得不去面对。",
+      "phonetic_us": "/ɪt wəz ə wɜrld əv hɑrd truθs aɪ hæd tə feɪs/",
+      "highlight_entries": [
+        {
+          "slug": "a-world-of-hard-truths",
+          "display_text": "a world of hard truths",
+          "translation_zh": "残酷现实的世界"
+        }
+      ]
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 245,
+      "episode_sequence": 3,
+      "start_ts": 5.73,
+      "end_ts": 8.87,
+      "en": "And with those hard truths came growth, character development.",
+      "zh": "而这些残酷的现实也带来了成长和性格的历练。",
+      "phonetic_us": "/ænd wɪð ðoʊz hɑrd truθs keɪm ɡroʊθ, ˈkærəktər dɪˈvɛləpmənt/",
+      "highlight_entries": [
+        {
+          "slug": "with-those-hard-truths-came",
+          "display_text": "with those hard truths came",
+          "translation_zh": "这些残酷的现实也带来了"
+        }
+      ]
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 245,
+      "episode_sequence": 4,
+      "start_ts": 8.87,
+      "end_ts": 20.53,
+      "en": "And one of the greatest feelings I've ever had in my early adulthood, there were too many things I wasn't prepared for, like getting home tired, not wanting to put that effort into cooking and feeding myself and worrying about how expensive groceries have become.",
+      "zh": "刚成年时，曾有过一种很强烈的感受：有太多事情我都没有准备好。比如下班回家很累，不想再花心思做饭喂饱自己，还要担心食品价格有多贵。",
+      "phonetic_us": "/ænd wʌn əv ðə ˈɡreɪtəst ˈfilɪŋz aɪv ˈɛvər hæd ɪn maɪ ˈɜrli əˈdʌlthʊd, ðɛr wər tu ˈmɛni θɪŋz aɪ ˈwɑzənt prɪˈpɛrd fɔr, laɪk ˈɡɛtɪŋ hoʊm ˈtaɪərd, nɑt ˈwɑntɪŋ tə pʊt ðæt ˈɛfərt ˈɪntu ˈkʊkɪŋ ænd ˈfidɪŋ maɪˈsɛlf ænd ˈwɜriɪŋ əˈbaʊt haʊ ɪkˈspɛnsɪv ˈɡroʊsəriz hæv bɪˈkʌm/",
+      "highlight_entries": [
+        {
+          "slug": "in-my-early-adulthood",
+          "display_text": "in my early adulthood",
+          "translation_zh": "刚成年时"
+        },
+        {
+          "slug": "wasnt-prepared-for",
+          "display_text": "wasn't prepared for",
+          "translation_zh": "没有准备好"
+        },
+        {
+          "slug": "put-that-effort-into",
+          "display_text": "put that effort into",
+          "translation_zh": "再花心思做"
+        },
+        {
+          "slug": "groceries",
+          "display_text": "groceries",
+          "translation_zh": "食品"
+        }
+      ]
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 245,
+      "episode_sequence": 5,
+      "start_ts": 20.7,
+      "end_ts": 25.87,
+      "en": "Plus, if I chose not to cook, I'll be paying $20 for a meal that may or may not fill me up.",
+      "zh": "而且，如果选择不做饭，那就得花20美元买一份饭，而且还不一定能吃饱。",
+      "phonetic_us": "/plʌs, ɪf aɪ ʧoʊz nɑt tə kʊk, aɪl bi ˈpeɪɪŋ ˈtwɛnti ˈdɑlərz fɔr ə mil ðæt meɪ ɔr meɪ nɑt fɪl mi ʌp/",
+      "highlight_entries": [
+        {
+          "slug": "plus",
+          "display_text": "Plus",
+          "translation_zh": "而且"
+        },
+        {
+          "slug": "fill-me-up",
+          "display_text": "fill me up",
+          "translation_zh": "吃饱"
+        }
+      ]
+    },
+    {
+      "sentence_id": 6,
+      "episode_id": 245,
+      "episode_sequence": 6,
+      "start_ts": 26.03,
+      "end_ts": 29.03,
+      "en": "Nobody tells you how normal not socializing becomes.",
+      "zh": "没人会告诉你，没有社交是多么正常的事情。",
+      "phonetic_us": "/ˈnoʊˌbɑdi tɛlz ju haʊ ˈnɔrməl nɑt ˈsoʊʃəˌlaɪzɪŋ bɪˈkʌmz/",
+      "highlight_entries": [
+        {
+          "slug": "socializing",
+          "display_text": "socializing",
+          "translation_zh": "社交"
+        }
+      ]
+    },
+    {
+      "sentence_id": 7,
+      "episode_id": 245,
+      "episode_sequence": 7,
+      "start_ts": 29.03,
+      "end_ts": 31.83,
+      "en": "They don't tell you the only way to speak to someone is through the phone.",
+      "zh": "也没人说过，你只能靠手机才能和别人聊上几句。",
+      "phonetic_us": "/ðeɪ doʊnt tɛl ju ði ˈoʊnli weɪ tə spik tə ˈsʌmˌwʌn ɪz θru ðə foʊn/",
+      "highlight_entries": []
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 255,
+      "episode_sequence": 1,
+      "start_ts": 0.4,
+      "end_ts": 11.3,
+      "en": "But your object now is to invite each person to go up to another person and get as close as they can so that their sticky loop touches the sticky loop of their friend.",
+      "zh": "接下来，你的目标是邀请每个人走到另一个人面前，尽可能靠近，让他们的胶带圈粘上朋友的胶带圈。",
+      "phonetic_us": "/bʌt jʊər ˈɑbdʒɛkt naʊ ɪz tə ɪnˈvaɪt iʧ ˈpɜrsən tə ɡoʊ ʌp tə əˈnʌðər ˈpɜrsən ænd ɡɛt æz kloʊs æz ðeɪ kæn soʊ ðæt ðɛr ˈstɪki lup ˈtʌʧəz ðə ˈstɪki lup əv ðɛr frɛnd/",
+      "highlight_entries": [
+        {
+          "slug": "object",
+          "display_text": "object",
+          "translation_zh": "目标"
+        },
+        {
+          "slug": "go-up-to-another-person",
+          "display_text": "go up to another person",
+          "translation_zh": "走到另一个人面前"
+        },
+        {
+          "slug": "sticky-loop",
+          "display_text": "sticky loop",
+          "translation_zh": "胶带圈"
+        }
+      ]
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 255,
+      "episode_sequence": 2,
+      "start_ts": 11.3,
+      "end_ts": 14.5,
+      "en": "And at some point someone is going to rip off.",
+      "zh": "在某一刻，总有人会被撕下来。",
+      "phonetic_us": "/ænd æt sʌm pɔɪnt ˈsʌmˌwʌn ɪz ˈɡoʊɪŋ tə rɪp ɔf/",
+      "highlight_entries": [
+        {
+          "slug": "at-some-point",
+          "display_text": "at some point",
+          "translation_zh": "在某一刻"
+        },
+        {
+          "slug": "rip-off",
+          "display_text": "rip off",
+          "translation_zh": "撕下来"
+        }
+      ]
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 255,
+      "episode_sequence": 3,
+      "start_ts": 14.5,
+      "end_ts": 19.23,
+      "en": "It doesn't hurt, but we'll take off the loop of sticky tape from their partner.",
+      "zh": "这不疼的，但是要拿下胶带圈，可以说，这个人就出局了。",
+      "phonetic_us": "/ɪt ˈdʌzənt hɜrt, bʌt wil teɪk ɔf ðə lup əv ˈstɪki teɪp frəm ðɛr ˈpɑrtnər/",
+      "highlight_entries": [
+        {
+          "slug": "it-doesnt-hurt",
+          "display_text": "It doesn't hurt",
+          "translation_zh": "不疼的"
+        },
+        {
+          "slug": "take-off",
+          "display_text": "take off",
+          "translation_zh": "拿下"
+        },
+        {
+          "slug": "the-loop-of-sticky-tape",
+          "display_text": "the loop of sticky tape",
+          "translation_zh": "胶带圈"
+        }
+      ]
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 255,
+      "episode_sequence": 4,
+      "start_ts": 19.33,
+      "end_ts": 22.0,
+      "en": "That person is now eliminated, so to speak.",
+      "zh": "比如现在我鼻尖上有两条胶带，我再去找别人玩一轮，我们像鸽子一样，前后摆动，可能最后鼻尖上就有四条胶带。",
+      "phonetic_us": "/ðæt ˈpɜrsən ɪz naʊ ɪˈlɪməˌneɪtəd, soʊ tə spik/",
+      "highlight_entries": [
+        {
+          "slug": "that-person-is-now-eliminated",
+          "display_text": "That person is now eliminated",
+          "translation_zh": "这个人就出局了"
+        },
+        {
+          "slug": "so-to-speak",
+          "display_text": "so to speak",
+          "translation_zh": "可以说"
+        }
+      ]
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 255,
+      "episode_sequence": 5,
+      "start_ts": 22.0,
+      "end_ts": 25.07,
+      "en": "And now I've got two bits of tape on the end of my nose.",
+      "zh": "比如现在我鼻尖上有两条胶带。",
+      "phonetic_us": "/ænd naʊ aɪv ɡɑt tu bɪts əv teɪp ɑn ði ɛnd əv maɪ noʊz/",
+      "highlight_entries": [
+        {
+          "slug": "two-bits-of-tape",
+          "display_text": "two bits of tape",
+          "translation_zh": "两条胶带"
+        },
+        {
+          "slug": "on-the-end-of-my-nose",
+          "display_text": "on the end of my nose",
+          "translation_zh": "鼻尖上"
+        }
+      ]
+    },
+    {
+      "sentence_id": 6,
+      "episode_id": 255,
+      "episode_sequence": 6,
+      "start_ts": 25.07,
+      "end_ts": 26.73,
+      "en": "I then go find another person.",
+      "zh": "我再去找别人玩一轮。",
+      "phonetic_us": "/aɪ ðɛn ɡoʊ faɪnd əˈnʌðər ˈpɜrsən/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 7,
+      "episode_id": 255,
+      "episode_sequence": 7,
+      "start_ts": 26.93,
+      "end_ts": 30.5,
+      "en": "We do the same little sort of pigeon backwards and forwards movement.",
+      "zh": "我们像鸽子一样，前后摆动。",
+      "phonetic_us": "/wi du ðə seɪm ˈlɪtəl sɔrt əv ˈpɪdʒən ˈbækwərdz ænd ˈfɔrwərdz ˈmuvmənt/",
+      "highlight_entries": [
+        {
+          "slug": "do-the-same-little-sort-of-pigeon-backwards-and-forwards-movement",
+          "display_text": "do the same little sort of pigeon backwards and forwards movement",
+          "translation_zh": "像鸽子一样，前后摆动"
+        }
+      ]
+    },
+    {
+      "sentence_id": 8,
+      "episode_id": 255,
+      "episode_sequence": 8,
+      "start_ts": 30.5,
+      "end_ts": 33.33,
+      "en": "And then I might have four bits of tape on the end of my nose.",
+      "zh": "可能最后鼻尖上就有四条胶带。",
+      "phonetic_us": "/ænd ðɛn aɪ maɪt hæv fɔr bɪts əv teɪp ɑn ði ɛnd əv maɪ noʊz/",
+      "highlight_entries": [
+        {
+          "slug": "four-bits-of-tape",
+          "display_text": "four bits of tape",
+          "translation_zh": "四条胶带"
+        },
+        {
+          "slug": "on-the-end-of-my-nose",
+          "display_text": "on the end of my nose",
+          "translation_zh": "鼻尖上"
+        }
+      ]
+    },
+    {
+      "sentence_id": 9,
+      "episode_id": 255,
+      "episode_sequence": 9,
+      "start_ts": 33.33,
+      "end_ts": 41.0,
+      "en": "The game continues until the very last person ends up with all the bits of tape on the end of their nose.",
+      "zh": "游戏会一直进行，直到最后一个人鼻尖上贴满所有的胶带！",
+      "phonetic_us": "/ðə ɡeɪm kənˈtɪnjuz ənˈtɪl ðə ˈvɛri læst ˈpɜrsən ɛndz ʌp wɪð ɔl ðə bɪts əv teɪp ɑn ði ɛnd əv ðɛr noʊz/",
+      "highlight_entries": [
+        {
+          "slug": "the-very-last-person",
+          "display_text": "the very last person",
+          "translation_zh": "最后一个人"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 240,
+      "episode_sequence": 1,
+      "start_ts": 0.0,
+      "end_ts": 15.83,
+      "en": "I will have this link down below if you guys want to check it out if you have been wanting to invest in a red light therapy mask, but I do love how the treatment cycle is really short, because then I don't need to be sitting around for, you know, half an hour using my red light therapy mask.",
+      "zh": "我会把购买链接放在下方，如果你们想入手一款红光治疗面罩，可以去看看。我真的很喜欢，它的治疗周期很短，因为这样我就不用像以前那样花半个小时坐着用红光面罩。",
+      "phonetic_us": "/aɪ wɪl hæv ðɪs lɪŋk daʊn bɪˈloʊ ɪf ju ɡaɪz wɑnt tə tʃɛk ɪt aʊt ɪf ju hæv bɪn ˈwɑntɪŋ tə ɪnˈvɛst ɪn ə rɛd laɪt ˈθɛrəpi mæsk, bʌt aɪ du lʌv haʊ ðə ˈtritmənt ˈsaɪkəl ɪz ˈrɪli ʃɔrt, bɪˈkɔz ðɛn aɪ doʊnt nid tə bi ˈsɪtɪŋ əˈraʊnd fɔr, ju noʊ, hæf ən ˈaʊər ˈjuzɪŋ maɪ rɛd laɪt ˈθɛrəpi mæsk/",
+      "highlight_entries": [
+        {
+          "slug": "check-it-out",
+          "display_text": "check it out",
+          "translation_zh": "去看看"
+        },
+        {
+          "slug": "invest-in",
+          "display_text": "invest in",
+          "translation_zh": "入手"
+        },
+        {
+          "slug": "red-light-therapy-mask",
+          "display_text": "red light therapy mask",
+          "translation_zh": "红光治疗面罩"
+        },
+        {
+          "slug": "treatment-cycle",
+          "display_text": "treatment cycle",
+          "translation_zh": "治疗周期"
+        },
+        {
+          "slug": "half-an-hour",
+          "display_text": "half an hour",
+          "translation_zh": "半个小时"
+        }
+      ]
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 240,
+      "episode_sequence": 2,
+      "start_ts": 15.83,
+      "end_ts": 27.43,
+      "en": "So this seems like it's stronger than my other one but shorter, which is super nice, and the way that it fits is super nice; it goes on really easily, just a Velcro attached in the back with the silicone.",
+      "zh": "它看起来比我之前的更强效，但时间更短，这真的很棒。而且它的佩戴感也非常好，戴上很轻松，背后用魔术贴固定，配合硅胶材质，贴合度很好，非常适合我的脸，而且特别舒适，我甚至可以戴着它四处走动，做事。",
+      "phonetic_us": "/soʊ ðɪs simz laɪk ɪts ˈstrɔŋɡər ðæn maɪ ˈʌðər wʌn bʌt ˈʃɔrtər, wɪʧ ɪz ˈsupər naɪs, ænd ðə weɪ ðæt ɪt fɪts ɪz ˈsupər naɪs; ɪt ɡoʊz ɑn ˈrɪli ˈizɪli, dʒʌst ə ˈvɛlkroʊ əˈtætʃt ɪn ðə bæk wɪð ðə ˈsɪlɪkoʊn/",
+      "highlight_entries": [
+        {
+          "slug": "velcro-attached-in-the-back",
+          "display_text": "Velcro attached in the back",
+          "translation_zh": "魔术贴固定"
+        },
+        {
+          "slug": "silicone",
+          "display_text": "silicone",
+          "translation_zh": "硅胶材质"
+        }
+      ]
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 240,
+      "episode_sequence": 3,
+      "start_ts": 27.43,
+      "end_ts": 35.1,
+      "en": "It's such like a good snug fit, fits me really perfectly, and it's super comfy, like I can totally walk around in this and do things.",
+      "zh": "非常适合我的脸，而且特别舒适，我甚至可以戴着它四处走动，做事。",
+      "phonetic_us": "/ɪts sʌtʃ laɪk ə ɡʊd snʌɡ fɪt, fɪts mi ˈrɪli ˈpɜrfɪktli, ænd ɪts ˈsupər ˈkʌmfi, laɪk aɪ kæn ˈtoʊtəli wɔk əˈraʊnd ɪn ðɪs ænd du θɪŋz/",
+      "highlight_entries": [
+        {
+          "slug": "snug-fit",
+          "display_text": "snug fit",
+          "translation_zh": "贴合度很好"
+        },
+        {
+          "slug": "walk-around",
+          "display_text": "walk around",
+          "translation_zh": "四处走动"
+        }
+      ]
+    }
+  ]
+}

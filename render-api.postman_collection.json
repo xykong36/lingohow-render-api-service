@@ -226,6 +226,106 @@
 				"description": "Use Case 6: Generate MP3 audio files for sentences and upload to COS and R2 storage. Simply provide an array of sentence texts (strings). Audio files are generated using Edge TTS, named with MD5 hash of the sentence text, and uploaded to both COS (Tencent Cloud) and R2 (Cloudflare) storage. The simplified API only requires sentence text - no metadata like IDs, timestamps, or translations needed."
 			},
 			"response": []
+		},
+		{
+			"name": "7. List All Episodes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/episode/list",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"episode",
+						"list"
+					]
+				},
+				"description": "List all available episode files stored on the server with metadata including sentence count, version, timestamps, and file size."
+			},
+			"response": []
+		},
+		{
+			"name": "8. Read Episode",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/episode/245",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"episode",
+						"245"
+					]
+				},
+				"description": "Read a specific episode file with all sentences and metadata. Replace '245' with the episode ID you want to read."
+			},
+			"response": []
+		},
+		{
+			"name": "9. Update Entire Episode",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"sentences\": [\n    {\n      \"episode_id\": 245,\n      \"episode_sequence\": 1,\n      \"en\": \"This is the first sentence.\",\n      \"zh\": \"这是第一句话。\",\n      \"phonetic_us\": \"ðɪs ɪz ðə fɜːrst ˈsɛntəns.\",\n      \"highlight_entries\": [\n        {\n          \"slug\": \"first\",\n          \"display_text\": \"first\",\n          \"translation_zh\": \"第一个\"\n        }\n      ],\n      \"sentence_hash\": \"abc123def456\"\n    },\n    {\n      \"episode_id\": 245,\n      \"episode_sequence\": 2,\n      \"en\": \"This is the second sentence.\",\n      \"zh\": \"这是第二句话。\",\n      \"phonetic_us\": \"ðɪs ɪz ðə ˈsɛkənd ˈsɛntəns.\",\n      \"highlight_entries\": [],\n      \"sentence_hash\": \"def456ghi789\"\n    }\n  ],\n  \"metadata\": {\n    \"updated_by\": \"team_member_1\",\n    \"notes\": \"Updated all sentences for episode 245\"\n  }\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/episode/245",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"episode",
+						"245"
+					]
+				},
+				"description": "Update an entire episode file (full replacement). All sentences and metadata are replaced. Useful for bulk updates. Replace '245' with your episode ID."
+			},
+			"response": []
+		},
+		{
+			"name": "10. Update Single Sentence",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"sentence\": {\n    \"episode_id\": 245,\n    \"episode_sequence\": 1,\n    \"en\": \"This is the updated first sentence.\",\n    \"zh\": \"这是更新后的第一句话。\",\n    \"phonetic_us\": \"ðɪs ɪz ði ʌpˈdeɪtɪd fɜːrst ˈsɛntəns.\",\n    \"highlight_entries\": [\n      {\n        \"slug\": \"updated\",\n        \"display_text\": \"updated\",\n        \"translation_zh\": \"更新的\"\n      }\n    ],\n    \"sentence_hash\": \"abc123def456\"\n  }\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/episode/245/sentences/0",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"episode",
+						"245",
+						"sentences",
+						"0"
+					]
+				},
+				"description": "Update a specific sentence in an episode (partial update). The sentence index is 0-based. This is ideal for collaborative editing where team members update individual sentences. Replace '245' with episode ID and '0' with the sentence index."
+			},
+			"response": []
 		}
 	],
 	"variable": [

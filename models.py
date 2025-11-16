@@ -4,8 +4,8 @@ Pydantic models for request and response validation.
 Defines all data structures used in the Translation API endpoints.
 """
 
-from typing import Optional, Any
-from pydantic import BaseModel, Field
+from typing import Optional, Any, Union
+from pydantic import BaseModel, Field, field_validator
 
 
 # ===== Shared Models =====
@@ -43,7 +43,7 @@ class ParagraphGenerateSentencesRequest(BaseModel):
 
 class EnhancedSentence(BaseModel):
     """Model for an enhanced sentence with all metadata."""
-    sentence_id: Optional[str] = None
+    sentence_id: Optional[Union[str, int]] = None
     episode_id: Optional[int] = None
     episode_sequence: Optional[int] = None
     en: str
@@ -54,6 +54,14 @@ class EnhancedSentence(BaseModel):
     end_ts: Optional[float] = None
     duration: Optional[float] = None
     sentence_hash: Optional[str] = None
+
+    @field_validator('sentence_id')
+    @classmethod
+    def convert_sentence_id_to_str(cls, v):
+        """Convert sentence_id to string if it's an integer."""
+        if v is not None and isinstance(v, int):
+            return str(v)
+        return v
 
 
 class ParagraphGenerateSentencesResponse(BaseModel):
@@ -137,7 +145,7 @@ class Analysis(BaseModel):
 
 class MatchedSentence(BaseModel):
     """A sentence that matches an expression."""
-    sentence_id: Optional[str] = None
+    sentence_id: Optional[Union[str, int]] = None
     episode_id: Optional[int] = None
     episode_sequence: Optional[int] = None
     en: str
@@ -149,6 +157,14 @@ class MatchedSentence(BaseModel):
     sentence_hash: Optional[str] = None
     highlight_entries: list[HighlightEntry] = Field(default_factory=list)
     matched_highlight: Optional[str] = None
+
+    @field_validator('sentence_id')
+    @classmethod
+    def convert_sentence_id_to_str(cls, v):
+        """Convert sentence_id to string if it's an integer."""
+        if v is not None and isinstance(v, int):
+            return str(v)
+        return v
 
 
 class Expression(BaseModel):
@@ -182,7 +198,7 @@ class VideoTranscriptRequest(BaseModel):
     video_id: Optional[str] = Field(None, description="YouTube video ID (11 characters)")
     video_url: Optional[str] = Field(None, description="Full YouTube video URL")
 
-    def model_post_init(self, __context):
+    def model_post_init(self, __context) -> None:
         """Validate that at least one of video_id or video_url is provided."""
         if not self.video_id and not self.video_url:
             raise ValueError("Either video_id or video_url must be provided")
@@ -248,6 +264,63 @@ class SentenceAudioGenerateResponse(BaseModel):
     statistics: dict[str, Any] = Field(..., description="Overall statistics")
     cos_upload_stats: dict[str, Any] = Field(..., description="COS upload statistics")
     r2_upload_stats: dict[str, Any] = Field(..., description="R2 upload statistics")
+
+
+# ===== Use Case 7: Episode Management =====
+
+class EpisodeReadResponse(BaseModel):
+    """Response model for reading episode data."""
+    episode_id: int = Field(..., description="Episode ID")
+    sentences: list[EnhancedSentence] = Field(..., description="List of enhanced sentences")
+    metadata: dict[str, Any] = Field(default_factory=dict, description="Episode metadata")
+    created_at: str = Field(..., description="ISO timestamp when episode was created")
+    updated_at: str = Field(..., description="ISO timestamp when episode was last updated")
+    version: int = Field(..., description="Episode version number")
+
+
+class EpisodeUpdateRequest(BaseModel):
+    """Request model for updating entire episode."""
+    sentences: list[dict[str, Any]] = Field(..., description="Complete list of sentences")
+    metadata: Optional[dict[str, Any]] = Field(None, description="Optional metadata")
+
+
+class EpisodeUpdateResponse(BaseModel):
+    """Response model for episode update."""
+    episode_id: int
+    sentence_count: int
+    version: int
+    updated_at: str
+
+
+class SentenceUpdateRequest(BaseModel):
+    """Request model for updating a single sentence."""
+    sentence: dict[str, Any] = Field(..., description="Updated sentence data")
+
+
+class SentenceUpdateResponse(BaseModel):
+    """Response model for sentence update."""
+    episode_id: int
+    sentence_index: int
+    version: int
+    updated_at: str
+
+
+class EpisodeListItem(BaseModel):
+    """Model for episode list item."""
+    episode_id: int
+    file_name: str
+    sentence_count: Optional[int] = None
+    version: Optional[int] = None
+    created_at: Optional[str] = None
+    updated_at: Optional[str] = None
+    file_size_bytes: int
+    error: Optional[str] = None
+
+
+class EpisodeListResponse(BaseModel):
+    """Response model for episode list."""
+    episodes: list[EpisodeListItem]
+    total_count: int
 
 
 # ===== Error Response Model =====

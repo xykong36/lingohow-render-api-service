@@ -1,0 +1,186 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 244,
+      "episode_sequence": 1,
+      "start_ts": 0.23,
+      "end_ts": 10.43,
+      "en": "Tip No. 2: Speak out loud. Don't only listen, don't only read. You must speak English to improve your speaking.",
+      "zh": "建议2：大声说出来。不要只听，不要只读。你必须说英语才能提高口语能力。",
+      "phonetic_us": "/tɪp ˈnʌmbər tu: spik aʊt laʊd. doʊnt ˈoʊnli ˈlɪsən, doʊnt ˈoʊnli rid. ju mʌst spik ˈɪŋɡlɪʃ tə ɪmˈpruv jʊr ˈspikɪŋ/",
+      "highlight_entries": [
+        {
+          "slug": "speak-out-loud",
+          "display_text": "Speak out loud",
+          "translation_zh": "大声说出来"
+        },
+        {
+          "slug": "improve-your-speaking",
+          "display_text": "improve your speaking",
+          "translation_zh": "提高口语能力"
+        }
+      ]
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 244,
+      "episode_sequence": 2,
+      "start_ts": 10.43,
+      "end_ts": 15.7,
+      "en": "Speak out loud every day, talk to yourself in English.",
+      "zh": "每天大声说出来，用英语自言自语。",
+      "phonetic_us": "/spik aʊt laʊd ˈɛvri deɪ, tɔk tə jɔrˈsɛlf ɪn ˈɪŋɡlɪʃ/",
+      "highlight_entries": [
+        {
+          "slug": "speak-out-loud-every-day",
+          "display_text": "Speak out loud every day",
+          "translation_zh": "每天大声说出来"
+        },
+        {
+          "slug": "talk-to-yourself",
+          "display_text": "talk to yourself",
+          "translation_zh": "自言自语"
+        }
+      ]
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 244,
+      "episode_sequence": 3,
+      "start_ts": 15.7,
+      "end_ts": 20.2,
+      "en": "Yes, it may feel strange at first, but it really works.",
+      "zh": "是的，一开始可能会觉得奇怪，但这真的有效。",
+      "phonetic_us": "/jɛs, ɪt meɪ fil streɪndʒ æt fɜrst, bʌt ɪt ˈrɪli wɜrks/",
+      "highlight_entries": [
+        {
+          "slug": "strange",
+          "display_text": "strange",
+          "translation_zh": "奇怪"
+        },
+        {
+          "slug": "it-really-works",
+          "display_text": "it really works",
+          "translation_zh": "这真的有效"
+        }
+      ]
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 244,
+      "episode_sequence": 4,
+      "start_ts": 20.27,
+      "end_ts": 31.6,
+      "en": "You can describe the room around you, you can talk about what you're doing, you can share a memory or story from your life, you can say your thoughts in English.",
+      "zh": "你可以描述你周围的房间，你可以谈论你在做的事情，你可以分享你生活中的一段记忆或故事，你可以用英语表达你的想法。",
+      "phonetic_us": "/ju kæn dɪˈskraɪb ðə rum əˈraʊnd ju, ju kæn tɔk əˈbaʊt wʌt jʊr ˈduɪŋ, ju kæn ʃɛr ə ˈmɛməri ɔr ˈstɔri frʌm jʊr laɪf, ju kæn seɪ jʊr θɔts ɪn ˈɪŋɡlɪʃ/",
+      "highlight_entries": [
+        {
+          "slug": "describe-the-room-around-you",
+          "display_text": "describe the room around you",
+          "translation_zh": "描述你周围的房间"
+        },
+        {
+          "slug": "share-a-memory-or-story-from-your-life",
+          "display_text": "share a memory or story from your life",
+          "translation_zh": "分享你生活中的一段记忆或故事"
+        },
+        {
+          "slug": "say-your-thoughts-in-english",
+          "display_text": "say your thoughts in English",
+          "translation_zh": "用英语表达你的想法"
+        }
+      ]
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 244,
+      "episode_sequence": 5,
+      "start_ts": 31.67,
+      "end_ts": 45.1,
+      "en": "For example: I'm cooking dinner now, I'm making pasta, it smells good. Or yesterday I went to the park, as so many people, the weather was nice.",
+      "zh": "例如：我现在在做晚餐，我在做意大利面，闻起来很香。或者昨天我去公园了，那里有很多人都，天气很好。",
+      "phonetic_us": "/fɔr ɪɡˈzæmpəl: aɪm ˈkʊkɪŋ ˈdɪnər naʊ, aɪm ˈmeɪkɪŋ ˈpɑstə, ɪt smɛlz ɡʊd. ɔr ˈjɛstərˌdeɪ aɪ wɛnt tə ðə pɑrk, æz soʊ ˈmɛni ˈpipəl, ðə ˈwɛðər wəz naɪs/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 6,
+      "episode_id": 244,
+      "episode_sequence": 6,
+      "start_ts": 45.33,
+      "end_ts": 50.9,
+      "en": "It doesn't matter if you make mistakes, just speak.",
+      "zh": "犯错没关系，只要开口说。",
+      "phonetic_us": "/ɪt ˈdʌzənt ˈmætər ɪf ju meɪk mɪˈsteɪks, dʒʌst spik/",
+      "highlight_entries": [
+        {
+          "slug": "it-doesnt-matter-if-you-make-mistakes",
+          "display_text": "It doesn't matter if you make mistakes",
+          "translation_zh": "犯错没关系"
+        }
+      ]
+    },
+    {
+      "sentence_id": 7,
+      "episode_id": 244,
+      "episode_sequence": 7,
+      "start_ts": 51.0,
+      "end_ts": 57.8,
+      "en": "This helps your brain get used to making English sentences, it also helps you feel more confident.",
+      "zh": "这有助于你的大脑习惯造英语句子，也能让你感到更自信。",
+      "phonetic_us": "/ðɪs hɛlps jʊr breɪn ɡɛt juzd tə ˈmeɪkɪŋ ˈɪŋɡlɪʃ ˈsɛntənsɪz, ɪt ˈɔlsoʊ hɛlps ju fil mɔr ˈkɑnfədənt/",
+      "highlight_entries": [
+        {
+          "slug": "get-used-to",
+          "display_text": "get used to",
+          "translation_zh": "习惯"
+        }
+      ]
+    },
+    {
+      "sentence_id": 8,
+      "episode_id": 244,
+      "episode_sequence": 8,
+      "start_ts": 57.9,
+      "end_ts": 63.9,
+      "en": "You will stop being afraid to speak, you will learn how to think in English.",
+      "zh": "你会不再害怕开口说，学会用英语思考。",
+      "phonetic_us": "/ju wɪl stɑp ˈbiɪŋ əˈfreɪd tə spik, ju wɪl lɜrn haʊ tə θɪŋk ɪn ˈɪŋɡlɪʃ/",
+      "highlight_entries": [
+        {
+          "slug": "stop-being-afraid-to-speak",
+          "display_text": "stop being afraid to speak",
+          "translation_zh": "不再害怕开口说"
+        },
+        {
+          "slug": "think-in-english",
+          "display_text": "think in English",
+          "translation_zh": "用英语思考"
+        }
+      ]
+    },
+    {
+      "sentence_id": 9,
+      "episode_id": 244,
+      "episode_sequence": 9,
+      "start_ts": 64.0,
+      "end_ts": 70.0,
+      "en": "You can do this in your room, in your car, or when you walk—anytime, anywhere.",
+      "zh": "你可以在房间里、车里，或走路时做这件事——随时随地都可以。",
+      "phonetic_us": "/ju kæn du ðɪs ɪn jʊr rum, ɪn jʊr kɑr, ɔr wɛn ju wɔk—ˈɛniˌtaɪm, ˈɛniˌwɛr/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 10,
+      "episode_id": 244,
+      "episode_sequence": 10,
+      "start_ts": 70.1,
+      "end_ts": 74.5,
+      "en": "So remember, speak out loud every day, even 5 minutes helps.",
+      "zh": "所以记住，每天大声说出来，即使每天只说5分钟也有帮助。",
+      "phonetic_us": "/soʊ rɪˈmɛmbər, spik aʊt laʊd ˈɛvri deɪ, ˈivən faɪv ˈmɪnɪts hɛlps/",
+      "highlight_entries": []
+    }
+  ]
+}

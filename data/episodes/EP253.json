@@ -1,0 +1,185 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 253,
+      "episode_sequence": 1,
+      "start_ts": 0.07,
+      "end_ts": 7.36,
+      "en": "The sun is up, so let's go check out this room and then we'll hit the beach.",
+      "zh": "太阳升起来了，咱们先去看看这间房，然后就去海滩。",
+      "phonetic_us": "/ðə sʌn ɪz ʌp, soʊ lɛts ɡoʊ ʧɛk aʊt ðɪs rum ænd ðɛn wil hɪt ðə biʧ/",
+      "highlight_entries": [
+        {
+          "slug": "the-sun-is-up",
+          "display_text": "The sun is up",
+          "translation_zh": "太阳升起来了"
+        },
+        {
+          "slug": "check-out",
+          "display_text": "check out",
+          "translation_zh": "看看"
+        },
+        {
+          "slug": "hit-the-beach",
+          "display_text": "hit the beach",
+          "translation_zh": "去海滩"
+        }
+      ]
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 253,
+      "episode_sequence": 2,
+      "start_ts": 11.28,
+      "end_ts": 13.6,
+      "en": "And this place is actually very remote.",
+      "zh": "这地方其实相当偏僻。",
+      "phonetic_us": "/ænd ðɪs pleɪs ɪz ˈækʧuəli ˈvɛri rɪˈmoʊt/",
+      "highlight_entries": [
+        {
+          "slug": "remote",
+          "display_text": "remote",
+          "translation_zh": "偏僻"
+        }
+      ]
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 253,
+      "episode_sequence": 3,
+      "start_ts": 13.6,
+      "end_ts": 25.91,
+      "en": "We're probably about 3 or 4 kilometers from the main main town and it's only $20 a night, so about $600.00 for the month.",
+      "zh": "离主城区大概三四公里远，每晚才20美元，一个月也就600美元左右。",
+      "phonetic_us": "/wɪr ˈprɑbəbli əˈbaʊt θri ɔr fɔr kɪˈlɑməˌtərz frəm ðə meɪn meɪn taʊn ænd ɪts ˈoʊnli ˈtwɛnti ˈdɑlərz ə naɪt, soʊ əˈbaʊt sɪks ˈhʌndrəd ˈdɑlərz fɔr ðə mʌnθ/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 253,
+      "episode_sequence": 4,
+      "start_ts": 25.91,
+      "end_ts": 28.07,
+      "en": "Check out this pool.",
+      "zh": "看看这泳池。",
+      "phonetic_us": "/ʧɛk aʊt ðɪs pul/",
+      "highlight_entries": [
+        {
+          "slug": "pool",
+          "display_text": "pool",
+          "translation_zh": "泳池"
+        }
+      ]
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 253,
+      "episode_sequence": 5,
+      "start_ts": 30.8,
+      "end_ts": 36.55,
+      "en": "And then here's our porch where a lot of the living takes place.",
+      "zh": "这边是我们的门廊，日常起居大多在此进行。",
+      "phonetic_us": "/ænd ðɛn hɪrz ˈaʊər pɔrʧ wɛr ə lɑt əv ðə ˈlɪvɪŋ teɪks pleɪs/",
+      "highlight_entries": [
+        {
+          "slug": "porch",
+          "display_text": "porch",
+          "translation_zh": "门廊"
+        },
+        {
+          "slug": "a-lot-of-the-living",
+          "display_text": "a lot of the living",
+          "translation_zh": "日常起居"
+        },
+        {
+          "slug": "takes-place",
+          "display_text": "takes place",
+          "translation_zh": "进行"
+        }
+      ]
+    },
+    {
+      "sentence_id": 6,
+      "episode_id": 253,
+      "episode_sequence": 6,
+      "start_ts": 38.35,
+      "end_ts": 41.2,
+      "en": "And here's the room.",
+      "zh": "这是卧室。",
+      "phonetic_us": "/ænd hɪrz ðə rum/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 7,
+      "episode_id": 253,
+      "episode_sequence": 7,
+      "start_ts": 41.2,
+      "end_ts": 57.27,
+      "en": "Pretty basic, but we have a nice size refrigerator, little desk, workstation, bed, clothing, storage, outdoor bathroom with plenty of hot water.",
+      "zh": "很简单，但有个大小合适的冰箱、一张小书桌、工作区、床、衣柜、储物区，还有一个热水供应充足的室外浴室。",
+      "phonetic_us": "/ˈprɪti ˈbeɪsɪk, bʌt wi hæv ə naɪs saɪz rɪˈfrɪdʒəˌreɪtər, ˈlɪtəl dɛsk, ˈwɜrkˌsteɪʃən, bɛd, ˈkloʊðɪŋ, ˈstɔrɪdʒ, ˈaʊtˌdɔr ˈbæθˌrum wɪð ˈplɛnti əv hɑt ˈwɔtər/",
+      "highlight_entries": [
+        {
+          "slug": "refrigerator",
+          "display_text": "refrigerator",
+          "translation_zh": "冰箱"
+        },
+        {
+          "slug": "workstation",
+          "display_text": "workstation",
+          "translation_zh": "工作区"
+        },
+        {
+          "slug": "storage",
+          "display_text": "storage",
+          "translation_zh": "储物区"
+        },
+        {
+          "slug": "hot-water",
+          "display_text": "hot water",
+          "translation_zh": "热水"
+        }
+      ]
+    },
+    {
+      "sentence_id": 8,
+      "episode_id": 253,
+      "episode_sequence": 8,
+      "start_ts": 57.38,
+      "end_ts": 59.38,
+      "en": "Nice high ceiling.",
+      "zh": "天花板很高很棒。",
+      "phonetic_us": "/naɪs haɪ ˈsilɪŋ/",
+      "highlight_entries": [
+        {
+          "slug": "nice-high-ceiling",
+          "display_text": "Nice high ceiling",
+          "translation_zh": "天花板很高很棒"
+        }
+      ]
+    },
+    {
+      "sentence_id": 9,
+      "episode_id": 253,
+      "episode_sequence": 9,
+      "start_ts": 59.48,
+      "end_ts": 65.47,
+      "en": "It's absolutely an amazing view to just lay in bed and stare out this window.",
+      "zh": "最棒的是，躺在床上，望向窗户，景色真的太美了。",
+      "phonetic_us": "/ɪts ˌæbsəˈlutli ən əˈmeɪzɪŋ vju tə ʤʌst leɪ ɪn bɛd ænd stɛr aʊt ðɪs ˈwɪndoʊ/",
+      "highlight_entries": [
+        {
+          "slug": "lay-in-bed",
+          "display_text": "lay in bed",
+          "translation_zh": "躺在床上"
+        },
+        {
+          "slug": "stare-out-this-window",
+          "display_text": "stare out this window",
+          "translation_zh": "望向窗户"
+        }
+      ]
+    }
+  ]
+}

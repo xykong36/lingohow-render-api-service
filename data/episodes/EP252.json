@@ -1,0 +1,155 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 252,
+      "episode_sequence": 1,
+      "start_ts": 0.12,
+      "end_ts": 4.04,
+      "en": "If you're new around here, then an extra warm welcome to you.",
+      "zh": "如果你是第一次看我的视频，那就要更热烈地欢迎你了！",
+      "phonetic_us": "/ɪf jʊər nu əˈraʊnd hɪr, ðɛn ən ˈɛkstrə wɔrm ˈwɛlkəm tə ju/",
+      "highlight_entries": [
+        {
+          "slug": "an-extra-warm-welcome-to-you",
+          "display_text": "an extra warm welcome to you",
+          "translation_zh": "更热烈地欢迎你了"
+        }
+      ]
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 252,
+      "episode_sequence": 2,
+      "start_ts": 4.14,
+      "end_ts": 6.54,
+      "en": "I'm glad you've joined me today.",
+      "zh": "很高兴你今天加入我。",
+      "phonetic_us": "/aɪm ɡlæd juv dʒɔɪnd mi təˈdeɪ/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 252,
+      "episode_sequence": 3,
+      "start_ts": 6.64,
+      "end_ts": 12.64,
+      "en": "My name is Laura and I share motherhood, homemaking, lifestyle videos here on my channel.",
+      "zh": "我是劳拉，在我的频道里分享育儿、持家与生活方式的视频。",
+      "phonetic_us": "/maɪ neɪm ɪz ˈlɔrə ænd aɪ ʃɛr ˈmʌðərˌhʊd, ˈhoʊmˌmeɪkɪŋ, ˈlaɪfˌstaɪl ˈvɪdioʊz hɪr ɑn maɪ ˈʧænəl/",
+      "highlight_entries": [
+        {
+          "slug": "motherhood",
+          "display_text": "motherhood",
+          "translation_zh": "育儿"
+        },
+        {
+          "slug": "homemaking",
+          "display_text": "homemaking",
+          "translation_zh": "持家"
+        },
+        {
+          "slug": "lifestyle",
+          "display_text": "lifestyle",
+          "translation_zh": "生活方式"
+        },
+        {
+          "slug": "on-my-channel",
+          "display_text": "on my channel",
+          "translation_zh": "在我的频道里"
+        }
+      ]
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 252,
+      "episode_sequence": 4,
+      "start_ts": 12.74,
+      "end_ts": 15.54,
+      "en": "Some of my videos are more motivational.",
+      "zh": "我的一些视频很励志。",
+      "phonetic_us": "/sʌm əv maɪ ˈvɪdioʊz ɑr mɔr ˌmoʊtəˈveɪʃənəl/",
+      "highlight_entries": [
+        {
+          "slug": "motivational",
+          "display_text": "motivational",
+          "translation_zh": "励志"
+        }
+      ]
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 252,
+      "episode_sequence": 5,
+      "start_ts": 15.64,
+      "end_ts": 39.24,
+      "en": "I'll take you along with me as I am cleaning or decluttering and some are more inspirational or restful where I am sharing kind of a typical day in the life and those videos tend to be a bit more peaceful and laid back and I do things more along lines of baking and painting and gardening and crafting.",
+      "zh": "比如带着你跟我一起打扫、整理收纳；另一些更偏向启发性或者轻松休闲的，比如分享日常的一天，这类视频倾向于更平和、更休闲，我会做些类似于烘焙、绘画、园艺和手工事情。",
+      "phonetic_us": "/aɪl teɪk ju əˈlɔŋ wɪð mi æz aɪ æm ˈklinɪŋ ɔr diˈklʌtərɪŋ ænd sʌm ɑr mɔr ˌɪnspəˈreɪʃənəl ɔr ˈrɛstfəl wɛr aɪ æm ˈʃɛrɪŋ kaɪnd əv ə ˈtɪpɪkəl deɪ ɪn ðə laɪf ænd ðoʊz ˈvɪdioʊz tɛnd tə bi ə bɪt mɔr ˈpisfəl ænd leɪd bæk ænd aɪ du θɪŋz mɔr əˈlɔŋ laɪnz əv ˈbeɪkɪŋ ænd ˈpeɪntɪŋ ænd ˈɡɑrdənɪŋ ænd ˈkræftɪŋ/",
+      "highlight_entries": [
+        {
+          "slug": "take-you-along-with-me",
+          "display_text": "take you along with me",
+          "translation_zh": "带着你跟我一起"
+        },
+        {
+          "slug": "decluttering",
+          "display_text": "decluttering",
+          "translation_zh": "整理收纳"
+        },
+        {
+          "slug": "inspirational",
+          "display_text": "inspirational",
+          "translation_zh": "启发性"
+        },
+        {
+          "slug": "restful",
+          "display_text": "restful",
+          "translation_zh": "轻松休闲"
+        },
+        {
+          "slug": "tend-to-be",
+          "display_text": "tend to be",
+          "translation_zh": "倾向于"
+        },
+        {
+          "slug": "peaceful",
+          "display_text": "peaceful",
+          "translation_zh": "平和"
+        },
+        {
+          "slug": "laid-back",
+          "display_text": "laid back",
+          "translation_zh": "休闲"
+        },
+        {
+          "slug": "along-lines-of",
+          "display_text": "along lines of",
+          "translation_zh": "类似于"
+        },
+        {
+          "slug": "baking-and-painting-and-gardening-and-crafting",
+          "display_text": "baking and painting and gardening and crafting",
+          "translation_zh": "烘焙、绘画、园艺和手工"
+        }
+      ]
+    },
+    {
+      "sentence_id": 6,
+      "episode_id": 252,
+      "episode_sequence": 6,
+      "start_ts": 39.34,
+      "end_ts": 46.14,
+      "en": "So if that sounds like something you're interested in, then I would love for you to subscribe.",
+      "zh": "如果这些内容听起来是你感兴趣的，那我非常希望你能关注我的频道。",
+      "phonetic_us": "/soʊ ɪf ðæt saʊndz laɪk ˈsʌmθɪŋ jʊər ˈɪntrəstəd ɪn, ðɛn aɪ wʊd lʌv fɔr ju tə səbˈskraɪb/",
+      "highlight_entries": [
+        {
+          "slug": "i-would-love-for-you-to-subscribe",
+          "display_text": "I would love for you to subscribe",
+          "translation_zh": "我非常希望你能关注我的频道"
+        }
+      ]
+    }
+  ]
+}

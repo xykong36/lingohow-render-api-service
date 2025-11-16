@@ -1,0 +1,198 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 257,
+      "episode_sequence": 1,
+      "start_ts": 0.0,
+      "end_ts": 3.47,
+      "en": "So I wanna just explore making more big batch recipes.",
+      "zh": "我想尝试做更大份量的菜。",
+      "phonetic_us": "/soʊ aɪ ˈwɑnə ʤʌst ɪkˈsplɔr ˈmeɪkɪŋ mɔr bɪɡ bæʧ ˈrɛsəˌpiz/",
+      "highlight_entries": [
+        {
+          "slug": "big-batch",
+          "display_text": "big batch",
+          "translation_zh": "大份量"
+        }
+      ]
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 257,
+      "episode_sequence": 2,
+      "start_ts": 3.47,
+      "end_ts": 13.07,
+      "en": "And it doesn't even have to be that big, but I definitely wanna spend less time in the kitchen 2025, cuz I feel like I could easily do that just by making sure that whenever I make something, I make like a bigger batch.",
+      "zh": "其实也不一定要特别大份，但我很想在2025年减少在厨房的时间。我觉得只要每次做饭都多做一点，就能轻松实现这个目标。",
+      "phonetic_us": "/ænd ɪt ˈdʌzənt ˈivɪn hæv tə bi ðæt bɪɡ, bʌt aɪ ˈdɛfənətli ˈwɑnə spɛnd lɛs taɪm ɪn ðə ˈkɪʧən ˈtwɛnti ˈtwɛnti faɪv, kəz aɪ fil laɪk aɪ kʊd ˈizəli du ðæt ʤʌst baɪ ˈmeɪkɪŋ ʃʊr ðæt wɛnˈɛvər aɪ meɪk ˈsʌmθɪŋ, aɪ meɪk laɪk ə ˈbɪɡər bæʧ/",
+      "highlight_entries": [
+        {
+          "slug": "spend-less-time-in-the-kitchen",
+          "display_text": "spend less time in the kitchen",
+          "translation_zh": "减少在厨房的时间"
+        },
+        {
+          "slug": "make-like-a-bigger-batch",
+          "display_text": "make like a bigger batch",
+          "translation_zh": "多做一点"
+        }
+      ]
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 257,
+      "episode_sequence": 3,
+      "start_ts": 13.07,
+      "end_ts": 14.63,
+      "en": "So I meal prepped a couple meals this week.",
+      "zh": "所以这周我提前准备了几顿饭。",
+      "phonetic_us": "/soʊ aɪ mil prɛpt ə ˈkʌpəl milz ðɪs wik/",
+      "highlight_entries": [
+        {
+          "slug": "meal-prepped-a-couple-meals",
+          "display_text": "meal prepped a couple meals",
+          "translation_zh": "提前准备了几顿饭"
+        }
+      ]
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 257,
+      "episode_sequence": 4,
+      "start_ts": 14.63,
+      "end_ts": 17.77,
+      "en": "I really wanna make shepherd's pie cuz I feel like super easy, super healthy.",
+      "zh": "我很想做牧羊人派，因为它超级简单、超级健康。",
+      "phonetic_us": "/aɪ ˈrɪli ˈwɑnə meɪk ˈʃɛpərdz paɪ kəz aɪ fil laɪk ˈsupər ˈizi, ˈsupər ˈhɛlθi/",
+      "highlight_entries": [
+        {
+          "slug": "shepherds-pie",
+          "display_text": "shepherd's pie",
+          "translation_zh": "牧羊人派"
+        }
+      ]
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 257,
+      "episode_sequence": 5,
+      "start_ts": 17.77,
+      "end_ts": 22.73,
+      "en": "And also shepherd's pie is huge so that should last us at least 2,3 days.",
+      "zh": "而且分量很大，至少够吃两三天。",
+      "phonetic_us": "/ænd ˈɔlsoʊ ˈʃɛpərdz paɪ ɪz hjudʒ soʊ ðæt ʃʊd læst ʌs æt list tu θri deɪz/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 6,
+      "episode_id": 257,
+      "episode_sequence": 6,
+      "start_ts": 22.73,
+      "end_ts": 26.63,
+      "en": "And then I also wanna make chili, which should last us another 2 to 3 days.",
+      "zh": "然后我还想做辣味炖菜，这也能再吃上两三天。",
+      "phonetic_us": "/ænd ðɛn aɪ ˈɔlsoʊ ˈwɑnə meɪk ˈʧɪli, wɪʧ ʃʊd læst ʌs əˈnʌðər tu tə θri deɪz/",
+      "highlight_entries": [
+        {
+          "slug": "chili",
+          "display_text": "chili",
+          "translation_zh": "辣味炖菜"
+        },
+        {
+          "slug": "last-us-another-2-to-3-days",
+          "display_text": "last us another 2 to 3 days",
+          "translation_zh": "再吃上两三天"
+        }
+      ]
+    },
+    {
+      "sentence_id": 7,
+      "episode_id": 257,
+      "episode_sequence": 7,
+      "start_ts": 26.63,
+      "end_ts": 30.3,
+      "en": "And then Fridays we always eat out, so that should last us through the week.",
+      "zh": "星期五我们一般会出去吃，所以这些食物基本能撑满一周。",
+      "phonetic_us": "/ænd ðɛn ˈfraɪdeɪz wi ˈɔlˌweɪz it aʊt, soʊ ðæt ʃʊd læst ʌs θru ðə wik/",
+      "highlight_entries": [
+        {
+          "slug": "eat-out",
+          "display_text": "eat out",
+          "translation_zh": "出去吃"
+        },
+        {
+          "slug": "last-us-through-the-week",
+          "display_text": "last us through the week",
+          "translation_zh": "撑满一周"
+        }
+      ]
+    },
+    {
+      "sentence_id": 8,
+      "episode_id": 257,
+      "episode_sequence": 8,
+      "start_ts": 30.3,
+      "end_ts": 41.37,
+      "en": "And then for breakfast, I don't really ever feel the need to meal prep because when it comes to breakfast, I literally just make whatever I'm feeling, whether it's a smoothie, omelette, eggs, potato, sausage, I don't even know.",
+      "zh": "至于早餐，我从来不需要提前准备。早餐我完全随心所欲，可能是奶昔、煎蛋、鸡蛋、土豆或香肠——我也说不准。",
+      "phonetic_us": "/ænd ðɛn fɔr ˈbrɛkfəst, aɪ doʊnt ˈrɪli ˈɛvər fil ðə nid tə mil prɛp bɪˈkɔz wɛn ɪt kʌmz tə ˈbrɛkfəst, aɪ ˈlɪtərəli ʤʌst meɪk wʌtˈɛvər aɪm ˈfilɪŋ, ˈwɛðər ɪts ə ˈsmuði, ˈɑmələt, ɛɡz, pəˈteɪtoʊ, ˈsɔsɪdʒ, aɪ doʊnt ˈivɪn noʊ/",
+      "highlight_entries": [
+        {
+          "slug": "when-it-comes-to",
+          "display_text": "when it comes to",
+          "translation_zh": "至于"
+        },
+        {
+          "slug": "smoothie",
+          "display_text": "smoothie",
+          "translation_zh": "奶昔"
+        },
+        {
+          "slug": "omelette",
+          "display_text": "omelette",
+          "translation_zh": "煎蛋"
+        }
+      ]
+    },
+    {
+      "sentence_id": 9,
+      "episode_id": 257,
+      "episode_sequence": 9,
+      "start_ts": 41.37,
+      "end_ts": 43.23,
+      "en": "I just keep breakfast ingredients in the fridge.",
+      "zh": "我会在冰箱里放好做早餐的食材。",
+      "phonetic_us": "/aɪ ʤʌst kip ˈbrɛkfəst ɪnˈɡridiənts ɪn ðə frɪdʒ/",
+      "highlight_entries": [
+        {
+          "slug": "ingredients",
+          "display_text": "ingredients",
+          "translation_zh": "食材"
+        }
+      ]
+    },
+    {
+      "sentence_id": 10,
+      "episode_id": 257,
+      "episode_sequence": 10,
+      "start_ts": 43.23,
+      "end_ts": 44.83,
+      "en": "I kind of just want something different for breakfast every day.",
+      "zh": "每天都想吃点不一样的。",
+      "phonetic_us": "/aɪ kaɪnd əv ʤʌst wɑnt ˈsʌmθɪŋ ˈdɪfərənt fɔr ˈbrɛkfəst ˈɛvri deɪ/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 11,
+      "episode_id": 257,
+      "episode_sequence": 11,
+      "start_ts": 44.83,
+      "end_ts": 46.9,
+      "en": "That's the plan for going to 2025.",
+      "zh": "这就是我迈向2025年的计划。",
+      "phonetic_us": "/ðæts ðə plæn fɔr ˈɡoʊɪŋ tə ˈtwɛnti ˈtwɛnti faɪv/",
+      "highlight_entries": []
+    }
+  ]
+}

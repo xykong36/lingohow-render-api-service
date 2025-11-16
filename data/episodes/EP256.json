@@ -1,0 +1,175 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 256,
+      "episode_sequence": 1,
+      "start_ts": 0.23,
+      "end_ts": 6.63,
+      "en": "In this video, I'm going to be sharing some tips and tricks for how to get dressed with ease and intention this autumn.",
+      "zh": "我会分享一些诀窍，教你搭配出舒适又有设计感的秋季穿搭。",
+      "phonetic_us": "/ɪn ðɪs ˈvɪdioʊ, aɪm ˈɡoʊɪŋ tə bi ˈʃɛrɪŋ sʌm tɪps ænd trɪks fɔr haʊ tə ɡɛt drɛst wɪð iz ænd ɪnˈtɛnʃən ðɪs ˈɔtəm/",
+      "highlight_entries": [
+        {
+          "slug": "tips-and-tricks",
+          "display_text": "tips and tricks",
+          "translation_zh": "诀窍"
+        }
+      ]
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 256,
+      "episode_sequence": 2,
+      "start_ts": 10.03,
+      "end_ts": 12.73,
+      "en": "Let's begin starting with layering.",
+      "zh": "首先从叠穿开始。",
+      "phonetic_us": "/lɛts bɪˈɡɪn ˈstɑrtɪŋ wɪð ˈleɪərɪŋ/",
+      "highlight_entries": [
+        {
+          "slug": "layering",
+          "display_text": "layering",
+          "translation_zh": "叠穿"
+        }
+      ]
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 256,
+      "episode_sequence": 3,
+      "start_ts": 12.73,
+      "end_ts": 18.9,
+      "en": "And I think this is probably one of the easiest ways to incorporate your current pieces into next season's wardrobe.",
+      "zh": "这大概是最简单的方法之一，能让你把现有的衣服无缝融入到下季的穿搭。",
+      "phonetic_us": "/ænd aɪ θɪŋk ðɪs ɪz ˈprɑbəbli wʌn əv ði ˈiziəst weɪz tə ɪnˈkɔrpəˌreɪt jʊər ˈkɜrənt ˈpisəz ˈɪntu nɛkst ˈsizənz ˈwɔrdˌroʊb/",
+      "highlight_entries": [
+        {
+          "slug": "incorporate",
+          "display_text": "incorporate",
+          "translation_zh": "融入"
+        },
+        {
+          "slug": "current-pieces",
+          "display_text": "current pieces",
+          "translation_zh": "现有的衣服"
+        },
+        {
+          "slug": "into-next-seasons-wardrobe",
+          "display_text": "into next season's wardrobe",
+          "translation_zh": "到下季的穿搭"
+        }
+      ]
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 256,
+      "episode_sequence": 4,
+      "start_ts": 18.9,
+      "end_ts": 29.13,
+      "en": "It's an effortless and simple way to transition your outfits, and you can incorporate your summer colors with autumn pieces to make it feel a little bit more appropriate to this season.",
+      "zh": "这样搭配既省心又简单，你可以把夏天的配色融入秋天的单品里，让整体看起来更贴合这个季节的氛围。",
+      "phonetic_us": "/ɪts ən ˈɛfərtləs ænd ˈsɪmpəl weɪ tə trænˈzɪʃən jʊər ˈaʊtˌfɪts, ænd ju kæn ɪnˈkɔrpəˌreɪt jʊər ˈsʌmər ˈkʌlərz wɪð ˈɔtəm ˈpisəz tə meɪk ɪt fil ə ˈlɪtəl bɪt mɔr əˈproʊpriət tə ðɪs ˈsizən/",
+      "highlight_entries": [
+        {
+          "slug": "its-an-effortless-and-simple-way-to",
+          "display_text": "It's an effortless and simple way to",
+          "translation_zh": "这样搭配既省心又简单"
+        },
+        {
+          "slug": "transition-your-outfits",
+          "display_text": "transition your outfits",
+          "translation_zh": "搭配"
+        },
+        {
+          "slug": "incorporate-with",
+          "display_text": "incorporate with",
+          "translation_zh": "融入"
+        }
+      ]
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 256,
+      "episode_sequence": 5,
+      "start_ts": 29.53,
+      "end_ts": 34.53,
+      "en": "All the pieces I'm wearing here are very timeless, so it's really easy to wear these throughout the whole year.",
+      "zh": "我现在穿的这些单品都非常经典百搭，全年都可以穿。",
+      "phonetic_us": "/ɔl ðə ˈpisəz aɪm ˈwɛrɪŋ hɪr ɑr ˈvɛri ˈtaɪmləs, soʊ ɪts ˈrɪli ˈizi tə wɛr ðiz θruˈaʊt ðə hoʊl jɪr/",
+      "highlight_entries": [
+        {
+          "slug": "timeless",
+          "display_text": "timeless",
+          "translation_zh": "经典百搭"
+        },
+        {
+          "slug": "throughout-the-whole-year",
+          "display_text": "throughout the whole year",
+          "translation_zh": "全年"
+        }
+      ]
+    },
+    {
+      "sentence_id": 6,
+      "episode_id": 256,
+      "episode_sequence": 6,
+      "start_ts": 34.53,
+      "end_ts": 36.83,
+      "en": "And these pieces have such great longevity.",
+      "zh": "这些单品寿命很长。",
+      "phonetic_us": "/ænd ðiz ˈpisəz hæv sʌʧ ɡreɪt lɑnˈdʒɛvəti/",
+      "highlight_entries": [
+        {
+          "slug": "have-such-great-longevity",
+          "display_text": "have such great longevity",
+          "translation_zh": "寿命很长"
+        }
+      ]
+    },
+    {
+      "sentence_id": 7,
+      "episode_id": 256,
+      "episode_sequence": 7,
+      "start_ts": 36.83,
+      "end_ts": 40.47,
+      "en": "And you want to make the most out of those classic staple pieces in your wardrobe.",
+      "zh": "你肯定也想把衣橱里的这些经典款最大化利用起来。",
+      "phonetic_us": "/ænd ju wɑnt tə meɪk ðə moʊst aʊt əv ðoʊz ˈklæsɪk ˈsteɪpəl ˈpisəz ɪn jʊər ˈwɔrdˌroʊb/",
+      "highlight_entries": [
+        {
+          "slug": "make-the-most-out-of",
+          "display_text": "make the most out of",
+          "translation_zh": "最大化利用"
+        },
+        {
+          "slug": "classic-staple-pieces",
+          "display_text": "classic staple pieces",
+          "translation_zh": "经典款"
+        }
+      ]
+    },
+    {
+      "sentence_id": 8,
+      "episode_id": 256,
+      "episode_sequence": 8,
+      "start_ts": 40.7,
+      "end_ts": 48.07,
+      "en": "And it's great to just throw a cardigan on top around this time of year, and I just think it makes for a really effortless, easy outfit.",
+      "zh": "像现在这个季节，在外面随手套一件开衫就很好看，很简单的穿搭。",
+      "phonetic_us": "/ænd ɪts ɡreɪt tə ʤʌst θroʊ ə ˈkɑrdɪɡən ɑn tɑp əˈraʊnd ðɪs taɪm əv jɪr, ænd aɪ ʤʌst θɪŋk ɪt meɪks fɔr ə ˈrɪli ˈɛfərtləs, ˈizi ˈaʊtˌfɪt/",
+      "highlight_entries": [
+        {
+          "slug": "throw-a-cardigan-on-top",
+          "display_text": "throw a cardigan on top",
+          "translation_zh": "随手套一件开衫"
+        },
+        {
+          "slug": "outfit",
+          "display_text": "outfit",
+          "translation_zh": "穿搭"
+        }
+      ]
+    }
+  ]
+}

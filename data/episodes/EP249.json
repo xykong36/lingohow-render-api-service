@@ -1,0 +1,170 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 248,
+      "episode_sequence": 1,
+      "start_ts": 0.33,
+      "end_ts": 1.53,
+      "en": "Hello, we are back.",
+      "zh": "哈喽，我们回来了！",
+      "phonetic_us": "/həˈloʊ, wi ɑr bæk/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 248,
+      "episode_sequence": 2,
+      "start_ts": 1.53,
+      "end_ts": 4.1,
+      "en": "I didn't even like show my outfit, I was in too much of a rush.",
+      "zh": "我刚刚其实都没来得及给你们看我的穿搭，太匆忙了。",
+      "phonetic_us": "/aɪ ˈdɪdənt ˈivɪn laɪk ʃoʊ maɪ ˈaʊtˌfɪt, aɪ wəz ɪn tu mʌʧ əv ə rʌʃ/",
+      "highlight_entries": [
+        {
+          "slug": "show-my-outfit",
+          "display_text": "show my outfit",
+          "translation_zh": "给你们看我的穿搭"
+        },
+        {
+          "slug": "in-too-much-of-a-rush",
+          "display_text": "in too much of a rush",
+          "translation_zh": "太匆忙了"
+        }
+      ]
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 248,
+      "episode_sequence": 3,
+      "start_ts": 4.33,
+      "end_ts": 10.27,
+      "en": "But we just did a caffeine pastry crawl around the city with Sister Snacking.",
+      "zh": "不过我们刚和 Sister Snacking 一起在市区里打卡了咖啡味甜品。",
+      "phonetic_us": "/bʌt wi ʤʌst dɪd ə ˈkæfin ˈpeɪstri krɔl əˈraʊnd ðə ˈsɪti wɪð ˈsɪstər ˈsnækɪŋ/",
+      "highlight_entries": [
+        {
+          "slug": "caffeine-pastry-crawl",
+          "display_text": "caffeine pastry crawl",
+          "translation_zh": "咖啡味甜品"
+        },
+        {
+          "slug": "follow",
+          "display_text": "follow",
+          "translation_zh": "关注"
+        }
+      ]
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 248,
+      "episode_sequence": 4,
+      "start_ts": 10.27,
+      "end_ts": 13.83,
+      "en": "Go follow them on Instagram if you don't already, they have the best recs.",
+      "zh": "如果你们还没关注他们的 Instagram，快去关注吧，他们的推荐的都很棒。",
+      "phonetic_us": "/ɡoʊ ˈfɑloʊ ðɛm ɑn ˈɪnstəˌɡræm ɪf ju doʊnt ɔlˈrɛdi, ðeɪ hæv ðə bɛst rɛks/",
+      "highlight_entries": [
+        {
+          "slug": "recs",
+          "display_text": "recs",
+          "translation_zh": "推荐的"
+        }
+      ]
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 248,
+      "episode_sequence": 5,
+      "start_ts": 13.83,
+      "end_ts": 16.1,
+      "en": "And we did a video with them, which was so fun.",
+      "zh": "我们还和他们拍了视频，特别有趣！",
+      "phonetic_us": "/ænd wi dɪd ə ˈvɪdioʊ wɪð ðɛm, wɪʧ wəz soʊ fʌn/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 6,
+      "episode_id": 248,
+      "episode_sequence": 6,
+      "start_ts": 16.1,
+      "end_ts": 20.0,
+      "en": "I immediately came home and showered, and got into comfy clothes.",
+      "zh": "回家之后我立马冲了个澡，换上舒服的衣服。",
+      "phonetic_us": "/aɪ ɪˈmidiətli keɪm hoʊm ænd ˈʃaʊərd, ænd ɡɑt ˈɪntu ˈkʌmfi kloʊðz/",
+      "highlight_entries": [
+        {
+          "slug": "immediately",
+          "display_text": "immediately",
+          "translation_zh": "立马"
+        },
+        {
+          "slug": "got-into-comfy-clothes",
+          "display_text": "got into comfy clothes",
+          "translation_zh": "换上舒服的衣服"
+        }
+      ]
+    },
+    {
+      "sentence_id": 7,
+      "episode_id": 248,
+      "episode_sequence": 7,
+      "start_ts": 20.0,
+      "end_ts": 21.27,
+      "en": "I love going home these days.",
+      "zh": "最近我真的很喜欢回家。",
+      "phonetic_us": "/aɪ lʌv ˈɡoʊɪŋ hoʊm ðiz deɪz/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 8,
+      "episode_id": 248,
+      "episode_sequence": 8,
+      "start_ts": 21.27,
+      "end_ts": 22.8,
+      "en": "I'm like, I'm excited to go home.",
+      "zh": "每次都很期待快点回家。",
+      "phonetic_us": "/aɪm laɪk, aɪm ɪkˈsaɪtɪd tə ɡoʊ hoʊm/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 9,
+      "episode_id": 248,
+      "episode_sequence": 9,
+      "start_ts": 22.8,
+      "end_ts": 30.03,
+      "en": "Like it was just, we finished reporting the podcast after that, and then it was rainy and cold, and I was like, get me home, get me cozy.",
+      "zh": "就像我们录完了播客后，外面又下雨又冷，我就想赶紧回家、窝在家里。",
+      "phonetic_us": "/laɪk ɪt wəz ʤʌst, wi ˈfɪnɪʃt rɪˈpɔrtɪŋ ðə ˈpɑdˌkæst ˈæftər ðæt, ænd ðɛn ɪt wəz ˈreɪni ænd koʊld, ænd aɪ wəz laɪk, ɡɛt mi hoʊm, ɡɛt mi ˈkoʊzi/",
+      "highlight_entries": [
+        {
+          "slug": "podcast",
+          "display_text": "podcast",
+          "translation_zh": "播客"
+        }
+      ]
+    },
+    {
+      "sentence_id": 10,
+      "episode_id": 248,
+      "episode_sequence": 10,
+      "start_ts": 30.03,
+      "end_ts": 34.63,
+      "en": "But it was so fun, and it was actually kind of a vibe with the moody weather, drinking coffee.",
+      "zh": "不过今天真的很好玩，而且这种阴晴不定的天气，边喝咖啡边逛，反而很有氛围感。",
+      "phonetic_us": "/bʌt ɪt wəz soʊ fʌn, ænd ɪt wəz ˈækʧuəli kaɪnd əv ə vaɪb wɪð ðə ˈmudi ˈwɛðər, ˈdrɪŋkɪŋ ˈkɑfi/",
+      "highlight_entries": [
+        {
+          "slug": "vibe",
+          "display_text": "vibe",
+          "translation_zh": "氛围感"
+        },
+        {
+          "slug": "moody-weather",
+          "display_text": "moody weather",
+          "translation_zh": "阴晴不定的天气"
+        }
+      ]
+    }
+  ]
+}

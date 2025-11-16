@@ -1,0 +1,129 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 254,
+      "episode_sequence": 1,
+      "start_ts": 0.07,
+      "end_ts": 2.1,
+      "en": "This next one you're going to need a special prop.",
+      "zh": "接下来这个游戏，你需要一个特别的小道具。",
+      "phonetic_us": "/ðɪs nɛkst wʌn jʊər ˈɡoʊɪŋ tə nid ə ˈspɛʃəl prɑp/",
+      "highlight_entries": [
+        {
+          "slug": "prop",
+          "display_text": "prop",
+          "translation_zh": "小道具"
+        }
+      ]
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 254,
+      "episode_sequence": 2,
+      "start_ts": 2.1,
+      "end_ts": 14.93,
+      "en": "I'm sure you've got hanging, probably in a cupboard, just some masking tape, the sort of stuff that you have to mask those areas that you're painting over, you wanna rip off about, I don't know, 15–20 centimetres, 6 to 8 inches, I suppose.",
+      "zh": "我敢说你家肯定有，可能放在柜子里，就是美纹纸。那种刷漆时用来遮住不想上漆区域的胶带。撕下大约15到20厘米，也就是6到8英寸的长度就够了。",
+      "phonetic_us": "/aɪm ʃʊr juv ɡɑt ˈhæŋɪŋ, ˈprɑbəbli ɪn ə ˈkʌbərd, ʤʌst sʌm ˈmæskɪŋ teɪp, ðə sɔrt əv stʌf ðæt ju hæv tə mæsk ðoʊz ˈɛriəz ðæt jʊər ˈpeɪntɪŋ ˈoʊvər, ju ˈwɑnə rɪp ɔf əˈbaʊt, aɪ doʊnt noʊ, fɪfˈtin ˈtwɛnti ˈsɛntəˌmitərz, sɪks tə eɪt ˈɪnʧəz, aɪ səˈpoʊz/",
+      "highlight_entries": [
+        {
+          "slug": "cupboard",
+          "display_text": "cupboard",
+          "translation_zh": "柜子"
+        },
+        {
+          "slug": "masking-tape",
+          "display_text": "masking tape",
+          "translation_zh": "美纹纸"
+        },
+        {
+          "slug": "mask",
+          "display_text": "mask",
+          "translation_zh": "遮住"
+        },
+        {
+          "slug": "rip-off",
+          "display_text": "rip off",
+          "translation_zh": "撕下"
+        },
+        {
+          "slug": "centimetres",
+          "display_text": "centimetres",
+          "translation_zh": "厘米"
+        },
+        {
+          "slug": "inches",
+          "display_text": "inches",
+          "translation_zh": "英寸"
+        }
+      ]
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 254,
+      "episode_sequence": 3,
+      "start_ts": 15.2,
+      "end_ts": 22.2,
+      "en": "And from here, create a little loop, place it on the end of your nose.",
+      "zh": "然后把它卷成一个小圈，贴在你的鼻尖上。",
+      "phonetic_us": "/ænd frəm hɪr, kriˈeɪt ə ˈlɪtəl lup, pleɪs ɪt ɑn ði ɛnd əv jʊər noʊz/",
+      "highlight_entries": [
+        {
+          "slug": "create-a-little-loop",
+          "display_text": "create a little loop",
+          "translation_zh": "卷成一个小圈"
+        },
+        {
+          "slug": "place-it-on-the-end-of-your-nose",
+          "display_text": "place it on the end of your nose",
+          "translation_zh": "贴在你的鼻尖上"
+        }
+      ]
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 254,
+      "episode_sequence": 4,
+      "start_ts": 22.2,
+      "end_ts": 26.4,
+      "en": "Now some of you have more real estate when it comes to noses than others.",
+      "zh": "当然啦，有些人鼻子比别人更大。",
+      "phonetic_us": "/naʊ sʌm əv ju hæv mɔr ˈriəl ɪˈsteɪt wɛn ɪt kʌmz tə ˈnoʊzəz ðæn ˈʌðərz/",
+      "highlight_entries": [
+        {
+          "slug": "some-of-you-have-more-real-estate-when-it-comes-to-noses-than-others",
+          "display_text": "some of you have more real estate when it comes to noses than others",
+          "translation_zh": "有些人鼻子比别人更大"
+        }
+      ]
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 254,
+      "episode_sequence": 5,
+      "start_ts": 26.4,
+      "end_ts": 29.9,
+      "en": "But once it's stuck on your nose, sort of pin it down as best as you can.",
+      "zh": "不过没关系，贴上之后尽量压实固定好。",
+      "phonetic_us": "/bʌt wʌns ɪts stʌk ɑn jʊər noʊz, sɔrt əv pɪn ɪt daʊn æz bɛst æz ju kæn/",
+      "highlight_entries": [
+        {
+          "slug": "once-its-stuck-on-your-nose",
+          "display_text": "once it's stuck on your nose",
+          "translation_zh": "贴上之后"
+        },
+        {
+          "slug": "pin-it-down",
+          "display_text": "pin it down",
+          "translation_zh": "压实固定"
+        },
+        {
+          "slug": "as-best-as-you-can",
+          "display_text": "as best as you can",
+          "translation_zh": "尽量"
+        }
+      ]
+    }
+  ]
+}

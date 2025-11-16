@@ -1,0 +1,124 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 246,
+      "episode_sequence": 1,
+      "start_ts": 0.04,
+      "end_ts": 1.68,
+      "en": "But let's go ahead and start with sleepers.",
+      "zh": "那我们先从连体睡衣开始吧。",
+      "phonetic_us": "/bʌt lɛts ɡoʊ əˈhɛd ænd stɑrt wɪð ˈslipərz/",
+      "highlight_entries": [
+        {
+          "slug": "start-with",
+          "display_text": "start with",
+          "translation_zh": "从...开始"
+        },
+        {
+          "slug": "sleepers",
+          "display_text": "sleepers",
+          "translation_zh": "连体睡衣"
+        }
+      ]
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 246,
+      "episode_sequence": 2,
+      "start_ts": 1.68,
+      "end_ts": 6.48,
+      "en": "I love sleepers, of course, for sleeping, but also for throughout the day.",
+      "zh": "我很喜欢连体睡衣，当然，它们很适合睡觉，不过白天穿也很合适。",
+      "phonetic_us": "/aɪ lʌv ˈslipərz, əv kɔrs, fɔr ˈslipɪŋ, bʌt ˈɔlsoʊ fɔr θruˈaʊt ðə deɪ/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 246,
+      "episode_sequence": 3,
+      "start_ts": 6.48,
+      "end_ts": 9.12,
+      "en": "They're just so cozy.",
+      "zh": "它们超级舒服。",
+      "phonetic_us": "/ðɛr ʤʌst soʊ ˈkoʊzi/",
+      "highlight_entries": [
+        {
+          "slug": "cozy",
+          "display_text": "cozy",
+          "translation_zh": "舒服"
+        }
+      ]
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 246,
+      "episode_sequence": 4,
+      "start_ts": 9.22,
+      "end_ts": 11.62,
+      "en": "They keep baby nice and warm.",
+      "zh": "而且能让宝宝保持温暖。",
+      "phonetic_us": "/ðeɪ kip ˈbeɪbi naɪs ænd wɔrm/",
+      "highlight_entries": []
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 246,
+      "episode_sequence": 5,
+      "start_ts": 11.72,
+      "end_ts": 22.92,
+      "en": "I look for cotton for all of my clothing, especially for newborns, and I tend to stick towards more neutral colors, something with a subtle pattern like this.",
+      "zh": "我的所有衣物都会找纯棉的，尤其是给刚出生的宝宝，而且我倾向于中性色调，比如像这样稍微带一点图案。",
+      "phonetic_us": "/aɪ lʊk fɔr ˈkɑtən fɔr ɔl əv maɪ ˈkloʊðɪŋ, ɪˈspɛʃəli fɔr ˈnuˌbɔrnz, ænd aɪ tɛnd tə stɪk təˈwɔrdz mɔr ˈnutrəl ˈkʌlərz, ˈsʌmθɪŋ wɪð ə ˈsʌtəl ˈpætərn laɪk ðɪs/",
+      "highlight_entries": [
+        {
+          "slug": "cotton",
+          "display_text": "cotton",
+          "translation_zh": "纯棉"
+        },
+        {
+          "slug": "newborns",
+          "display_text": "newborns",
+          "translation_zh": "刚出生的宝宝"
+        },
+        {
+          "slug": "tend-to",
+          "display_text": "tend to",
+          "translation_zh": "倾向于"
+        },
+        {
+          "slug": "neutral-colors",
+          "display_text": "neutral colors",
+          "translation_zh": "中性色调"
+        },
+        {
+          "slug": "with-a-subtle-pattern",
+          "display_text": "with a subtle pattern",
+          "translation_zh": "稍微带一点图案"
+        }
+      ]
+    },
+    {
+      "sentence_id": 6,
+      "episode_id": 246,
+      "episode_sequence": 6,
+      "start_ts": 23.02,
+      "end_ts": 38.22,
+      "en": "And I will go ahead and put like how many of each clothing item I look for, because that was something as a new mom, I wasn't really sure how many sleepers, how many onesies would be helpful.",
+      "zh": "我之后会把每类衣物需要的件数放在这儿——作为新手妈妈的，我不是很确定该准备多少件连体睡衣和连体衣才够用。",
+      "phonetic_us": "/ænd aɪ wɪl ɡoʊ əˈhɛd ænd pʊt laɪk haʊ ˈmɛni əv iʧ ˈkloʊðɪŋ ˈaɪtəm aɪ lʊk fɔr, bɪˈkɔz ðæt wəz ˈsʌmθɪŋ æz ə nu mɑm, aɪ ˈwɑzənt ˈrɪli ʃʊr haʊ ˈmɛni ˈslipərz, haʊ ˈmɛni ˈwʌnziz wʊd bi ˈhɛlpfəl/",
+      "highlight_entries": [
+        {
+          "slug": "a-new-mom",
+          "display_text": "a new mom",
+          "translation_zh": "新手妈妈"
+        },
+        {
+          "slug": "onesies",
+          "display_text": "onesies",
+          "translation_zh": "连体衣"
+        }
+      ]
+    }
+  ]
+}

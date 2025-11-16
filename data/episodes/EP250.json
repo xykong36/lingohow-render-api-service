@@ -1,0 +1,210 @@
+{
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "episode_id": 250,
+      "episode_sequence": 1,
+      "start_ts": 0.23,
+      "end_ts": 7.47,
+      "en": "I was so exhausted because obviously I didn't sleep the night before because I was so nervous about the event.",
+      "zh": "我真的特别累，因为前一天晚上根本没睡着，那个活动让我觉得很紧张。",
+      "phonetic_us": "/aɪ wəz soʊ ɪɡˈzɔstɪd bɪˈkɔz ˈɑbviəsli aɪ ˈdɪdənt slip ðə naɪt bɪˈfɔr bɪˈkɔz aɪ wəz soʊ ˈnɜrvəs əˈbaʊt ði ɪˈvɛnt/",
+      "highlight_entries": [
+        {
+          "slug": "exhausted",
+          "display_text": "exhausted",
+          "translation_zh": "累"
+        },
+        {
+          "slug": "nervous-about",
+          "display_text": "nervous about",
+          "translation_zh": "紧张"
+        }
+      ]
+    },
+    {
+      "sentence_id": 2,
+      "episode_id": 250,
+      "episode_sequence": 2,
+      "start_ts": 7.5,
+      "end_ts": 21.7,
+      "en": "The event went well and I'm actually really proud of myself, because I was saying to my friend yesterday, like I was kind of beating myself up before I went and was like, you know, you need to be bubbly, you need to be loud, you need to be really chatty, you need to make a really good impression, stuff like that.",
+      "zh": "活动本身开展得不错，而且我其实挺为自己骄傲的。因为我昨天还跟朋友说，我在去之前一直在给自己压力，觉得自己必须要很活泼、你需要很大方、你需要特别健谈、你需要给人留下非常好的印象，诸如此类的。",
+      "phonetic_us": "/ði ɪˈvɛnt wɛnt wɛl ænd aɪm ˈækʧuəli ˈrɪli praʊd əv maɪˈsɛlf, bɪˈkɔz aɪ wəz ˈseɪɪŋ tə maɪ frɛnd ˈjɛstərˌdeɪ, laɪk aɪ wəz kaɪnd əv ˈbitɪŋ maɪˈsɛlf ʌp bɪˈfɔr aɪ wɛnt ænd wəz laɪk, ju noʊ, ju nid tə bi ˈbʌbli, ju nid tə bi laʊd, ju nid tə bi ˈrɪli ˈʧæti, ju nid tə meɪk ə ˈrɪli ɡʊd ɪmˈprɛʃən, stʌf laɪk ðæt/",
+      "highlight_entries": [
+        {
+          "slug": "beating-myself-up",
+          "display_text": "beating myself up",
+          "translation_zh": "给自己压力"
+        },
+        {
+          "slug": "be-bubbly",
+          "display_text": "be bubbly",
+          "translation_zh": "活泼"
+        },
+        {
+          "slug": "be-loud",
+          "display_text": "be loud",
+          "translation_zh": "大方"
+        },
+        {
+          "slug": "be-really-chatty",
+          "display_text": "be really chatty",
+          "translation_zh": "特别健谈"
+        },
+        {
+          "slug": "make-a-really-good-impression",
+          "display_text": "make a really good impression",
+          "translation_zh": "留下非常好的印象"
+        },
+        {
+          "slug": "stuff-like-that",
+          "display_text": "stuff like that",
+          "translation_zh": "诸如此类的"
+        }
+      ]
+    },
+    {
+      "sentence_id": 3,
+      "episode_id": 250,
+      "episode_sequence": 3,
+      "start_ts": 27.47,
+      "end_ts": 32.3,
+      "en": "And because I'm naturally shy and quiet, that doesn't come easily to me.",
+      "zh": "但因为我本身性格比较害羞、安静，这对我来说不是容易的事。",
+      "phonetic_us": "/ænd bɪˈkɔz aɪm ˈnæʧərəli ʃaɪ ænd ˈkwaɪət, ðæt ˈdʌzənt kʌm ˈizəli tə mi/",
+      "highlight_entries": [
+        {
+          "slug": "im-naturally-shy-and-quiet",
+          "display_text": "I'm naturally shy and quiet",
+          "translation_zh": "我本身性格比较害羞、安静"
+        },
+        {
+          "slug": "doesnt-come-easily-to-me",
+          "display_text": "doesn't come easily to me",
+          "translation_zh": "对我来说不是容易的事"
+        }
+      ]
+    },
+    {
+      "sentence_id": 4,
+      "episode_id": 250,
+      "episode_sequence": 4,
+      "start_ts": 32.3,
+      "end_ts": 34.37,
+      "en": "So I was really stressed out about the whole thing.",
+      "zh": "所以整个过程让我非常紧张。",
+      "phonetic_us": "/soʊ aɪ wəz ˈrɪli strɛst aʊt əˈbaʊt ðə hoʊl θɪŋ/",
+      "highlight_entries": [
+        {
+          "slug": "i-was-really-stressed-out",
+          "display_text": "I was really stressed out",
+          "translation_zh": "我非常紧张"
+        }
+      ]
+    },
+    {
+      "sentence_id": 5,
+      "episode_id": 250,
+      "episode_sequence": 5,
+      "start_ts": 34.43,
+      "end_ts": 41.3,
+      "en": "I was really beating myself up about like how vibrant and bubbly and loud I am when I get there, and I was like, you know what, you just need to chill.",
+      "zh": "我给自己的压力很大，想着到了现场我到底能不能表现得足够有活力、足够活泼、足够大方。后来我想，算了，还是放轻松点吧。",
+      "phonetic_us": "/aɪ wəz ˈrɪli ˈbitɪŋ maɪˈsɛlf ʌp əˈbaʊt laɪk haʊ ˈvaɪbrənt ænd ˈbʌbli ænd laʊd aɪ æm wɛn aɪ ɡɛt ðɛr, ænd aɪ wəz laɪk, ju noʊ wʌt, ju ʤʌst nid tə ʧɪl/",
+      "highlight_entries": [
+        {
+          "slug": "beating-myself-up",
+          "display_text": "beating myself up",
+          "translation_zh": "给自己的压力很大"
+        },
+        {
+          "slug": "vibrant",
+          "display_text": "vibrant",
+          "translation_zh": "活力"
+        },
+        {
+          "slug": "bubbly",
+          "display_text": "bubbly",
+          "translation_zh": "活泼"
+        },
+        {
+          "slug": "loud",
+          "display_text": "loud",
+          "translation_zh": "大方"
+        }
+      ]
+    },
+    {
+      "sentence_id": 6,
+      "episode_id": 250,
+      "episode_sequence": 6,
+      "start_ts": 41.3,
+      "end_ts": 45.0,
+      "en": "Like going to these events stresses me out so badly.",
+      "zh": "所以去这种活动真的让我压力很大。",
+      "phonetic_us": "/laɪk ˈɡoʊɪŋ tə ðiz ɪˈvɛnts ˈstrɛsəz mi aʊt soʊ ˈbædli/",
+      "highlight_entries": [
+        {
+          "slug": "stresses-me-out",
+          "display_text": "stresses me out",
+          "translation_zh": "让我压力很大"
+        },
+        {
+          "slug": "so-badly",
+          "display_text": "so badly",
+          "translation_zh": "真的"
+        }
+      ]
+    },
+    {
+      "sentence_id": 7,
+      "episode_id": 250,
+      "episode_sequence": 7,
+      "start_ts": 45.0,
+      "end_ts": 50.0,
+      "en": "Like I will put a clip on screen right now, right here, of the way my hand was shaking before I went.",
+      "zh": "我会在屏幕这里放一个片段，我当时去的时候手抖得厉害。",
+      "phonetic_us": "/laɪk aɪ wɪl pʊt ə klɪp ɑn skrin raɪt naʊ, raɪt hɪr, əv ðə weɪ maɪ hænd wəz ˈʃeɪkɪŋ bɪˈfɔr aɪ wɛnt/",
+      "highlight_entries": [
+        {
+          "slug": "put-a-clip-on-screen",
+          "display_text": "put a clip on screen",
+          "translation_zh": "在屏幕这里放一个片段"
+        },
+        {
+          "slug": "shaking",
+          "display_text": "shaking",
+          "translation_zh": "抖"
+        }
+      ]
+    },
+    {
+      "sentence_id": 8,
+      "episode_id": 250,
+      "episode_sequence": 8,
+      "start_ts": 50.0,
+      "end_ts": 59.0,
+      "en": "I didn't want to go in at all, like I was petrified, and I just kept saying to myself like, you've got yourself to come here even though you are so scared, you are so anxious.",
+      "zh": "我一点都不想进去，整个人都吓坏了。我不停对自己说，你至少已经让自己走到这里了，尽管你很害怕、非常焦虑。",
+      "phonetic_us": "/aɪ ˈdɪdənt wɑnt tə ɡoʊ ɪn æt ɔl, laɪk aɪ wəz ˈpɛtrəˌfaɪd, ænd aɪ ʤʌst kɛpt ˈseɪɪŋ tə maɪˈsɛlf laɪk, juv ɡɑt jʊərˈsɛlf tə kʌm hɪr ˈivɪn ðoʊ ju ɑr soʊ skɛrd, ju ɑr soʊ ˈæŋkʃəs/",
+      "highlight_entries": [
+        {
+          "slug": "i-didnt-want-to-go-in-at-all",
+          "display_text": "I didn't want to go in at all",
+          "translation_zh": "我一点都不想进去"
+        },
+        {
+          "slug": "petrified",
+          "display_text": "petrified",
+          "translation_zh": "吓坏了"
+        },
+        {
+          "slug": "anxious",
+          "display_text": "anxious",
+          "translation_zh": "焦虑"
+        }
+      ]
+    }
+  ]
+}
