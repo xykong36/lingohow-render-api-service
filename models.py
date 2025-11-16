@@ -250,6 +250,63 @@ class SentenceAudioGenerateResponse(BaseModel):
     r2_upload_stats: dict[str, Any] = Field(..., description="R2 upload statistics")
 
 
+# ===== Use Case 7: Episode Management =====
+
+class EpisodeReadResponse(BaseModel):
+    """Response model for reading episode data."""
+    episode_id: int = Field(..., description="Episode ID")
+    sentences: list[EnhancedSentence] = Field(..., description="List of enhanced sentences")
+    metadata: dict[str, Any] = Field(default_factory=dict, description="Episode metadata")
+    created_at: str = Field(..., description="ISO timestamp when episode was created")
+    updated_at: str = Field(..., description="ISO timestamp when episode was last updated")
+    version: int = Field(..., description="Episode version number")
+
+
+class EpisodeUpdateRequest(BaseModel):
+    """Request model for updating entire episode."""
+    sentences: list[dict[str, Any]] = Field(..., description="Complete list of sentences")
+    metadata: Optional[dict[str, Any]] = Field(None, description="Optional metadata")
+
+
+class EpisodeUpdateResponse(BaseModel):
+    """Response model for episode update."""
+    episode_id: int
+    sentence_count: int
+    version: int
+    updated_at: str
+
+
+class SentenceUpdateRequest(BaseModel):
+    """Request model for updating a single sentence."""
+    sentence: dict[str, Any] = Field(..., description="Updated sentence data")
+
+
+class SentenceUpdateResponse(BaseModel):
+    """Response model for sentence update."""
+    episode_id: int
+    sentence_index: int
+    version: int
+    updated_at: str
+
+
+class EpisodeListItem(BaseModel):
+    """Model for episode list item."""
+    episode_id: int
+    file_name: str
+    sentence_count: Optional[int] = None
+    version: Optional[int] = None
+    created_at: Optional[str] = None
+    updated_at: Optional[str] = None
+    file_size_bytes: int
+    error: Optional[str] = None
+
+
+class EpisodeListResponse(BaseModel):
+    """Response model for episode list."""
+    episodes: list[EpisodeListItem]
+    total_count: int
+
+
 # ===== Error Response Model =====
 
 class ErrorResponse(BaseModel):

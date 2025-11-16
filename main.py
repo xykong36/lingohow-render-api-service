@@ -42,6 +42,13 @@ from models import (
     SentenceAudioResult,
     EnhancedSentence,
     HighlightEntry,
+    EpisodeReadResponse,
+    EpisodeUpdateRequest,
+    EpisodeUpdateResponse,
+    SentenceUpdateRequest,
+    SentenceUpdateResponse,
+    EpisodeListResponse,
+    EpisodeListItem,
     ErrorResponse,
 )
 from services.deepseek_client import DeepseekClient, DeepseekAPIError
@@ -54,6 +61,12 @@ from services.transcript_service import (
     TranscriptServiceError,
     TranscriptNotAvailableError,
     InvalidVideoIdError
+)
+from services.episode_service import (
+    EpisodeService,
+    EpisodeServiceError,
+    EpisodeNotFoundError,
+    EpisodeLockError
 )
 from utils.text_splitter import split_into_sentences
 
@@ -73,12 +86,13 @@ phonetic_service: Optional[PhoneticService] = None
 highlight_service: Optional[HighlightService] = None
 expression_service: Optional[ExpressionService] = None
 transcript_service: Optional[TranscriptService] = None
+episode_service: Optional[EpisodeService] = None
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Lifespan context manager for startup and shutdown events."""
-    global translation_service, phonetic_service, highlight_service, expression_service, transcript_service
+    global translation_service, phonetic_service, highlight_service, expression_service, transcript_service, episode_service
 
     # Startup
     logger.info("Starting Translation API v1.0.0")
@@ -103,6 +117,7 @@ async def lifespan(app: FastAPI):
         highlight_service = HighlightService(deepseek_client)
         expression_service = ExpressionService(deepseek_client)
         transcript_service = TranscriptService()
+        episode_service = EpisodeService()
 
         logger.info("✅ All services initialized successfully")
     except Exception as e:
@@ -184,6 +199,13 @@ def get_transcript_service() -> TranscriptService:
     return transcript_service
 
 
+def get_episode_service() -> EpisodeService:
+    """Get episode service instance."""
+    if episode_service is None:
+        raise HTTPException(status_code=503, detail="Episode service not initialized")
+    return episode_service
+
+
 # ===== Endpoints =====
 
 @app.get("/")
@@ -200,6 +222,10 @@ async def root():
             "sentence_audio_generate": "POST /api/sentence/generate-audio",
             "expression_generate": "POST /api/expression/generate",
             "video_transcript": "POST /api/video/transcript",
+            "episode_list": "GET /api/episode/list",
+            "episode_read": "GET /api/episode/{episode_id}",
+            "episode_update": "PUT /api/episode/{episode_id}",
+            "sentence_update": "PATCH /api/episode/{episode_id}/sentences/{index}",
         }
     }
 
@@ -215,6 +241,7 @@ async def health_check():
             "highlight": "initialized" if highlight_service else "not initialized",
             "expression": "initialized" if expression_service else "not initialized",
             "transcript": "initialized" if transcript_service else "not initialized",
+            "episode": "initialized" if episode_service else "not initialized",
         }
     }
 
@@ -271,7 +298,8 @@ async def generate_sentences_from_paragraph(
     request: ParagraphGenerateSentencesRequest,
     trans_svc: TranslationService = Depends(get_translation_service),
     phonetic_svc: PhoneticService = Depends(get_phonetic_service),
-    highlight_svc: HighlightService = Depends(get_highlight_service)
+    highlight_svc: HighlightService = Depends(get_highlight_service),
+    episode_svc: EpisodeService = Depends(get_episode_service)
 ):
     """
     Use Case 2: Split paragraph into sentences and enhance each sentence.
@@ -339,6 +367,27 @@ async def generate_sentences_from_paragraph(
             enhanced_sentences = [future.result() for future in futures]
 
         logger.info(f"✅ Generated {len(enhanced_sentences)} enhanced sentences")
+
+        # Save to episode file if episode_id is provided
+        if request.episode_id is not None:
+            try:
+                # Convert EnhancedSentence objects to dictionaries
+                sentences_data = [s.model_dump() for s in enhanced_sentences]
+
+                # Save to episode file
+                save_result = episode_svc.save_episode(
+                    episode_id=request.episode_id,
+                    sentences=sentences_data,
+                    metadata={
+                        "source": "paragraph_generation",
+                        "original_text": request.text[:100] + "..." if len(request.text) > 100 else request.text,
+                        "split_by": request.split_by
+                    }
+                )
+                logger.info(f"💾 Saved episode {request.episode_id} to {save_result['file_path']}")
+            except Exception as e:
+                # Don't fail the request if episode save fails, just log it
+                logger.error(f"Failed to save episode {request.episode_id}: {e}")
 
         return ParagraphGenerateSentencesResponse(
             sentences=enhanced_sentences,
@@ -656,6 +705,170 @@ async def generate_sentence_audio(
         raise
     except Exception as e:
         logger.error(f"Sentence audio generation failed: {e}")
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+
+
+# ===== Episode Management Endpoints =====
+
+@app.get(
+    "/api/episode/list",
+    response_model=EpisodeListResponse,
+    responses={500: {"model": ErrorResponse}}
+)
+async def list_episodes(
+    episode_svc: EpisodeService = Depends(get_episode_service)
+):
+    """
+    List all available episode files.
+
+    Returns a list of all episode JSON files stored on the server,
+    including metadata like sentence count, version, and timestamps.
+    """
+    try:
+        logger.info("Listing all episodes...")
+        episodes = episode_svc.list_episodes()
+
+        return EpisodeListResponse(
+            episodes=[EpisodeListItem(**ep) for ep in episodes],
+            total_count=len(episodes)
+        )
+
+    except Exception as e:
+        logger.error(f"Failed to list episodes: {e}")
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+
+
+@app.get(
+    "/api/episode/{episode_id}",
+    response_model=EpisodeReadResponse,
+    responses={404: {"model": ErrorResponse}, 500: {"model": ErrorResponse}}
+)
+async def read_episode(
+    episode_id: int,
+    episode_svc: EpisodeService = Depends(get_episode_service)
+):
+    """
+    Read a specific episode file.
+
+    Returns the complete episode data including all sentences and metadata.
+    """
+    try:
+        logger.info(f"Reading episode {episode_id}...")
+        episode_data = episode_svc.read_episode(episode_id)
+
+        # Convert sentence dictionaries to EnhancedSentence objects
+        sentences = [EnhancedSentence(**s) for s in episode_data.get("sentences", [])]
+
+        return EpisodeReadResponse(
+            episode_id=episode_data["episode_id"],
+            sentences=sentences,
+            metadata=episode_data.get("metadata", {}),
+            created_at=episode_data["created_at"],
+            updated_at=episode_data["updated_at"],
+            version=episode_data["version"]
+        )
+
+    except EpisodeNotFoundError as e:
+        logger.error(f"Episode not found: {e}")
+        raise HTTPException(status_code=404, detail=str(e))
+
+    except EpisodeLockError as e:
+        logger.error(f"Episode lock error: {e}")
+        raise HTTPException(status_code=503, detail=str(e))
+
+    except Exception as e:
+        logger.error(f"Failed to read episode: {e}")
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+
+
+@app.put(
+    "/api/episode/{episode_id}",
+    response_model=EpisodeUpdateResponse,
+    responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}}
+)
+async def update_episode(
+    episode_id: int,
+    request: EpisodeUpdateRequest,
+    episode_svc: EpisodeService = Depends(get_episode_service)
+):
+    """
+    Update an entire episode file (full replacement).
+
+    Replaces all sentences and metadata for the specified episode.
+    This is useful when multiple team members need to update the complete episode data.
+    """
+    try:
+        logger.info(f"Updating episode {episode_id} with {len(request.sentences)} sentences...")
+
+        result = episode_svc.update_episode(
+            episode_id=episode_id,
+            sentences=request.sentences,
+            metadata=request.metadata
+        )
+
+        return EpisodeUpdateResponse(
+            episode_id=episode_id,
+            sentence_count=result["sentence_count"],
+            version=result["version"],
+            updated_at=result["saved_at"]
+        )
+
+    except EpisodeLockError as e:
+        logger.error(f"Episode lock error: {e}")
+        raise HTTPException(status_code=503, detail=str(e))
+
+    except Exception as e:
+        logger.error(f"Failed to update episode: {e}")
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+
+
+@app.patch(
+    "/api/episode/{episode_id}/sentences/{sentence_index}",
+    response_model=SentenceUpdateResponse,
+    responses={404: {"model": ErrorResponse}, 400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}}
+)
+async def update_sentence(
+    episode_id: int,
+    sentence_index: int,
+    request: SentenceUpdateRequest,
+    episode_svc: EpisodeService = Depends(get_episode_service)
+):
+    """
+    Update a specific sentence in an episode.
+
+    Allows partial updates by modifying only a single sentence at a specific index.
+    This is useful for collaborative editing where team members update individual sentences.
+    """
+    try:
+        logger.info(f"Updating sentence {sentence_index} in episode {episode_id}...")
+
+        result = episode_svc.update_sentence(
+            episode_id=episode_id,
+            sentence_index=sentence_index,
+            sentence_data=request.sentence
+        )
+
+        return SentenceUpdateResponse(
+            episode_id=episode_id,
+            sentence_index=sentence_index,
+            version=result["version"],
+            updated_at=result["updated_at"]
+        )
+
+    except EpisodeNotFoundError as e:
+        logger.error(f"Episode not found: {e}")
+        raise HTTPException(status_code=404, detail=str(e))
+
+    except IndexError as e:
+        logger.error(f"Invalid sentence index: {e}")
+        raise HTTPException(status_code=400, detail=str(e))
+
+    except EpisodeLockError as e:
+        logger.error(f"Episode lock error: {e}")
+        raise HTTPException(status_code=503, detail=str(e))
+
+    except Exception as e:
+        logger.error(f"Failed to update sentence: {e}")
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
 

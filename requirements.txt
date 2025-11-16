@@ -22,6 +22,9 @@ aioboto3==13.3.0
 # Async utilities
 aiofiles==24.1.0
 
+# File locking for concurrent access control
+filelock
+
 # Video/Audio download
 yt-dlp==2024.12.13
 
