@@ -323,6 +323,54 @@ class EpisodeListResponse(BaseModel):
     total_count: int
 
 
+# ===== Use Case 8: Phrase Audio Generation =====
+
+class PhraseAudioGenerateRequest(BaseModel):
+    """Request model for generating audio file for a single phrase."""
+    phrase: str = Field(..., description="Phrase text to generate audio for")
+    voice: str = Field("en-US-AvaMultilingualNeural", description="Edge TTS voice model to use")
+    check_existing: bool = Field(True, description="Check if audio already exists in R2/COS before generating")
+
+
+class PhraseAudioGenerateResponse(BaseModel):
+    """Response model for phrase audio generation."""
+    phrase: str = Field(..., description="Original phrase text")
+    clean_filename: str = Field(..., description="Clean filename for the phrase (underscore-separated)")
+    formatted_for_tts: str = Field(..., description="Phrase formatted for TTS (with special rules)")
+    audio_generated: bool = Field(..., description="Whether audio file was generated")
+    audio_existed: bool = Field(False, description="Whether audio already existed")
+    uploaded_r2: bool = Field(False, description="Whether uploaded to R2 successfully")
+    uploaded_cos: bool = Field(False, description="Whether uploaded to COS successfully")
+    r2_existed: bool = Field(False, description="Whether file already existed in R2")
+    cos_existed: bool = Field(False, description="Whether file already existed in COS")
+    r2_object_key: Optional[str] = Field(None, description="R2 object key")
+    cos_object_key: Optional[str] = Field(None, description="COS object key")
+    audio_file_path: Optional[str] = Field(None, description="Local audio file path")
+    error: Optional[str] = Field(None, description="Error message if any step failed")
+
+
+# ===== Use Case 9: MongoDB Episode Retrieval =====
+
+class MongoDBEpisodeResponse(BaseModel):
+    """Response model for MongoDB episode retrieval."""
+    episode_id: int = Field(..., description="Episode ID")
+    data: dict[str, Any] = Field(..., description="Complete episode data from MongoDB")
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "episode_id": 238,
+                "data": {
+                    "_id": "507f1f77bcf86cd799439011",
+                    "episode_id": 238,
+                    "title": "Episode Title",
+                    "sentences": [],
+                    "metadata": {}
+                }
+            }
+        }
+
+
 # ===== Error Response Model =====
 
 class ErrorResponse(BaseModel):

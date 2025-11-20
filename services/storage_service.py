@@ -225,50 +225,122 @@ async def batch_upload_r2(
 
     logger.info(f"🔑 R2 configuration loaded, starting upload of {len(upload_files)} files...")
 
-    # Create semaphore for concurrency control
-    semaphore = asyncio.Semaphore(max_concurrent)
+    try:
+        import aioboto3
+        from botocore.config import Config
 
-    async def upload_with_semaphore(file_info: Dict[str, str]) -> Dict[str, Any]:
-        """Upload single file with semaphore."""
-        async with semaphore:
-            return await upload_to_r2_async(
-                file_path=file_info['file_path'],
-                object_key=file_info['object_key'],
-                bucket_name=r2_config['R2_BUCKET_NAME'],
-                access_key_id=r2_config['R2_ACCESS_KEY_ID'],
-                secret_access_key=r2_config['R2_SECRET_ACCESS_KEY'],
-                endpoint_url=r2_config['R2_ENDPOINT_URL']
-            )
+        # Configure boto with increased timeouts and connection pool settings
+        boto_config = Config(
+            connect_timeout=30,
+            read_timeout=60,
+            retries={'max_attempts': 2, 'mode': 'standard'},
+            max_pool_connections=max_concurrent + 5
+        )
 
-    # Upload all files concurrently
-    tasks = [upload_with_semaphore(file_info) for file_info in upload_files]
-    results = await asyncio.gather(*tasks, return_exceptions=True)
+        # Create shared session and client for all uploads
+        session = aioboto3.Session()
+        async with session.client(
+            service_name='s3',
+            endpoint_url=r2_config['R2_ENDPOINT_URL'],
+            aws_access_key_id=r2_config['R2_ACCESS_KEY_ID'],
+            aws_secret_access_key=r2_config['R2_SECRET_ACCESS_KEY'],
+            region_name='auto',
+            config=boto_config
+        ) as s3_client:
 
-    # Handle exceptions
-    processed_results = []
-    for idx, result in enumerate(results):
-        if isinstance(result, Exception):
-            logger.error(f"R2 upload exception for file {idx}: {result}")
-            processed_results.append({
-                'success': False,
-                'object_key': upload_files[idx].get('object_key', 'unknown'),
-                'error': str(result)
-            })
-        else:
-            processed_results.append(result)
+            # Create semaphore for concurrency control
+            semaphore = asyncio.Semaphore(max_concurrent)
 
-    # Calculate statistics
-    total = len(processed_results)
-    successful = sum(1 for r in processed_results if r.get('success', False))
-    stats = {
-        'total_uploads': total,
-        'successful_uploads': successful,
-        'failed_uploads': total - successful,
-        'success_rate': successful / total if total > 0 else 0.0
-    }
+            async def upload_single_file(file_info: Dict[str, str]) -> Dict[str, Any]:
+                """Upload single file using shared client."""
+                async with semaphore:
+                    try:
+                        file_path = file_info['file_path']
+                        object_key = file_info['object_key']
 
-    logger.info(f"📊 R2 upload: {successful}/{total} successful")
-    return processed_results, stats
+                        file_obj = Path(file_path)
+                        if not file_obj.exists():
+                            return {
+                                'success': False,
+                                'object_key': object_key,
+                                'error': 'File not found'
+                            }
+
+                        # Upload using shared client
+                        await s3_client.upload_file(
+                            Filename=str(file_obj),
+                            Bucket=r2_config['R2_BUCKET_NAME'],
+                            Key=object_key,
+                            ExtraArgs={'ContentType': 'audio/mpeg'}
+                        )
+
+                        return {
+                            'success': True,
+                            'object_key': object_key,
+                            'file_name': file_obj.name,
+                            'file_size': file_obj.stat().st_size,
+                            'content_type': 'audio/mpeg'
+                        }
+
+                    except Exception as e:
+                        logger.error(f"R2 upload failed for {object_key}: {e}")
+                        return {
+                            'success': False,
+                            'object_key': object_key,
+                            'error': str(e)
+                        }
+
+            # Upload all files concurrently
+            tasks = [upload_single_file(file_info) for file_info in upload_files]
+            results = await asyncio.gather(*tasks, return_exceptions=True)
+
+            # Handle exceptions
+            processed_results = []
+            for idx, result in enumerate(results):
+                if isinstance(result, Exception):
+                    logger.error(f"R2 upload exception for file {idx}: {result}")
+                    processed_results.append({
+                        'success': False,
+                        'object_key': upload_files[idx].get('object_key', 'unknown'),
+                        'error': str(result)
+                    })
+                else:
+                    processed_results.append(result)
+
+            # Wait for graceful connection cleanup
+            await asyncio.sleep(2.0)  # 增加到2秒，确保连接完全关闭
+
+        # Calculate statistics (outside the client context)
+        total = len(processed_results)
+        successful = sum(1 for r in processed_results if r.get('success', False))
+        stats = {
+            'total_uploads': total,
+            'successful_uploads': successful,
+            'failed_uploads': total - successful,
+            'success_rate': successful / total if total > 0 else 0.0
+        }
+
+        logger.info(f"📊 R2 upload: {successful}/{total} successful")
+        return processed_results, stats
+
+    except ImportError:
+        logger.error("aioboto3 not installed")
+        return [], {
+            'error': 'aioboto3 not installed',
+            'total_uploads': 0,
+            'successful_uploads': 0,
+            'failed_uploads': 0,
+            'success_rate': 0.0
+        }
+    except Exception as e:
+        logger.error(f"R2 batch upload failed: {e}")
+        return [], {
+            'error': str(e),
+            'total_uploads': 0,
+            'successful_uploads': 0,
+            'failed_uploads': 0,
+            'success_rate': 0.0
+        }
 
 
 async def batch_upload_cos(
@@ -365,7 +437,9 @@ async def upload_audio_files(
     upload_to_cos: bool = True,
     upload_to_r2: bool = True,
     max_concurrent_r2: int = 10,
-    max_workers_cos: int = 4
+    max_workers_cos: int = 4,
+    r2_files: Optional[List[Dict[str, str]]] = None,
+    cos_files: Optional[List[Dict[str, str]]] = None
 ) -> tuple[List[Dict[str, Any]], List[Dict[str, Any]], Dict[str, Any], Dict[str, Any]]:
     """
     Upload audio files to both COS and R2 concurrently.
@@ -376,6 +450,8 @@ async def upload_audio_files(
         upload_to_r2: Whether to upload to R2 (default: True)
         max_concurrent_r2: Max concurrent R2 uploads (default: 10)
         max_workers_cos: Max thread pool workers for COS (default: 4)
+        r2_files: Optional specific list for R2 upload (default: None, uses upload_files)
+        cos_files: Optional specific list for COS upload (default: None, uses upload_files)
 
     Returns:
         Tuple of (cos_results, r2_results, cos_stats, r2_stats)
@@ -383,13 +459,16 @@ async def upload_audio_files(
     tasks = []
 
     # Upload to COS and R2 in parallel
+    # Use specific file lists if provided, otherwise use upload_files
     if upload_to_cos:
-        tasks.append(batch_upload_cos(upload_files, max_workers_cos))
+        cos_upload_list = cos_files if cos_files is not None else upload_files
+        tasks.append(batch_upload_cos(cos_upload_list, max_workers_cos))
     else:
         tasks.append(asyncio.sleep(0))  # Placeholder
 
     if upload_to_r2:
-        tasks.append(batch_upload_r2(upload_files, max_concurrent_r2))
+        r2_upload_list = r2_files if r2_files is not None else upload_files
+        tasks.append(batch_upload_r2(r2_upload_list, max_concurrent_r2))
     else:
         tasks.append(asyncio.sleep(0))  # Placeholder
 

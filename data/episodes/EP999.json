@@ -1,0 +1,52 @@
+{
+  "episode_id": 999,
+  "sentences": [
+    {
+      "sentence_id": null,
+      "episode_id": 999,
+      "episode_sequence": 1,
+      "en": "Hello, how are you today?",
+      "zh": "你好，今天过得怎么样？",
+      "phonetic_us": "/həˈloʊ haʊ ɑr ju təˈdeɪ/",
+      "highlight_entries": [],
+      "start_ts": null,
+      "end_ts": null,
+      "duration": null,
+      "sentence_hash": "493f0812263c0537"
+    },
+    {
+      "sentence_id": null,
+      "episode_id": 999,
+      "episode_sequence": 2,
+      "en": "I hope you're doing well.",
+      "zh": "希望你一切安好。",
+      "phonetic_us": "/aɪ hoʊp jʊr ˈduɪŋ wɛl/",
+      "highlight_entries": [],
+      "start_ts": null,
+      "end_ts": null,
+      "duration": null,
+      "sentence_hash": "c90d90535ece2b2b"
+    },
+    {
+      "sentence_id": null,
+      "episode_id": 999,
+      "episode_sequence": 3,
+      "en": "Let's meet for coffee tomorrow morning.",
+      "zh": "明天早上我们见面喝杯咖啡吧。",
+      "phonetic_us": "/lɛts mit fɔr ˈkɔfi təˈmɑroʊ ˈmɔrnɪŋ/",
+      "highlight_entries": [],
+      "start_ts": null,
+      "end_ts": null,
+      "duration": null,
+      "sentence_hash": "bf1c25cfcdcf0fd1"
+    }
+  ],
+  "metadata": {
+    "source": "paragraph_generation",
+    "original_text": "Hello, how are you today? I hope you're doing well. Let's meet for coffee tomorrow morning.",
+    "split_by": "period"
+  },
+  "created_at": "2025-11-20T11:42:48.083701",
+  "updated_at": "2025-11-20T11:42:48.083709",
+  "version": 1
+}

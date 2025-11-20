@@ -27,8 +27,6 @@ if env_file.exists():
     except ImportError:
         print("⚠️ python-dotenv not installed, using system environment variables only")
 from models import (
-    ParagraphTranslateRequest,
-    ParagraphTranslateResponse,
     ParagraphGenerateSentencesRequest,
     ParagraphGenerateSentencesResponse,
     SentenceEnhanceRequest,
@@ -40,15 +38,11 @@ from models import (
     SentenceAudioGenerateRequest,
     SentenceAudioGenerateResponse,
     SentenceAudioResult,
+    PhraseAudioGenerateRequest,
+    PhraseAudioGenerateResponse,
     EnhancedSentence,
     HighlightEntry,
-    EpisodeReadResponse,
-    EpisodeUpdateRequest,
-    EpisodeUpdateResponse,
-    SentenceUpdateRequest,
-    SentenceUpdateResponse,
-    EpisodeListResponse,
-    EpisodeListItem,
+    MongoDBEpisodeResponse,
     ErrorResponse,
 )
 from services.deepseek_client import DeepseekClient, DeepseekAPIError
@@ -64,9 +58,13 @@ from services.transcript_service import (
 )
 from services.episode_service import (
     EpisodeService,
-    EpisodeServiceError,
-    EpisodeNotFoundError,
-    EpisodeLockError
+    EpisodeServiceError
+)
+from services.mongodb_service import (
+    MongoDBService,
+    MongoDBServiceError,
+    MongoDBConnectionError,
+    EpisodeNotFoundInDBError
 )
 from utils.text_splitter import split_into_sentences
 
@@ -87,12 +85,13 @@ highlight_service: Optional[HighlightService] = None
 expression_service: Optional[ExpressionService] = None
 transcript_service: Optional[TranscriptService] = None
 episode_service: Optional[EpisodeService] = None
+mongodb_service: Optional[MongoDBService] = None
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Lifespan context manager for startup and shutdown events."""
-    global translation_service, phonetic_service, highlight_service, expression_service, transcript_service, episode_service
+    global translation_service, phonetic_service, highlight_service, expression_service, transcript_service, episode_service, mongodb_service
 
     # Startup
     logger.info("Starting Translation API v1.0.0")
@@ -119,6 +118,15 @@ async def lifespan(app: FastAPI):
         transcript_service = TranscriptService()
         episode_service = EpisodeService()
 
+        # Initialize MongoDB service
+        try:
+            mongodb_service = MongoDBService()
+            mongodb_service.connect()
+            logger.info("✅ MongoDBService initialized")
+        except MongoDBConnectionError as e:
+            logger.warning(f"⚠️  MongoDB service initialization failed: {e}")
+            mongodb_service = None
+
         logger.info("✅ All services initialized successfully")
     except Exception as e:
         logger.error(f"❌ Failed to initialize services: {e}")
@@ -128,6 +136,8 @@ async def lifespan(app: FastAPI):
 
     # Shutdown
     logger.info("Shutting down Translation API")
+    if mongodb_service:
+        mongodb_service.close()
 
 
 # Initialize FastAPI app
@@ -206,6 +216,13 @@ def get_episode_service() -> EpisodeService:
     return episode_service
 
 
+def get_mongodb_service() -> MongoDBService:
+    """Get MongoDB service instance."""
+    if mongodb_service is None:
+        raise HTTPException(status_code=503, detail="MongoDB service not initialized")
+    return mongodb_service
+
+
 # ===== Endpoints =====
 
 @app.get("/")
@@ -216,16 +233,13 @@ async def root():
         "version": "1.0.0",
         "status": "running",
         "endpoints": {
-            "paragraph_translate": "POST /api/paragraph/translate",
             "paragraph_generate_sentences": "POST /api/paragraph/generate-sentences",
             "sentence_enhance": "POST /api/sentence/enhance",
             "sentence_audio_generate": "POST /api/sentence/generate-audio",
+            "phrase_audio_generate": "POST /api/phrase/generate-audio",
             "expression_generate": "POST /api/expression/generate",
             "video_transcript": "POST /api/video/transcript",
-            "episode_list": "GET /api/episode/list",
-            "episode_read": "GET /api/episode/{episode_id}",
-            "episode_update": "PUT /api/episode/{episode_id}",
-            "sentence_update": "PATCH /api/episode/{episode_id}/sentences/{index}",
+            "episode_read_from_db": "GET /api/episode/db/{episode_id}",
         }
     }
 
@@ -242,51 +256,9 @@ async def health_check():
             "expression": "initialized" if expression_service else "not initialized",
             "transcript": "initialized" if transcript_service else "not initialized",
             "episode": "initialized" if episode_service else "not initialized",
+            "mongodb": "initialized" if mongodb_service else "not initialized",
         }
     }
-
-
-@app.post(
-    "/api/paragraph/translate",
-    response_model=ParagraphTranslateResponse,
-    responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}}
-)
-async def translate_paragraph(
-    request: ParagraphTranslateRequest,
-    trans_svc: TranslationService = Depends(get_translation_service),
-    highlight_svc: HighlightService = Depends(get_highlight_service)
-):
-    """
-    Use Case 1: Translate a paragraph and optionally extract highlight entries.
-
-    - Translates entire paragraph to Chinese
-    - Extracts important words/phrases as highlight entries
-    """
-    try:
-        logger.info(f"Translating paragraph: {request.text[:50]}...")
-
-        # Get Chinese translation
-        translation = trans_svc.translate(request.text)
-
-        # Extract highlights if requested
-        highlights = []
-        if request.extract_highlights:
-            logger.info("Extracting highlights from paragraph...")
-            highlight_data = highlight_svc.extract_highlights(request.text, translation)
-            highlights = [HighlightEntry(**h) for h in highlight_data]
-
-        return ParagraphTranslateResponse(
-            original_text=request.text,
-            translation=translation,
-            highlights=highlights
-        )
-
-    except DeepseekAPIError as e:
-        logger.error(f"Translation failed: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-    except Exception as e:
-        logger.error(f"Unexpected error: {e}")
-        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
 
 @app.post(
@@ -708,167 +680,152 @@ async def generate_sentence_audio(
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
 
-# ===== Episode Management Endpoints =====
-
-@app.get(
-    "/api/episode/list",
-    response_model=EpisodeListResponse,
-    responses={500: {"model": ErrorResponse}}
-)
-async def list_episodes(
-    episode_svc: EpisodeService = Depends(get_episode_service)
-):
-    """
-    List all available episode files.
-
-    Returns a list of all episode JSON files stored on the server,
-    including metadata like sentence count, version, and timestamps.
-    """
-    try:
-        logger.info("Listing all episodes...")
-        episodes = episode_svc.list_episodes()
-
-        return EpisodeListResponse(
-            episodes=[EpisodeListItem(**ep) for ep in episodes],
-            total_count=len(episodes)
-        )
-
-    except Exception as e:
-        logger.error(f"Failed to list episodes: {e}")
-        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
-
-
-@app.get(
-    "/api/episode/{episode_id}",
-    response_model=EpisodeReadResponse,
-    responses={404: {"model": ErrorResponse}, 500: {"model": ErrorResponse}}
-)
-async def read_episode(
-    episode_id: int,
-    episode_svc: EpisodeService = Depends(get_episode_service)
-):
-    """
-    Read a specific episode file.
-
-    Returns the complete episode data including all sentences and metadata.
-    """
-    try:
-        logger.info(f"Reading episode {episode_id}...")
-        episode_data = episode_svc.read_episode(episode_id)
-
-        # Convert sentence dictionaries to EnhancedSentence objects
-        sentences = [EnhancedSentence(**s) for s in episode_data.get("sentences", [])]
-
-        return EpisodeReadResponse(
-            episode_id=episode_data.get("episode_id", episode_id),  # Use URL param if missing
-            sentences=sentences,
-            metadata=episode_data.get("metadata", {}),
-            created_at=episode_data.get("created_at", "1970-01-01T00:00:00"),
-            updated_at=episode_data.get("updated_at", "1970-01-01T00:00:00"),
-            version=episode_data.get("version", 1)
-        )
-
-    except EpisodeNotFoundError as e:
-        logger.error(f"Episode not found: {e}")
-        raise HTTPException(status_code=404, detail=str(e))
-
-    except EpisodeLockError as e:
-        logger.error(f"Episode lock error: {e}")
-        raise HTTPException(status_code=503, detail=str(e))
-
-    except Exception as e:
-        logger.error(f"Failed to read episode: {e}")
-        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
-
-
-@app.put(
-    "/api/episode/{episode_id}",
-    response_model=EpisodeUpdateResponse,
+@app.post(
+    "/api/phrase/generate-audio",
+    response_model=PhraseAudioGenerateResponse,
     responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}}
 )
-async def update_episode(
-    episode_id: int,
-    request: EpisodeUpdateRequest,
-    episode_svc: EpisodeService = Depends(get_episode_service)
+async def generate_phrase_audio(
+    request: PhraseAudioGenerateRequest
 ):
     """
-    Update an entire episode file (full replacement).
+    Generate audio file for a single phrase and upload to COS/R2.
 
-    Replaces all sentences and metadata for the specified episode.
-    This is useful when multiple team members need to update the complete episode data.
+    This endpoint:
+    - Accepts a phrase text (e.g., "break the ice", "S.P.F.")
+    - Applies phrase-specific formatting rules for TTS (e.g., spacing acronyms)
+    - Optionally checks if audio already exists in R2 and COS
+    - Generates MP3 audio file using Edge TTS if needed
+    - Uploads to both COS and R2 storage
+    - Returns comprehensive status and metadata
+
+    Special formatting rules:
+    - Acronyms like "S.P.F." are automatically spaced: "S P F" for better pronunciation
+    - Dots and periods are removed for cleaner TTS output
+    - Original phrase structure is preserved in filenames
+
+    Example requests:
+    ```json
+    {
+        "phrase": "break the ice",
+        "voice": "en-US-AvaMultilingualNeural",
+        "check_existing": true
+    }
+    ```
+
+    ```json
+    {
+        "phrase": "S.P.F.",
+        "voice": "en-US-JennyNeural"
+    }
+    ```
     """
     try:
-        logger.info(f"Updating episode {episode_id} with {len(request.sentences)} sentences...")
+        from utils.phrase_audio_generator import generate_and_upload_phrase_audio, check_edge_tts_available
 
-        result = episode_svc.update_episode(
-            episode_id=episode_id,
-            sentences=request.sentences,
-            metadata=request.metadata
+        logger.info(f"Generating phrase audio: {request.phrase}")
+
+        # Check if Edge TTS library is available
+        if not check_edge_tts_available():
+            raise HTTPException(
+                status_code=500,
+                detail="Edge TTS library is not installed. Please install edge-tts Python package."
+            )
+
+        # Validate phrase
+        if not request.phrase or not request.phrase.strip():
+            raise HTTPException(
+                status_code=400,
+                detail="Phrase text is required and cannot be empty"
+            )
+
+        # Generate and upload phrase audio
+        result = await generate_and_upload_phrase_audio(
+            phrase=request.phrase,
+            voice=request.voice,
+            check_existing=request.check_existing
         )
 
-        return EpisodeUpdateResponse(
-            episode_id=episode_id,
-            sentence_count=result["sentence_count"],
-            version=result["version"],
-            updated_at=result["saved_at"]
-        )
+        # Check if there was an error
+        if result.get('error'):
+            logger.error(f"Phrase audio generation error: {result['error']}")
+            # Still return the result with error info
+            return PhraseAudioGenerateResponse(**result)
 
-    except EpisodeLockError as e:
-        logger.error(f"Episode lock error: {e}")
-        raise HTTPException(status_code=503, detail=str(e))
+        # Log success
+        if result.get('audio_generated'):
+            logger.info(
+                f"✅ Phrase audio generated successfully: {result['clean_filename']}.mp3 "
+                f"(R2: {result.get('uploaded_r2', False)}, COS: {result.get('uploaded_cos', False)})"
+            )
+        elif result.get('audio_existed'):
+            logger.info(
+                f"✅ Phrase audio already exists: {result['clean_filename']}.mp3 "
+                f"(R2: {result.get('r2_existed', False)}, COS: {result.get('cos_existed', False)})"
+            )
 
+        return PhraseAudioGenerateResponse(**result)
+
+    except HTTPException:
+        raise
     except Exception as e:
-        logger.error(f"Failed to update episode: {e}")
+        logger.error(f"Phrase audio generation failed: {e}")
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
 
-@app.patch(
-    "/api/episode/{episode_id}/sentences/{sentence_index}",
-    response_model=SentenceUpdateResponse,
-    responses={404: {"model": ErrorResponse}, 400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}}
+# ===== Episode Management Endpoints (MongoDB) =====
+
+@app.get(
+    "/api/episode/db/{episode_id}",
+    response_model=MongoDBEpisodeResponse,
+    responses={404: {"model": ErrorResponse}, 503: {"model": ErrorResponse}, 500: {"model": ErrorResponse}}
 )
-async def update_sentence(
+async def read_episode_from_mongodb(
     episode_id: int,
-    sentence_index: int,
-    request: SentenceUpdateRequest,
-    episode_svc: EpisodeService = Depends(get_episode_service)
+    mongo_svc: MongoDBService = Depends(get_mongodb_service)
 ):
     """
-    Update a specific sentence in an episode.
+    Read episode data from MongoDB by episode_id.
 
-    Allows partial updates by modifying only a single sentence at a specific index.
-    This is useful for collaborative editing where team members update individual sentences.
+    Queries the episodes collection in MongoDB and returns the complete episode document.
+    This endpoint directly accesses the MongoDB database to retrieve the latest episode data.
+
+    Args:
+        episode_id: The episode ID to query
+
+    Returns:
+        Complete episode data from MongoDB including all fields
+
+    Raises:
+        404: Episode not found in database
+        503: MongoDB service not available
+        500: Internal server error
     """
     try:
-        logger.info(f"Updating sentence {sentence_index} in episode {episode_id}...")
+        logger.info(f"Reading episode {episode_id} from MongoDB...")
 
-        result = episode_svc.update_sentence(
+        # Get episode from MongoDB
+        episode_data = mongo_svc.get_episode_by_id(episode_id)
+
+        return MongoDBEpisodeResponse(
             episode_id=episode_id,
-            sentence_index=sentence_index,
-            sentence_data=request.sentence
+            data=episode_data
         )
 
-        return SentenceUpdateResponse(
-            episode_id=episode_id,
-            sentence_index=sentence_index,
-            version=result["version"],
-            updated_at=result["updated_at"]
-        )
-
-    except EpisodeNotFoundError as e:
-        logger.error(f"Episode not found: {e}")
+    except EpisodeNotFoundInDBError as e:
+        logger.error(f"Episode not found in MongoDB: {e}")
         raise HTTPException(status_code=404, detail=str(e))
 
-    except IndexError as e:
-        logger.error(f"Invalid sentence index: {e}")
-        raise HTTPException(status_code=400, detail=str(e))
+    except MongoDBConnectionError as e:
+        logger.error(f"MongoDB connection error: {e}")
+        raise HTTPException(status_code=503, detail=f"Database connection error: {str(e)}")
 
-    except EpisodeLockError as e:
-        logger.error(f"Episode lock error: {e}")
-        raise HTTPException(status_code=503, detail=str(e))
+    except MongoDBServiceError as e:
+        logger.error(f"MongoDB service error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
     except Exception as e:
-        logger.error(f"Failed to update sentence: {e}")
+        logger.error(f"Unexpected error reading episode from MongoDB: {e}")
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
 
