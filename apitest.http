@@ -1,0 +1,263 @@
+###
+# Translation API - Test Suite
+# Use REST Client extension in VS Code to run these tests
+# Shortcut: Ctrl+Alt+R (Cmd+Alt+R on macOS)
+###
+
+# Variables
+@baseUrl = http://localhost:8080
+@contentType = application/json
+
+###
+# 1. Root Endpoint - Get API Information
+GET {{baseUrl}}/
+
+###
+# 2. Health Check - Get Service Status
+GET {{baseUrl}}/health
+
+###############################################
+# Paragraph Processing
+###############################################
+
+###
+# 3. Generate Sentences from Paragraph (split by period)
+POST {{baseUrl}}/api/paragraph/generate-sentences
+Content-Type: {{contentType}}
+
+{
+    "text": "Hello, how are you today? I hope you're doing well. Let's meet for coffee tomorrow morning.",
+    "episode_id": 999,
+    "split_by": "period"
+}
+
+###
+# 4. Generate Sentences from Paragraph (split by newline)
+POST {{baseUrl}}/api/paragraph/generate-sentences
+Content-Type: {{contentType}}
+
+{
+    "text": "First sentence here.\nSecond sentence here.\nThird sentence here.",
+    "episode_id": 999,
+    "split_by": "newline"
+}
+
+###
+# 5. Generate Sentences from Paragraph (without episode_id)
+POST {{baseUrl}}/api/paragraph/generate-sentences
+Content-Type: {{contentType}}
+
+{
+    "text": "Artificial intelligence is transforming industries. Machine learning enables computers to learn from data.",
+    "split_by": "period"
+}
+
+###############################################
+# Sentence Enhancement
+###############################################
+
+###
+# 6. Enhance Single Sentence (basic)
+POST {{baseUrl}}/api/sentence/enhance
+Content-Type: {{contentType}}
+
+{
+    "en": "The weather is beautiful today."
+}
+
+###
+# 7. Enhance Single Sentence (with full metadata)
+POST {{baseUrl}}/api/sentence/enhance
+Content-Type: {{contentType}}
+
+{
+    "en": "Breaking news: Scientists discover a new species in the Amazon rainforest.",
+    "sentence_id": "sent_001",
+    "episode_id": 238,
+    "episode_sequence": 1,
+    "start_ts": 0.0,
+    "end_ts": 5.5
+}
+
+###############################################
+# Expression Generation
+###############################################
+
+###
+# 8. Generate Expressions from Sentences
+POST {{baseUrl}}/api/expression/generate
+Content-Type: {{contentType}}
+
+{
+    "sentences": [
+        {
+            "en": "Let's break the ice with some small talk.",
+            "zh": "让我们用一些闲聊来打破僵局。"
+        },
+        {
+            "en": "She hit the nail on the head with her analysis.",
+            "zh": "她的分析一针见血。"
+        },
+        {
+            "en": "Time flies when you're having fun.",
+            "zh": "当你玩得开心时，时间飞逝。"
+        }
+    ],
+    "episode_id": 238,
+    "max_input_tokens": 2500,
+    "max_workers": 4
+}
+
+###############################################
+# Video Transcript
+###############################################
+
+###
+# 9. Get Video Transcript (by video_id)
+POST {{baseUrl}}/api/video/transcript
+Content-Type: {{contentType}}
+
+{
+    "video_id": "dQw4w9WgXcQ"
+}
+
+###
+# 10. Get Video Transcript (by video_url)
+POST {{baseUrl}}/api/video/transcript
+Content-Type: {{contentType}}
+
+{
+    "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+}
+
+###############################################
+# Audio Generation
+###############################################
+
+###
+# 11. Generate Audio for Sentences
+POST {{baseUrl}}/api/sentence/generate-audio
+Content-Type: {{contentType}}
+
+{
+    "sentences": [
+        "Hello, welcome to our podcast.lalala"
+    ],
+    "voice": "en-US-AvaMultilingualNeural",
+    "max_workers": 4
+}
+
+###
+# 12. Generate Audio for Single Phrase (basic)
+POST {{baseUrl}}/api/phrase/generate-audio
+Content-Type: {{contentType}}
+
+{
+    "phrase": "break the ice",
+    "voice": "en-US-AvaMultilingualNeural",
+    "check_existing": true
+}
+
+###
+# 13. Generate Audio for Phrase with Acronym
+POST {{baseUrl}}/api/phrase/generate-audio
+Content-Type: {{contentType}}
+
+{
+    "phrase": "lalala ooh oohhhaha",
+    "voice": "en-US-JennyNeural",
+    "check_existing": false
+}
+
+###############################################
+# Episode Management (MongoDB)
+###############################################
+
+###
+# 14. Read Episode from MongoDB (by ID)
+GET {{baseUrl}}/api/episode/db/208
+
+###
+# 15. Read Episode from MongoDB (another ID)
+GET {{baseUrl}}/api/episode/db/239
+
+###
+# 16. Read Episode from MongoDB (non-existent - should return 404)
+GET {{baseUrl}}/api/episode/db/99999
+
+###############################################
+# Error Cases - Testing Error Handling
+###############################################
+
+###
+# 17. Video Transcript without video_id or video_url (should fail)
+POST {{baseUrl}}/api/video/transcript
+Content-Type: {{contentType}}
+
+{
+}
+
+###############################################
+# Advanced Use Cases
+###############################################
+
+###
+# 18. Generate Sentences with Technical Terms
+POST {{baseUrl}}/api/paragraph/generate-sentences
+Content-Type: {{contentType}}
+
+{
+    "text": "RESTful APIs use HTTP methods for CRUD operations. GET retrieves data, POST creates new resources, PUT updates existing resources, and DELETE removes resources.",
+    "episode_id": 1000,
+    "split_by": "period"
+}
+
+###
+# 19. Generate Audio with Multiple Languages (Mixed Content)
+POST {{baseUrl}}/api/sentence/generate-audio
+Content-Type: {{contentType}}
+
+{
+    "sentences": [
+        "Welcome to our multilingual podcast.",
+        "We cover technology news from around the world."
+    ],
+    "voice": "en-US-AvaMultilingualNeural",
+    "max_workers": 2
+}
+
+###############################################
+# Performance Testing
+###############################################
+
+###
+# 20. Generate Sentences from Long Paragraph (Performance Test)
+POST {{baseUrl}}/api/paragraph/generate-sentences
+Content-Type: {{contentType}}
+
+{
+    "text": "First sentence. Second sentence. Third sentence. Fourth sentence. Fifth sentence. Sixth sentence. Seventh sentence. Eighth sentence. Ninth sentence. Tenth sentence.",
+    "episode_id": 1001,
+    "split_by": "period"
+}
+
+###
+# 21. Expression Generation with Multiple Sentences (Performance Test)
+POST {{baseUrl}}/api/expression/generate
+Content-Type: {{contentType}}
+
+{
+    "sentences": [
+        {"en": "Break the ice", "zh": "打破僵局"},
+        {"en": "Piece of cake", "zh": "小菜一碟"},
+        {"en": "Hit the books", "zh": "用功读书"},
+        {"en": "Spill the beans", "zh": "泄露秘密"},
+        {"en": "Bite the bullet", "zh": "硬着头皮"},
+        {"en": "Let the cat out of the bag", "zh": "泄露秘密"}
+    ],
+    "episode_id": 1002,
+    "max_input_tokens": 3000,
+    "max_workers": 4
+}
+
+###

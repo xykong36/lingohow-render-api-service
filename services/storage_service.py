@@ -183,7 +183,8 @@ def upload_to_cos_sync(
 
 async def batch_upload_r2(
     upload_files: List[Dict[str, str]],
-    max_concurrent: int = 10
+    max_concurrent: int = 10,
+    settings: Optional[Any] = None
 ) -> tuple[List[Dict[str, Any]], Dict[str, Any]]:
     """
     Upload multiple files to R2 concurrently.
@@ -191,23 +192,26 @@ async def batch_upload_r2(
     Args:
         upload_files: List of dicts with 'file_path', 'object_key', 'sentence_hash'
         max_concurrent: Maximum concurrent uploads (default: 10)
+        settings: Settings instance (optional, will get from get_settings() if not provided)
 
     Returns:
         Tuple of (results list, statistics dict)
     """
-    # Load R2 configuration
-    r2_config = {
-        'R2_BUCKET_NAME': os.getenv('R2_BUCKET_NAME'),
-        'R2_ACCESS_KEY_ID': os.getenv('R2_ACCESS_KEY_ID'),
-        'R2_SECRET_ACCESS_KEY': os.getenv('R2_SECRET_ACCESS_KEY'),
-        'R2_ENDPOINT_URL': os.getenv('R2_ENDPOINT_URL')
-    }
+    # Get settings if not provided
+    if settings is None:
+        from config import get_settings
+        settings = get_settings()
 
-    # Check if R2 is configured
-    if not all(r2_config.values()):
+    # Check if R2 is configured using Settings
+    if not all([
+        settings.r2_bucket_name,
+        settings.r2_access_key_id,
+        settings.r2_secret_access_key,
+        settings.r2_endpoint_url
+    ]):
         logger.warning("R2 configuration incomplete - skipping upload")
         return [], {
-            'error': 'R2 configuration incomplete - missing environment variables',
+            'error': 'R2 configuration incomplete - missing settings',
             'total_uploads': 0,
             'successful_uploads': 0,
             'failed_uploads': 0,
@@ -225,55 +229,128 @@ async def batch_upload_r2(
 
     logger.info(f"🔑 R2 configuration loaded, starting upload of {len(upload_files)} files...")
 
-    # Create semaphore for concurrency control
-    semaphore = asyncio.Semaphore(max_concurrent)
+    try:
+        import aioboto3
+        from botocore.config import Config
 
-    async def upload_with_semaphore(file_info: Dict[str, str]) -> Dict[str, Any]:
-        """Upload single file with semaphore."""
-        async with semaphore:
-            return await upload_to_r2_async(
-                file_path=file_info['file_path'],
-                object_key=file_info['object_key'],
-                bucket_name=r2_config['R2_BUCKET_NAME'],
-                access_key_id=r2_config['R2_ACCESS_KEY_ID'],
-                secret_access_key=r2_config['R2_SECRET_ACCESS_KEY'],
-                endpoint_url=r2_config['R2_ENDPOINT_URL']
-            )
+        # Configure boto with increased timeouts and connection pool settings
+        boto_config = Config(
+            connect_timeout=30,
+            read_timeout=60,
+            retries={'max_attempts': 2, 'mode': 'standard'},
+            max_pool_connections=max_concurrent + 5
+        )
 
-    # Upload all files concurrently
-    tasks = [upload_with_semaphore(file_info) for file_info in upload_files]
-    results = await asyncio.gather(*tasks, return_exceptions=True)
+        # Create shared session and client for all uploads
+        session = aioboto3.Session()
+        async with session.client(
+            service_name='s3',
+            endpoint_url=settings.r2_endpoint_url,
+            aws_access_key_id=settings.r2_access_key_id,
+            aws_secret_access_key=settings.r2_secret_access_key,
+            region_name='auto',
+            config=boto_config
+        ) as s3_client:
 
-    # Handle exceptions
-    processed_results = []
-    for idx, result in enumerate(results):
-        if isinstance(result, Exception):
-            logger.error(f"R2 upload exception for file {idx}: {result}")
-            processed_results.append({
-                'success': False,
-                'object_key': upload_files[idx].get('object_key', 'unknown'),
-                'error': str(result)
-            })
-        else:
-            processed_results.append(result)
+            # Create semaphore for concurrency control
+            semaphore = asyncio.Semaphore(max_concurrent)
 
-    # Calculate statistics
-    total = len(processed_results)
-    successful = sum(1 for r in processed_results if r.get('success', False))
-    stats = {
-        'total_uploads': total,
-        'successful_uploads': successful,
-        'failed_uploads': total - successful,
-        'success_rate': successful / total if total > 0 else 0.0
-    }
+            async def upload_single_file(file_info: Dict[str, str]) -> Dict[str, Any]:
+                """Upload single file using shared client."""
+                async with semaphore:
+                    try:
+                        file_path = file_info['file_path']
+                        object_key = file_info['object_key']
 
-    logger.info(f"📊 R2 upload: {successful}/{total} successful")
-    return processed_results, stats
+                        file_obj = Path(file_path)
+                        if not file_obj.exists():
+                            return {
+                                'success': False,
+                                'object_key': object_key,
+                                'error': 'File not found'
+                            }
+
+                        # Upload using shared client
+                        await s3_client.upload_file(
+                            Filename=str(file_obj),
+                            Bucket=settings.r2_bucket_name,
+                            Key=object_key,
+                            ExtraArgs={'ContentType': 'audio/mpeg'}
+                        )
+
+                        return {
+                            'success': True,
+                            'object_key': object_key,
+                            'file_name': file_obj.name,
+                            'file_size': file_obj.stat().st_size,
+                            'content_type': 'audio/mpeg'
+                        }
+
+                    except Exception as e:
+                        logger.error(f"R2 upload failed for {object_key}: {e}")
+                        return {
+                            'success': False,
+                            'object_key': object_key,
+                            'error': str(e)
+                        }
+
+            # Upload all files concurrently
+            tasks = [upload_single_file(file_info) for file_info in upload_files]
+            results = await asyncio.gather(*tasks, return_exceptions=True)
+
+            # Handle exceptions
+            processed_results = []
+            for idx, result in enumerate(results):
+                if isinstance(result, Exception):
+                    logger.error(f"R2 upload exception for file {idx}: {result}")
+                    processed_results.append({
+                        'success': False,
+                        'object_key': upload_files[idx].get('object_key', 'unknown'),
+                        'error': str(result)
+                    })
+                else:
+                    processed_results.append(result)
+
+            # Wait for graceful connection cleanup
+            await asyncio.sleep(2.0)  # 增加到2秒，确保连接完全关闭
+
+        # Calculate statistics (outside the client context)
+        total = len(processed_results)
+        successful = sum(1 for r in processed_results if r.get('success', False))
+        stats = {
+            'total_uploads': total,
+            'successful_uploads': successful,
+            'failed_uploads': total - successful,
+            'success_rate': successful / total if total > 0 else 0.0
+        }
+
+        logger.info(f"📊 R2 upload: {successful}/{total} successful")
+        return processed_results, stats
+
+    except ImportError:
+        logger.error("aioboto3 not installed")
+        return [], {
+            'error': 'aioboto3 not installed',
+            'total_uploads': 0,
+            'successful_uploads': 0,
+            'failed_uploads': 0,
+            'success_rate': 0.0
+        }
+    except Exception as e:
+        logger.error(f"R2 batch upload failed: {e}")
+        return [], {
+            'error': str(e),
+            'total_uploads': 0,
+            'successful_uploads': 0,
+            'failed_uploads': 0,
+            'success_rate': 0.0
+        }
 
 
 async def batch_upload_cos(
     upload_files: List[Dict[str, str]],
-    max_workers: int = 4
+    max_workers: int = 4,
+    settings: Optional[Any] = None
 ) -> tuple[List[Dict[str, Any]], Dict[str, Any]]:
     """
     Upload multiple files to COS using thread pool (since COS SDK is sync).
@@ -281,23 +358,26 @@ async def batch_upload_cos(
     Args:
         upload_files: List of dicts with 'file_path', 'object_key', 'sentence_hash'
         max_workers: Maximum thread pool workers (default: 4)
+        settings: Settings instance (optional, will get from get_settings() if not provided)
 
     Returns:
         Tuple of (results list, statistics dict)
     """
-    # Load COS configuration
-    cos_config = {
-        'COS_SECRET_ID': os.getenv('COS_SECRET_ID'),
-        'COS_SECRET_KEY': os.getenv('COS_SECRET_KEY'),
-        'COS_BUCKET': os.getenv('COS_BUCKET'),
-        'COS_REGION': os.getenv('COS_REGION')
-    }
+    # Get settings if not provided
+    if settings is None:
+        from config import get_settings
+        settings = get_settings()
 
-    # Check if COS is configured
-    if not all(cos_config.values()):
+    # Check if COS is configured using Settings
+    if not all([
+        settings.cos_secret_id,
+        settings.cos_secret_key,
+        settings.cos_bucket,
+        settings.cos_region
+    ]):
         logger.warning("COS configuration incomplete - skipping upload")
         return [], {
-            'error': 'COS configuration incomplete - missing environment variables',
+            'error': 'COS configuration incomplete - missing settings',
             'total_uploads': 0,
             'successful_uploads': 0,
             'failed_uploads': 0,
@@ -324,10 +404,10 @@ async def batch_upload_cos(
                 upload_to_cos_sync,
                 file_info['file_path'],
                 file_info['object_key'],
-                cos_config['COS_BUCKET'],
-                cos_config['COS_REGION'],
-                cos_config['COS_SECRET_ID'],
-                cos_config['COS_SECRET_KEY']
+                settings.cos_bucket,
+                settings.cos_region,
+                settings.cos_secret_id,
+                settings.cos_secret_key
             )
             for file_info in upload_files
         ]
@@ -365,7 +445,10 @@ async def upload_audio_files(
     upload_to_cos: bool = True,
     upload_to_r2: bool = True,
     max_concurrent_r2: int = 10,
-    max_workers_cos: int = 4
+    max_workers_cos: int = 4,
+    r2_files: Optional[List[Dict[str, str]]] = None,
+    cos_files: Optional[List[Dict[str, str]]] = None,
+    settings: Optional[Any] = None
 ) -> tuple[List[Dict[str, Any]], List[Dict[str, Any]], Dict[str, Any], Dict[str, Any]]:
     """
     Upload audio files to both COS and R2 concurrently.
@@ -376,20 +459,31 @@ async def upload_audio_files(
         upload_to_r2: Whether to upload to R2 (default: True)
         max_concurrent_r2: Max concurrent R2 uploads (default: 10)
         max_workers_cos: Max thread pool workers for COS (default: 4)
+        r2_files: Optional specific list for R2 upload (default: None, uses upload_files)
+        cos_files: Optional specific list for COS upload (default: None, uses upload_files)
+        settings: Settings instance (optional, will get from get_settings() if not provided)
 
     Returns:
         Tuple of (cos_results, r2_results, cos_stats, r2_stats)
     """
+    # Get settings if not provided
+    if settings is None:
+        from config import get_settings
+        settings = get_settings()
+
     tasks = []
 
     # Upload to COS and R2 in parallel
+    # Use specific file lists if provided, otherwise use upload_files
     if upload_to_cos:
-        tasks.append(batch_upload_cos(upload_files, max_workers_cos))
+        cos_upload_list = cos_files if cos_files is not None else upload_files
+        tasks.append(batch_upload_cos(cos_upload_list, max_workers_cos, settings))
     else:
         tasks.append(asyncio.sleep(0))  # Placeholder
 
     if upload_to_r2:
-        tasks.append(batch_upload_r2(upload_files, max_concurrent_r2))
+        r2_upload_list = r2_files if r2_files is not None else upload_files
+        tasks.append(batch_upload_r2(r2_upload_list, max_concurrent_r2, settings))
     else:
         tasks.append(asyncio.sleep(0))  # Placeholder
 
