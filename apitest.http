@@ -141,9 +141,7 @@ Content-Type: {{contentType}}
 
 {
     "sentences": [
-        "Hello, welcome to our podcast.",
-        "Today we're going to talk about artificial intelligence.",
-        "Thank you for listening!"
+        "Hello, welcome to our podcast.lalala"
     ],
     "voice": "en-US-AvaMultilingualNeural",
     "max_workers": 4
@@ -166,7 +164,7 @@ POST {{baseUrl}}/api/phrase/generate-audio
 Content-Type: {{contentType}}
 
 {
-    "phrase": "S.P.F.",
+    "phrase": "lalala ooh oohhhaha",
     "voice": "en-US-JennyNeural",
     "check_existing": false
 }
@@ -177,7 +175,7 @@ Content-Type: {{contentType}}
 
 ###
 # 14. Read Episode from MongoDB (by ID)
-GET {{baseUrl}}/api/episode/db/238
+GET {{baseUrl}}/api/episode/db/208
 
 ###
 # 15. Read Episode from MongoDB (another ID)

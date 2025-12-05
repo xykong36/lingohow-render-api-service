@@ -108,9 +108,9 @@ curl -X POST "http://localhost:8000/api/phrase/generate-audio" \
   "uploaded_cos": true,
   "r2_existed": false,
   "cos_existed": false,
-  "r2_object_key": "audio/expressionss/a1b2c3d4.mp3",
-  "cos_object_key": "audio/expressionss/a1b2c3d4.mp3",
-  "audio_file_path": "audio/expressionss/a1b2c3d4.mp3",
+  "r2_object_key": "audio/expressions/a1b2c3d4.mp3",
+  "cos_object_key": "audio/expressions/a1b2c3d4.mp3",
+  "audio_file_path": "audio/expressions/a1b2c3d4.mp3",
   "error": null
 }
 ```
@@ -139,9 +139,9 @@ curl -X POST "http://localhost:8000/api/phrase/generate-audio" \
   "uploaded_cos": true,
   "r2_existed": false,
   "cos_existed": false,
-  "r2_object_key": "audio/expressionss/e5f6g7h8.mp3",
-  "cos_object_key": "audio/expressionss/e5f6g7h8.mp3",
-  "audio_file_path": "audio/expressionss/e5f6g7h8.mp3",
+  "r2_object_key": "audio/expressions/e5f6g7h8.mp3",
+  "cos_object_key": "audio/expressions/e5f6g7h8.mp3",
+  "audio_file_path": "audio/expressions/e5f6g7h8.mp3",
   "error": null
 }
 ```
@@ -170,8 +170,8 @@ curl -X POST "http://localhost:8000/api/phrase/generate-audio" \
   "uploaded_cos": false,
   "r2_existed": true,
   "cos_existed": true,
-  "r2_object_key": "audio/expressionss/a1b2c3d4.mp3",
-  "cos_object_key": "audio/expressionss/a1b2c3d4.mp3",
+  "r2_object_key": "audio/expressions/a1b2c3d4.mp3",
+  "cos_object_key": "audio/expressions/a1b2c3d4.mp3",
   "audio_file_path": null,
   "error": null
 }
@@ -335,11 +335,11 @@ async function generatePhraseAudio(
 ## 文件存储位置
 
 ### 本地存储
-- 路径：`audio/expressionss/{phrase_hash}.mp3`
+- 路径：`audio/expressions/{phrase_hash}.mp3`
 
 ### 云存储
-- R2 路径：`audio/expressionss/{phrase_hash}.mp3`
-- COS 路径：`audio/expressionss/{phrase_hash}.mp3`
+- R2 路径：`audio/expressions/{phrase_hash}.mp3`
+- COS 路径：`audio/expressions/{phrase_hash}.mp3`
 
 ## 相关 API
 

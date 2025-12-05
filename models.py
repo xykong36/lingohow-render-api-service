@@ -255,6 +255,9 @@ class SentenceAudioResult(BaseModel):
     uploaded_r2: bool = Field(False, description="Whether uploaded to R2 successfully")
     cos_object_key: Optional[str] = Field(None, description="COS object key")
     r2_object_key: Optional[str] = Field(None, description="R2 object key")
+    cos_url: Optional[str] = Field(None, description="Full COS URL to access the audio file")
+    r2_url: Optional[str] = Field(None, description="Full R2 URL to access the audio file")
+    local_file_path: Optional[str] = Field(None, description="Local file path")
     error: Optional[str] = Field(None, description="Error message if any step failed")
 
 
@@ -345,6 +348,8 @@ class PhraseAudioGenerateResponse(BaseModel):
     cos_existed: bool = Field(False, description="Whether file already existed in COS")
     r2_object_key: Optional[str] = Field(None, description="R2 object key")
     cos_object_key: Optional[str] = Field(None, description="COS object key")
+    r2_url: Optional[str] = Field(None, description="Full R2 URL to access the audio file")
+    cos_url: Optional[str] = Field(None, description="Full COS URL to access the audio file")
     audio_file_path: Optional[str] = Field(None, description="Local audio file path")
     error: Optional[str] = Field(None, description="Error message if any step failed")
 

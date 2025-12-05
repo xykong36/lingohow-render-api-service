@@ -183,7 +183,8 @@ def upload_to_cos_sync(
 
 async def batch_upload_r2(
     upload_files: List[Dict[str, str]],
-    max_concurrent: int = 10
+    max_concurrent: int = 10,
+    settings: Optional[Any] = None
 ) -> tuple[List[Dict[str, Any]], Dict[str, Any]]:
     """
     Upload multiple files to R2 concurrently.
@@ -191,23 +192,26 @@ async def batch_upload_r2(
     Args:
         upload_files: List of dicts with 'file_path', 'object_key', 'sentence_hash'
         max_concurrent: Maximum concurrent uploads (default: 10)
+        settings: Settings instance (optional, will get from get_settings() if not provided)
 
     Returns:
         Tuple of (results list, statistics dict)
     """
-    # Load R2 configuration
-    r2_config = {
-        'R2_BUCKET_NAME': os.getenv('R2_BUCKET_NAME'),
-        'R2_ACCESS_KEY_ID': os.getenv('R2_ACCESS_KEY_ID'),
-        'R2_SECRET_ACCESS_KEY': os.getenv('R2_SECRET_ACCESS_KEY'),
-        'R2_ENDPOINT_URL': os.getenv('R2_ENDPOINT_URL')
-    }
+    # Get settings if not provided
+    if settings is None:
+        from config import get_settings
+        settings = get_settings()
 
-    # Check if R2 is configured
-    if not all(r2_config.values()):
+    # Check if R2 is configured using Settings
+    if not all([
+        settings.r2_bucket_name,
+        settings.r2_access_key_id,
+        settings.r2_secret_access_key,
+        settings.r2_endpoint_url
+    ]):
         logger.warning("R2 configuration incomplete - skipping upload")
         return [], {
-            'error': 'R2 configuration incomplete - missing environment variables',
+            'error': 'R2 configuration incomplete - missing settings',
             'total_uploads': 0,
             'successful_uploads': 0,
             'failed_uploads': 0,
@@ -241,9 +245,9 @@ async def batch_upload_r2(
         session = aioboto3.Session()
         async with session.client(
             service_name='s3',
-            endpoint_url=r2_config['R2_ENDPOINT_URL'],
-            aws_access_key_id=r2_config['R2_ACCESS_KEY_ID'],
-            aws_secret_access_key=r2_config['R2_SECRET_ACCESS_KEY'],
+            endpoint_url=settings.r2_endpoint_url,
+            aws_access_key_id=settings.r2_access_key_id,
+            aws_secret_access_key=settings.r2_secret_access_key,
             region_name='auto',
             config=boto_config
         ) as s3_client:
@@ -269,7 +273,7 @@ async def batch_upload_r2(
                         # Upload using shared client
                         await s3_client.upload_file(
                             Filename=str(file_obj),
-                            Bucket=r2_config['R2_BUCKET_NAME'],
+                            Bucket=settings.r2_bucket_name,
                             Key=object_key,
                             ExtraArgs={'ContentType': 'audio/mpeg'}
                         )
@@ -345,7 +349,8 @@ async def batch_upload_r2(
 
 async def batch_upload_cos(
     upload_files: List[Dict[str, str]],
-    max_workers: int = 4
+    max_workers: int = 4,
+    settings: Optional[Any] = None
 ) -> tuple[List[Dict[str, Any]], Dict[str, Any]]:
     """
     Upload multiple files to COS using thread pool (since COS SDK is sync).
@@ -353,23 +358,26 @@ async def batch_upload_cos(
     Args:
         upload_files: List of dicts with 'file_path', 'object_key', 'sentence_hash'
         max_workers: Maximum thread pool workers (default: 4)
+        settings: Settings instance (optional, will get from get_settings() if not provided)
 
     Returns:
         Tuple of (results list, statistics dict)
     """
-    # Load COS configuration
-    cos_config = {
-        'COS_SECRET_ID': os.getenv('COS_SECRET_ID'),
-        'COS_SECRET_KEY': os.getenv('COS_SECRET_KEY'),
-        'COS_BUCKET': os.getenv('COS_BUCKET'),
-        'COS_REGION': os.getenv('COS_REGION')
-    }
+    # Get settings if not provided
+    if settings is None:
+        from config import get_settings
+        settings = get_settings()
 
-    # Check if COS is configured
-    if not all(cos_config.values()):
+    # Check if COS is configured using Settings
+    if not all([
+        settings.cos_secret_id,
+        settings.cos_secret_key,
+        settings.cos_bucket,
+        settings.cos_region
+    ]):
         logger.warning("COS configuration incomplete - skipping upload")
         return [], {
-            'error': 'COS configuration incomplete - missing environment variables',
+            'error': 'COS configuration incomplete - missing settings',
             'total_uploads': 0,
             'successful_uploads': 0,
             'failed_uploads': 0,
@@ -396,10 +404,10 @@ async def batch_upload_cos(
                 upload_to_cos_sync,
                 file_info['file_path'],
                 file_info['object_key'],
-                cos_config['COS_BUCKET'],
-                cos_config['COS_REGION'],
-                cos_config['COS_SECRET_ID'],
-                cos_config['COS_SECRET_KEY']
+                settings.cos_bucket,
+                settings.cos_region,
+                settings.cos_secret_id,
+                settings.cos_secret_key
             )
             for file_info in upload_files
         ]
@@ -439,7 +447,8 @@ async def upload_audio_files(
     max_concurrent_r2: int = 10,
     max_workers_cos: int = 4,
     r2_files: Optional[List[Dict[str, str]]] = None,
-    cos_files: Optional[List[Dict[str, str]]] = None
+    cos_files: Optional[List[Dict[str, str]]] = None,
+    settings: Optional[Any] = None
 ) -> tuple[List[Dict[str, Any]], List[Dict[str, Any]], Dict[str, Any], Dict[str, Any]]:
     """
     Upload audio files to both COS and R2 concurrently.
@@ -452,23 +461,29 @@ async def upload_audio_files(
         max_workers_cos: Max thread pool workers for COS (default: 4)
         r2_files: Optional specific list for R2 upload (default: None, uses upload_files)
         cos_files: Optional specific list for COS upload (default: None, uses upload_files)
+        settings: Settings instance (optional, will get from get_settings() if not provided)
 
     Returns:
         Tuple of (cos_results, r2_results, cos_stats, r2_stats)
     """
+    # Get settings if not provided
+    if settings is None:
+        from config import get_settings
+        settings = get_settings()
+
     tasks = []
 
     # Upload to COS and R2 in parallel
     # Use specific file lists if provided, otherwise use upload_files
     if upload_to_cos:
         cos_upload_list = cos_files if cos_files is not None else upload_files
-        tasks.append(batch_upload_cos(cos_upload_list, max_workers_cos))
+        tasks.append(batch_upload_cos(cos_upload_list, max_workers_cos, settings))
     else:
         tasks.append(asyncio.sleep(0))  # Placeholder
 
     if upload_to_r2:
         r2_upload_list = r2_files if r2_files is not None else upload_files
-        tasks.append(batch_upload_r2(r2_upload_list, max_concurrent_r2))
+        tasks.append(batch_upload_r2(r2_upload_list, max_concurrent_r2, settings))
     else:
         tasks.append(asyncio.sleep(0))  # Placeholder
 

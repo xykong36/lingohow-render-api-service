@@ -152,6 +152,9 @@ async def generate_and_upload_phrase_audio(
         True
     """
     from services.storage_service import upload_audio_files
+    from config import get_settings
+
+    settings = get_settings()
 
     # Validate phrase
     if not phrase or not phrase.strip():
@@ -172,7 +175,7 @@ async def generate_and_upload_phrase_audio(
     formatted_for_tts = format_phrase_for_tts(phrase)
 
     # Create audio directory
-    audio_dir = Path("audio/expressionss")
+    audio_dir = Path("audio/expressions")
     audio_dir.mkdir(parents=True, exist_ok=True)
 
     # Audio file path
@@ -180,7 +183,7 @@ async def generate_and_upload_phrase_audio(
     audio_path = audio_dir / audio_filename
 
     # Object key for cloud storage
-    object_key = f"audio/expressionss/{clean_filename}.mp3"
+    object_key = f"audio/expressions/{clean_filename}.mp3"
 
     # Check if audio exists in R2/COS
     r2_existed = False
@@ -257,12 +260,17 @@ async def generate_and_upload_phrase_audio(
         upload_to_cos=True,
         upload_to_r2=True,
         max_concurrent_r2=1,
-        max_workers_cos=1
+        max_workers_cos=1,
+        settings=settings
     )
 
     # Extract upload results
     uploaded_r2 = r2_stats.get('successful_uploads', 0) > 0
     uploaded_cos = cos_stats.get('successful_uploads', 0) > 0
+
+    # Construct URLs for uploaded files
+    r2_url = settings.get_r2_url(object_key) if (uploaded_r2 or r2_existed) else None
+    cos_url = settings.get_cos_url(object_key) if (uploaded_cos or cos_existed) else None
 
     return {
         'phrase': phrase,
@@ -276,6 +284,8 @@ async def generate_and_upload_phrase_audio(
         'cos_existed': cos_existed,
         'r2_object_key': object_key if uploaded_r2 or r2_existed else None,
         'cos_object_key': object_key if uploaded_cos or cos_existed else None,
+        'r2_url': r2_url,
+        'cos_url': cos_url,
         'audio_file_path': str(audio_path) if audio_path.exists() else None
     }
 

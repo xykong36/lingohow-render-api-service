@@ -5,7 +5,6 @@ Provides database operations for episodes collection in MongoDB.
 """
 
 import logging
-import os
 from typing import Optional, Dict, Any
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure, OperationFailure
@@ -31,19 +30,19 @@ class EpisodeNotFoundInDBError(MongoDBServiceError):
 class MongoDBService:
     """Service for managing MongoDB operations."""
 
-    def __init__(self):
+    def __init__(self, mongodb_uri: str, mongodb_database_name: str = "dev_lingohow"):
         """
         Initialize MongoDB service.
 
-        Reads connection settings from environment variables:
-        - MONGODB_URI: MongoDB connection string
-        - MONGODB_DATABASE_NAME: Database name
+        Args:
+            mongodb_uri: MongoDB connection string
+            mongodb_database_name: Database name (default: "dev_lingohow")
         """
-        self.uri = os.getenv("MONGODB_URI")
-        self.database_name = os.getenv("MONGODB_DATABASE_NAME", "dev_lingohow")
+        self.uri = mongodb_uri
+        self.database_name = mongodb_database_name
 
         if not self.uri:
-            raise MongoDBConnectionError("MONGODB_URI environment variable not set")
+            raise MongoDBConnectionError("MongoDB URI not provided")
 
         self.client: Optional[MongoClient] = None
         self.db = None

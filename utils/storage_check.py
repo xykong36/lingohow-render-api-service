@@ -17,14 +17,14 @@ async def check_r2_file_exists(object_key: str) -> bool:
     Check if a file exists in Cloudflare R2 storage.
 
     Args:
-        object_key: R2 object key (e.g., "audio/expressionss/abc123.mp3")
+        object_key: R2 object key (e.g., "audio/expressions/abc123.mp3")
 
     Returns:
         True if file exists, False otherwise
 
     Examples:
         >>> import asyncio
-        >>> exists = asyncio.run(check_r2_file_exists("audio/expressionss/test.mp3"))
+        >>> exists = asyncio.run(check_r2_file_exists("audio/expressions/test.mp3"))
         >>> isinstance(exists, bool)
         True
     """
@@ -75,13 +75,13 @@ def check_cos_file_exists_sync(object_key: str) -> bool:
     Check if a file exists in Tencent Cloud COS storage (synchronous).
 
     Args:
-        object_key: COS object key (e.g., "audio/expressionss/abc123.mp3")
+        object_key: COS object key (e.g., "audio/expressions/abc123.mp3")
 
     Returns:
         True if file exists, False otherwise
 
     Examples:
-        >>> exists = check_cos_file_exists_sync("audio/expressionss/test.mp3")
+        >>> exists = check_cos_file_exists_sync("audio/expressions/test.mp3")
         >>> isinstance(exists, bool)
         True
     """
@@ -129,14 +129,14 @@ async def check_cos_file_exists(object_key: str) -> bool:
     Check if a file exists in Tencent Cloud COS storage (async wrapper).
 
     Args:
-        object_key: COS object key (e.g., "audio/expressionss/abc123.mp3")
+        object_key: COS object key (e.g., "audio/expressions/abc123.mp3")
 
     Returns:
         True if file exists, False otherwise
 
     Examples:
         >>> import asyncio
-        >>> exists = asyncio.run(check_cos_file_exists("audio/expressionss/test.mp3"))
+        >>> exists = asyncio.run(check_cos_file_exists("audio/expressions/test.mp3"))
         >>> isinstance(exists, bool)
         True
     """
@@ -158,7 +158,7 @@ async def check_audio_exists_in_storage(
 
     Examples:
         >>> import asyncio
-        >>> r2, cos = asyncio.run(check_audio_exists_in_storage("audio/expressionss/test.mp3"))
+        >>> r2, cos = asyncio.run(check_audio_exists_in_storage("audio/expressions/test.mp3"))
         >>> isinstance(r2, bool) and isinstance(cos, bool)
         True
     """
